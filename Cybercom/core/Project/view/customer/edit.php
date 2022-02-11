@@ -1,15 +1,25 @@
 
-<?php require_once('Adapter.php'); ?>
+<?php require_once('Model/Core/Adapter.php'); ?>
 <?php $id=$_GET['id'];;?>
 <?php
 
-$id=$_GET['id'];
+	try
+	{
+		$id=$_GET['id'];
+		if(!$id)
+		{
+			throw new Exception("Invelid Request", 1);
+			
+		}
 
-$adapter=new Adapter();
-$customer=$adapter->fetchRow("select * FROM `customer` WHERE `customer`.`customer_id` = '$id'");
-$address=$adapter->fetchRow("select * FROM `address` WHERE `address`.`customer_id` = '$id'");
-//print_r($customer);
-//print_r($address);
+		$adapter=new Adapter();
+		$customer=$adapter->fetchRow("select * FROM `customer` WHERE `customer`.`customer_id` = '$id'");
+		$address=$adapter->fetchRow("select * FROM `address` WHERE `address`.`customer_id` = '$id'");
+	}
+	catch(Exception $e)
+	{
+		throw new Exception("Invelid Request", 1);
+	}
 
 
 ?>
@@ -17,7 +27,7 @@ $address=$adapter->fetchRow("select * FROM `address` WHERE `address`.`customer_i
 <head><title>Customer Edit</title></head>
 <body>
 
-<form action="customer_index.php?a=saveAction&id=<?php echo $id ?>" method="POST">
+<form action="index.php?c=customer&a=save&id=<?php echo $id ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<td colspan="2"><b>Personal Information</b></td>
@@ -92,7 +102,6 @@ $address=$adapter->fetchRow("select * FROM `address` WHERE `address`.`customer_i
 				<label for="billing"> Billing</label><br>
 				<?php if($address['shiping']==1): ?>
 				<input type="checkbox" name="address[shiping]" value="1" checked>
-				<?php echo $address['shiping']; ?>
 				<?php else: ?>
 				<input type="checkbox" name="address[shiping]" value="1">
 				<?php endif; ?>
@@ -104,7 +113,7 @@ $address=$adapter->fetchRow("select * FROM `address` WHERE `address`.`customer_i
 			<td width="10%">&nbsp;</td>
 			<td>
 				<input type="submit" name="submit" value="update">
-				<button type="button"><a href="customer_index.php?a=gridAction">Cancel</a></button>
+				<button type="button"><a href="index.php?c=customer&a=grid">Cancel</a></button>
 			</td>
 		</tr>
 		

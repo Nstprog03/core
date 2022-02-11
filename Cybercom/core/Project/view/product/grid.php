@@ -8,7 +8,7 @@ $products = $adapter->fetchAll('select * FROM `product`');
 <head>
 </head>
 <body>
-	<button name="Add"><a href="product.php?a=addAction"><h3>Add</h3></a></button>
+	<button name="Add"><a href="index.php?c=product&a=add"><h3>Add</h3></a></button>
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<th>product Id</th>
@@ -33,8 +33,8 @@ $products = $adapter->fetchAll('select * FROM `product`');
 				<td><?php if($product['status']==1):echo "Active";else : echo "Inactive"; endif;?></td>
 				<td><?php echo $product['created_date'] ?></td>
 				<td><?php echo $product['updated_date'] ?></td>
-				<td><a href="product.php?a=editAction&id=<?php echo $product['product_id'] ?>">Edit</a></td>
-				<td><a href="product.php?a=deleteAction&id=<?php echo $product['product_id'] ?>">Delete</a></td>
+				<td><a href="index.php?c=product&a=edit&id=<?php echo $product['product_id'] ?>">Edit</a></td>
+				<td><a href="index.php?c=product&a=delete&id=<?php echo $product['product_id'] ?>">Delete</a></td>
 			</tr>
 			<?php endforeach;	?>
 		<?php endif;  ?>

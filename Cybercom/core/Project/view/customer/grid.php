@@ -1,14 +1,28 @@
 <?php
-$adapter = new Adapter();
-$customers = $adapter->fetchAll('select * FROM `customer`');
 
+	$adapter = new Adapter();
+
+	try
+	{
+
+		$customers = $adapter->fetchAll('select * FROM `customer`');
+		if(!$customers)
+		{
+			throw new Exception("System unable to fetch", 1);
+			
+		}
+	}
+	catch(Exception $e)
+	{
+		throw new Exception("System unable to fetch", 1);
+	}
 
 ?>
 <html>
 <head>
 </head>
 <body>
-	<button name="Add"><a href="customer_index.php?a=addAction"><h3>Add</h3></a></button>
+	<button name="Add"><a href="index.php?c=customer&a=add"><h3>Add</h3></a></button>
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<th>customer Id</th>
@@ -39,7 +53,9 @@ $customers = $adapter->fetchAll('select * FROM `customer`');
 				<td>
 					<?php 
 							$selectQuery="select * FROM `address` WHERE `address`.`customer_id` = '$customer[customer_id]'";
+
 							$address=$adapter->fetchRow($selectQuery);
+							//print_r($address);
 							echo "Address : ".$address['address']."<br>";
 							echo "Postal Code : ".$address['postalCode']."<br>";
 							echo "Ciry : ".$address['city']."<br>";
@@ -53,8 +69,8 @@ $customers = $adapter->fetchAll('select * FROM `customer`');
 
 					 ?>
 				</td>
-				<td><a href="customer_index.php?a=editAction&id=<?php echo $customer['customer_id'] ?>">Edit</a></td>
-				<td><a href="customer_index.php?a=deleteAction&id=<?php echo $customer['customer_id'] ?>">Delete</a></td>
+				<td><a href="index.php?c=customer&a=edit&id=<?php echo $customer['customer_id'] ?>">Edit</a></td>
+				<td><a href="index.php?c=customer&a=delete&id=<?php echo $customer['customer_id'] ?>">Delete</a></td>
 			</tr>
 			<?php endforeach;	?>
 		<?php endif;  ?>
