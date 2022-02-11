@@ -1,6 +1,22 @@
 <?php
-$adapter = new Adapter();
-$categories = $adapter->fetchAll('select * FROM `category`');
+	$adapter = new Adapter();
+	try
+	{
+
+		$categories = $adapter->fetchAll('select * FROM `category` order by path asc');
+		if(!$categories)
+		{
+			throw new Exception("System unable to fetch", 1);
+			
+		}
+	}
+	catch(Exception $e)
+	{
+		throw new Exception("System unable to fetch", 1);
+	}
+
+	
+
 
 
 ?>
@@ -8,7 +24,7 @@ $categories = $adapter->fetchAll('select * FROM `category`');
 <head>
 </head>
 <body>
-	<button name="Add"><a href="category.php?a=addAction"><h3>Add</h3></a></button>
+	<button name="Add"><a href="index.php?c=category&a=add"><h3>Add</h3></a></button>
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<th>Category Id</th>
@@ -25,12 +41,12 @@ $categories = $adapter->fetchAll('select * FROM `category`');
 			<?php foreach ($categories as $category): ?>
 			<tr>
 				<td><?php echo $category['category_id'] ?></td>
-				<td><?php echo $category['name'] ?></td>
+				<td><?php $adapter =new Adapter(); $result=$adapter->pathAction();echo $result[$category['category_id']];  ?></td>
 				<td><?php if($category['status']==1):echo "Active";else : echo "Inactive"; endif;?></td>
 				<td><?php echo $category['created_date'] ?></td>
 				<td><?php echo $category['updated_date'] ?></td>
-				<td><a href="category.php?a=editAction&id=<?php echo $category['category_id'] ?>">Edit</a></td>
-				<td><a href="category.php?a=deleteAction&id=<?php echo $category['category_id'] ?>">Delete</a></td>
+				<td><a href="index.php?c=category&a=edit&id=<?php echo $category['category_id'] ?>">Edit</a></td>
+				<td><a href="index.php?c=category&a=delete&id=<?php echo $category['category_id'] ?>">Delete</a></td>
 			</tr>
 			<?php endforeach;	?>
 		<?php endif;  ?>

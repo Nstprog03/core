@@ -1,5 +1,5 @@
 
-<?php require_once('Adapter.php'); ?>
+<?php require_once('Model/Core/Adapter.php'); ?>
 <?php $id=$_GET['id'];?>
 <?php
 
@@ -14,7 +14,7 @@ $product=$adapter->fetchRow("select * FROM `product` WHERE `product`.`product_id
 <head><title>Product Add</title></head>
 <body>
 
-<form action="product.php?a=saveAction&id=<?php echo $id ?>" method="POST">
+<form action="index.php?c=product&a=save&id=<?php echo $id ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<td colspan="2"><b>Product Information</b><input type="text" name="product[product_id]" value="<?php echo $product['product_id'] ?>" hidden></td>
@@ -50,7 +50,7 @@ $product=$adapter->fetchRow("select * FROM `product` WHERE `product`.`product_id
 			<td width="10%">&nbsp;</td>
 			<td>
 				<input type="submit" name="submit" value="update">
-				<button type="button"><a href="product.php?a=gridAction">Cancel</a></button>
+				<button type="button"><a href="index.php?c=product&a=grid">Cancel</a></button>
 			</td>
 		</tr>
 		

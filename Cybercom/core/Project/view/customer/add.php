@@ -1,8 +1,8 @@
-<?php require_once('Adapter.php') ?>
+<?php require_once('Model/Core/Adapter.php') ?>
 <html>
 <head><title>Customer Add</title></head>
 <body>
-<form action="customer_index.php?a=saveAction" method="POST">
+<form action="index.php?c=customer&a=save" method="POST">
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<td colspan="2"><b>Personal Information</b></td>
@@ -70,7 +70,7 @@
 			<td width="10%">&nbsp;</td>
 			<td>
 				<input type="submit" name="submit" value="Save">
-				<button type="button"><a href="customer_index.php?a=gridAction">Cancel</a></button>
+				<button type="button"><a href="index.php?c=customer&a=grid">Cancel</a></button>
 			</td>
 		</tr>
 		
