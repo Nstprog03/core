@@ -1,9 +1,9 @@
 
-<?php require_once('Model/Core/Adapter.php'); ?>
-<?php $id=$_GET['id'];;?>
-<?php
+<?php  ?>
+<?php ?>
+<?php $id=$_GET['id'];
 
-	try
+	/*try
 	{
 		$id=$_GET['id'];
 		if(!$id)
@@ -19,8 +19,12 @@
 	catch(Exception $e)
 	{
 		throw new Exception("Invelid Request", 1);
-	}
+	}*/
+	$data = $this->getData('data');
+	$customer = $data[0];
+	$address = $data[1];
 
+	$adapter = new Adapter();
 
 ?>
 <html>

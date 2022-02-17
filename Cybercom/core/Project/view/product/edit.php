@@ -1,12 +1,8 @@
 
-<?php require_once('Model/Core/Adapter.php'); ?>
-<?php $id=$_GET['id'];?>
+<?php $product=$this->getData('product');
+	$controllerProducts = new Controller_Product(); ?>
+<?php //$id=$_GET['id'];?>
 <?php
-
-$id=$_GET['id'];
-
-$adapter=new Adapter();
-$product=$adapter->fetchRow("select * FROM `product` WHERE `product`.`product_id` = '$id'");
 
 
 ?>
@@ -14,7 +10,7 @@ $product=$adapter->fetchRow("select * FROM `product` WHERE `product`.`product_id
 <head><title>Product Add</title></head>
 <body>
 
-<form action="index.php?c=product&a=save&id=<?php echo $id ?>" method="POST">
+<form action="index.php?c=product&a=save&id=<?php echo $product['product_id'] ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<td colspan="2"><b>Product Information</b><input type="text" name="product[product_id]" value="<?php echo $product['product_id'] ?>" hidden></td>

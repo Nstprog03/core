@@ -1,56 +1,44 @@
-<?php require_once('Model/Core/Adapter.php');
+<?php
+    $Controller_Category = new Controller_Category();
+    $categories = $this->getData('categories');
+    $result = $Controller_Category->pathAction();
+?>
 
-$adapter = new Adapter();
-
-
-$categories = $adapter->fetchAll("SELECT * FROM `category` ORDER BY `p_category_id`");
-//$adapter =new Adapter(); 
-
- $result=$adapter->pathAction();
-
- ?>
+<!DOCTYPE html>
 <html>
-<head><title>Category Add</title></head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add Category</title>
+</head>
 <body>
-<form action="index.php?c=category&a=save" method="POST">
-	<table border="1" width="100%" cellspacing="4">
-		 <tr>
-                <td width="10%">Subcategory</td>
-                <td>
-                    <select name="category[p_category_id]" id="parentId">
-                        <option value=<?php echo null; ?>>Root Category</option>
-                    <?php foreach($categories as $category): ?>
-                        <option value="<?php echo $category['category_id']?>"><?php echo $result[$category['category_id']];?></option>
-                    <?php endforeach; ?>
-                    </select>
-                </td>
-        </tr>
+    <h2>Add Category</h2>
 
-		<tr>
-			<td colspan="2"><b>Category</b></td>
-		</tr>
-		<tr>
-			<td width="10%">Category Name</td>
-			<td><input type="text" name="category[name]"></td>
-		</tr>
-		<tr>
-			<td width="10%">Status</td>
-			<td>
-				<select name="category[status]">
-					<option value="1">Active</option>
-					<option value="2">Inactive</option>
-				</select>
-			</td>
-		</tr>		
-		<tr>
-			<td width="10%">&nbsp;</td>
-			<td>
-				<input type="submit" name="submit" value="Save">
-				<button type="button"><a href="index.php?c=category&a=grid">Cancel</a></button>
-			</td>
-		</tr>
-		
-	</table>	
-</form>
+    <form action="index.php?c=category&a=save" method="post">
+        <label>Name</label>
+        <input type="text" name="category[name]" required />
+        <br>
+        <br>
+
+        <label>Sub-Category</label>
+        <select name="category[parentID]">
+            <option value=<?php echo NULL; ?>>Root Category</option>
+            <?php foreach($categories as $category): ?>
+            <option value="<?php echo $category['categoryID']; ?>"><?php echo $result[$category['categoryID']];?></option>
+            <?php endforeach; ?>
+        </select>
+        <br>
+        <br>
+
+
+        <label>Status</label>
+        <select name="category[status]">
+            <option value="1" selected>Active</option>
+            <option value="2">Inactive</option>
+        </select>
+        <br>
+        <br>
+        <input class="submit" type="submit" name='submit' value="Save"  />
+    </form>
 </body>
 </html>

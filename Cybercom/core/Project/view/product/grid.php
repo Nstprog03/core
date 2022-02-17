@@ -1,6 +1,6 @@
 <?php
-$adapter = new Adapter();
-$products = $adapter->fetchAll('select * FROM `product`');
+$products=$this->getData('products');
+$controllerProducts = new Controller_Product();
 
 
 ?>

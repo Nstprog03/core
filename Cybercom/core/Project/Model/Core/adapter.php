@@ -1,5 +1,5 @@
     
-<?php
+<?php 
 date_default_timezone_set('Asia/Kolkata');
 class Adapter{
     public $config = [
@@ -125,30 +125,7 @@ class Adapter{
         }
         return $result;
     }
-     public function pathAction()
-    {
-        $categoryName=$this->fetchPair("SELECT `category_id`,`name` FROM `category` ORDER BY `path` ASC");
-        $categoryPath=$this->fetchPair("SELECT `category_id`,`path` FROM `category` ORDER BY `path` ASC");
-       
-
-
-        $categories=[];
-        foreach ($categoryPath as $key => $value) {
-                $explodeArray=explode('/', $value);
-                $tempArray = [];
-
-                foreach ($explodeArray as $keys => $value) {
-                    if(array_key_exists($value,$categoryName)){
-                        array_push($tempArray,$categoryName[$value]);
-                    }
-                }
-
-                $implodeArray = implode('/', $tempArray);
-                $categories[$key]= $implodeArray;
-        }
-        return $categories;
-
-    }
-
+   
 }
+$adapter=new Adapter();
 ?>

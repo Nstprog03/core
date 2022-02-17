@@ -1,21 +1,54 @@
-<?php require_once('Model/Core/Adapter.php'); ?>
+<?php Ccc::loadClass('Controller_Core_Action'); ?>
 <?php
 
-class Controller_Customer{
+class Controller_Customer extends Controller_Core_Action{
 
 	public function gridAction()
 	{
-		require_once('view/customer/grid.php');
+		$adapter = new Adapter();
+		$customers = $adapter->fetchAll("SELECT * FROM customer");
+		$view = $this->getView();
+		$view->setTemplate('view/customer/grid.php');
+		$view->addData('customers',$customers);
+		$view->toHtml();
+		//require_once('view/customer/grid.php');
 	}
 
 	public function addAction()
 	{
-		require_once('view/customer/add.php');
+		$view = $this->getView();
+		$view->setTemplate('view/customer/add.php');
+		$view->toHtml();
+		//require_once('view/customer/.php');
 	}
 
 	public function editAction()
 	{
-		require_once('view/customer/edit.php');
+		$adapter = new Adapter();
+		try
+		{
+			$id=$_GET['id'];
+			if(!$id)
+			{
+				throw new Exception("Invelid Request", 1);
+				
+			}
+
+			$adapter=new Adapter();
+			$customer=$adapter->fetchRow("select * FROM `customer` WHERE `customer`.`customer_id` = '$id'");
+			$address=$adapter->fetchRow("select * FROM `address` WHERE `address`.`customer_id` = '$id'");
+		}
+		catch(Exception $e)
+		{
+			throw new Exception("Invelid Request", 1);
+		}
+		$view = $this->getView();
+		$data=[$customer,$address];	
+		$view->setTemplate('view/customer/edit.php');
+		$view->addData('data',$data);
+		$view->toHtml();	
+
+
 	}
 
 	public function deleteAction()
@@ -49,6 +82,7 @@ class Controller_Customer{
 			echo "catch";
 			$this->redirect('index.php?c=customer&a=grid');
 		}
+
 	}
 
 	protected function saveCustomer()

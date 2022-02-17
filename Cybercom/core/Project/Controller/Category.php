@@ -1,150 +1,280 @@
-<?php //require_once('Model/Core/Adapter.php'); ?>
 <?php
+Ccc::loadClass('Controller_Core_Action');
 
-class Controller_Category{
+class Controller_Category extends Controller_Core_Action{
 
-	public function gridAction()
-	{
-		//echo "111";
-		require_once('view/category/grid.php');
-	}
+    public function gridAction()
+    {
+        $adapter = new Adapter();
+        $categories = $adapter->fetchAll("SELECT * FROM category ORDER BY `path`");
 
-	public function saveAction()
-	{
-		try
-		{
-			if(!isset($_POST['category']))
-			{
-				throw new Exception("Request Invelid", 1);
-				
-			}
-			$adapter=new Adapter();
-			$row=$_POST['category'];
-			$name=$_POST['category']['name'];
-			$status=$_POST['category']['status'];
-			$date=date('y-m-d h:m:s');
-			$p_category_id=$_POST['category']['p_category_id'];
+        
+        $view = $this->getView();
+        $view->setTemplate('view/category/grid.php');
+        $view->addData('categories',$categories);
+        $view->toHtml();
+    }
 
-			//print_r($row);
-			
-			if(array_key_exists('category_id',$row))
-			{
-				$category_id=$_POST['category']['category_id'];
-				//print_r($row);
-				//exit();
-				if(!(int)$row['category_id'])
-				{
-					throw new Exception("Invelid Request", 1);
-					
-				}
+    public function pathAction()
+    {
+        $adapter = new Adapter();
+        $categoryName = $adapter->fetchPair('SELECT `categoryID`, `name` FROM `category`');
+        $categoryPath = $adapter->fetchPair('SELECT `categoryID`, `path` FROM `category`');
+        $categories=[];
+        foreach ($categoryPath as $key => $value) {
+                $explodeArray=explode('/', $value);
+                $tempArray = [];
 
-				$updateQuery="UPDATE `category` SET `name` = '$name', `status` = '$status', `updated_date` = '$date' WHERE `category`.`category_id` = $category_id ";
-				//exit();
-				$update=$adapter->update($updateQuery);
-				if(!$update)
-				{
-					throw new Exception("System unable to update", 1);
-					
-				}
-			}
-			else
-			{
-				$add = new Adapter();
-				if(empty($p_category_id))
-				{
-					
-					$insertQuery="INSERT INTO `category` ( `name`, `status`, `created_date`) VALUES ( '$name','$status', '$date')";	
-					$insert=$adapter->insert($insertQuery);
-					if(!$insert)
-					{
-						throw new Exception("System unable to insert", 1);
-					}
-					$path=$adapter->update("UPDATE `category` SET `path` = '$insert' WHERE `category_id` = '$insert'");
-				}
-				else
-				{
+                foreach ($explodeArray as $keys => $value) {
+                    if(array_key_exists($value,$categoryName)){
+                        array_push($tempArray,$categoryName[$value]);
+                    }
+                }
 
-					$insertQuery="INSERT INTO `category` ( `name`, `status`, `created_date`,`p_category_id`) VALUES ( '$name' , '$status', '$date' , '$p_category_id')";
-					$insert=$adapter->insert($insertQuery);
-					if(!$insert)
-					{
-						throw new Exception("System unable to insert", 1);
-					}
-					$path = $adapter->fetchRow("SELECT * FROM `category` WHERE `category_id` = '$p_category_id' ");
-					//print_r($path);
-					//print_r($insert);
-					
+                $implodeArray = implode('/', $tempArray);
+                $categories[$key]= $implodeArray;
+        }
+        return $categories;
+    }
 
-					$parentPath = $path['path']."/".$insert;
-					//print_r($parentPath);
-					//exit();
 
-					$newPath = $adapter->update(" UPDATE `category` SET `path` = '$parentPath' WHERE `category_id` = '$insert' ");
+    protected function saveCategory(){
+        try {
+            if(!isset($_POST['category']))
+            {
+                throw new Exception("Request Invalid.",1);
+            }
+            
+            $adapter = new Adapter();
 
-				}
-				if(!$insert){
-					throw new Exception("Sysetm is unable to save your data", 1);	
-				}
-				$this->redirect("index.php?c=category&a=grid");
-				
-			}
-			$this->redirect('index.php?c=category&a=grid');
+            $row = $_POST['category'];
+            
+            $categoryName = $_POST['category']['name'];
+            $categoryParentID = $_POST['category']['parentID'];
+            $categoryStatus = $_POST['category']['status'];
+            $createdDate = date('y-m-d h:m:s');
+            $updatedDate = date('y-m-d h:m:s');
 
-		}
-		catch(Exception $e)
-		{
-			$this->redirect('index.php?c=category&a=grid');
-		}
-		echo "";
-	}
+            if(isset($_GET['id']))
+            {
+                if(!(int)$_GET['id']){
+                    throw new Exception("Invalid Request.", 1);
+                }
+                $categoryID = $_GET['id'];
+                $parent = $_POST['category']['root'];
 
-	public function editAction()
-	{
-		require_once('view/category/edit.php');
-	}
+                $data = $adapter->update("UPDATE category SET name ='$categoryName', status ='$categoryStatus', updatedDate ='$updatedDate' where categoryID = $categoryID");
 
-	public function addAction()
-	{
-		require_once('view/category/add.php');
-	}
 
-	public function deleteAction()
-	{
-		
-		try
-		{
-			if(!isset($_GET['id']))
-			{
-				throw new Exception("Invelid Request", 1);
-				
-			}
+                if(empty($parent))
+                {
+                    $path = $adapter->update("UPDATE category SET parentID = NULL,`path`='$categoryID' WHERE categoryID = '$categoryID'");
 
-			$id=$_GET['id'];
-			$adapter =new Adapter();
-			$deleteQuery="DELETE FROM `category` WHERE `category`.`category_id` = '$id'";
-			$delete=$adapter->delete($deleteQuery);
-			if(!$delete)
-			{
-				throw new Exception("Invelid Request", 1);
-			}
-			$this->redirect('index.php?c=category&a=grid');
-		}
-		catch(Exception $e)
-		{
-			$this->redirect('index.php?c=category&a=grid');	
-		}
-	}
+                    $parentID = $_POST['category']['parentID'];
 
-	public function errorAction()
-	{
-		echo "error";
-	}
-	public function redirect($url)
-	{
-		header("location:$url");
-		exit();
-	}
+                    $data = $adapter->fetchAll("SELECT * FROM category WHERE `path` LIKE '%$categoryID%'");
 
+                    foreach($data as $allData)
+                    {
+                        $path = $allData['path'];
+                        if($allData['categoryID']!=$categoryID)
+                        {
+                            $currentID = $allData['categoryID'];
+                            $updatePath = ltrim($path , $parentID);
+                            $finalPath = ltrim($updatePath , '/');
+                            $parentID = $allData['parentID'];
+                                        
+                            $path = $adapter->update("UPDATE category SET parentID=$parentID,`path`='$finalPath' WHERE categoryID='$currentID'");
+                        }
+                    }
+                }
+                else
+                {
+                    $parentID = $_POST['category']['parentID'];
+
+                    $row = $adapter->fetchAssos("SELECT * FROM category WHERE categoryID='$parent'");
+                    $parentPath = $row['path'];
+
+                    $query = $adapter->fetchAssos("SELECT * FROM category where categoryID='$categoryID'");
+                    $currentpath = $query['path'];
+
+                    $possiblePath = $adapter->fetchAll("SELECT * from category where `path` LIKE '$currentpath%'");
+
+                    foreach($possiblePath as $allPath)
+                    {
+                        //$currentID = $allData['categoryID'];
+                        $path = $allPath['path'];
+
+                        $updatePath = ltrim($path , $parentID);
+                        $updatePath = ltrim($updatePath , '/');
+
+                        if($allPath['categoryID']!=$categoryID)
+                        {
+                            $parent = $allPath['parentID']; //Parent Id
+                            $FinalUpdate = $parentPath.'/'.$updatePath; // Updated Path
+                            $currentID = $allPath['categoryID']; // Current Id
+                        }
+                        else
+                        {
+                            $parent = $parentPath; // Parent Id
+                            $FinalUpdate = $parentPath.'/'.$updatePath; //Updated Path
+                            $currentID = $allPath['categoryID']; // Current Id
+                        }
+
+                        $path = $adapter->update("UPDATE category SET parentID='$parent',`path` = '$FinalUpdate' WHERE categoryID = '$currentID'");
+                    }
+                    if($data)
+                    {
+                        $this->redirect('index.php?c=category&a=grid');
+                    }
+                    else{
+                        throw new Exception("Data Not Upadated", 1);
+                    }
+                }
+            }
+            else
+            {
+                if(empty($categoryParentID))
+                {
+                    $result = $adapter->insert("INSERT INTO `category` (`name`,`status`,`createdDate`) VALUE ('$categoryName','$categoryStatus','$createdDate')");
+                    if(!$result){
+                        throw new Exception("System is unabel to insert data", 1);                          
+                    }
+                    $path = $adapter->update("UPDATE `category` SET `path` = '$result' WHERE `categoryID` = '$result' ");
+                }
+                
+                else
+                {
+                    $result = $adapter->insert("INSERT INTO `category` (`parentID`,`name`,`status`,`createdDate`) VALUE ('$categoryParentID','$categoryName','$categoryStatus','$createdDate')");
+                    if(!$result)
+                    {
+                        throw new Exception("System is unabel to insert data", 1);                          
+                    }
+                    $path = $adapter->fetchRow("SELECT * FROM `category` WHERE `categoryID` = '$categoryParentID' ");
+                    $path = $path['path']."/".$result;
+                    $newPath = $adapter->update("UPDATE `category` SET `path` = '$path' WHERE `categoryID` = '$result' ");
+                }
+                if(!$result)
+                {
+                    throw new Exception("Sysetm is unable to save your data", 1);   
+                }
+                
+                return $result;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            exit();
+            $this->redirect('index.php?c=category&a=grid');
+        }
+    }
+
+
+    public function saveAction()
+    {
+        try
+        {
+            $this->saveCategory();
+            $this->redirect('index.php?c=category&a=grid');
+        }
+        catch (Exception $e) 
+        {
+            $this->redirect('index.php?c=category&a=grid');
+        }
+    }
+
+
+    public function editAction()
+    {
+        try {
+            if(!isset($_GET['id'])){
+                throw new Exception("Invalid Request.", 1);
+            }
+            if(!(int)$_GET['id']){
+                throw new Exception("Invalid Request.", 1);
+            }
+
+            $categoryID = $_GET['id'];
+
+            $adapter = new Adapter();
+            $row = $adapter->fetchAssos("SELECT * FROM category WHERE categoryID = $categoryID");
+            $categories = $adapter->fetchAll("SELECT * FROM category ORDER BY `path`");
+
+            $view = $this->getView();
+            $view->addData('categories',$row);
+            $view->addData('allData',$categories);
+            $view->setTemplate('view/category/edit.php');
+            $view->toHtml();
+            
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            $this->redirect('index.php?c=category&a=grid');
+        }
+    }
+
+
+    public function addAction()
+    {
+        $adapter = new Adapter();
+        $categories = $adapter->fetchAll("SELECT * FROM `category` ORDER BY `parentID`");
+        
+
+        $view = $this->getView();
+        $view->addData('categories',$categories);
+        $view->setTemplate('view/category/add.php');
+        $view->toHtml();
+    }
+
+    protected function deleteCategory()
+    {
+        try {
+            if($_SERVER['REQUEST_METHOD']=='GET')
+            {
+                if(!isset($_GET['id'])){
+                    throw new Exception("Invalid Request.", 1);
+                }
+                if(!(int)$_GET['id']){
+                    throw new Exception("Invalid Request.", 1);
+                }
+                $categoryID = $_GET['id'];
+                $adapter = new Adapter();
+                $result = $adapter->delete("DELETE FROM category WHERE categoryID = '$categoryID'");
+                if(!$result)
+                {
+                    throw new Exception("System is unable to delete record.",1);
+                }
+                $this->redirect('index.php?c=category&a=grid');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            $this->redirect('category-index.php?a=gridAction');
+        }
+    }
+
+    public function deleteAction()
+    {
+        try
+        {
+            $this->deleteCategory();
+            $this->redirect('index.php?c=category&a=grid');
+        }
+        catch (Exception $e) 
+        {
+            $this->redirect('index.php?c=category&a=grid');
+        }
+    }
+
+
+    public function redirect($url)
+    {
+        header("Location: $url");
+        exit();
+    }
+
+
+    public function errorAction()
+    {
+        echo "404<br>Not Found.";
+    }
 }
 
 ?>

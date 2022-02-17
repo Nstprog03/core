@@ -1,56 +1,61 @@
 <?php
-	$adapter = new Adapter();
-	try
-	{
+    $Controller_Category = new Controller_Category();
+    $categories = $this->getData('categories');
 
-		$categories = $adapter->fetchAll('select * FROM `category` order by path asc');
-		if(!$categories)
-		{
-			throw new Exception("System unable to fetch", 1);
-			
-		}
-	}
-	catch(Exception $e)
-	{
-		throw new Exception("System unable to fetch", 1);
-	}
-
-	
-
-
-
+    $result = $Controller_Category->pathAction();
 ?>
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Category</title>
 </head>
 <body>
-	<button name="Add"><a href="index.php?c=category&a=add"><h3>Add</h3></a></button>
-	<table border="1" width="100%" cellspacing="4">
-		<tr>
-			<th>Category Id</th>
-			<th>Category Name</th>
-			<th>Status</th>
-			<th>Created Date</th>
-			<th>Updated Date</th>
-			<th>Edit</th>
-			<th>Delete</th>
-		</tr>
-		<?php if(!$categories):  ?>
-			<tr><td colspan="7">No Record available.</td></tr>
-		<?php else:  ?>
-			<?php foreach ($categories as $category): ?>
-			<tr>
-				<td><?php echo $category['category_id'] ?></td>
-				<td><?php $adapter =new Adapter(); $result=$adapter->pathAction();echo $result[$category['category_id']];  ?></td>
-				<td><?php if($category['status']==1):echo "Active";else : echo "Inactive"; endif;?></td>
-				<td><?php echo $category['created_date'] ?></td>
-				<td><?php echo $category['updated_date'] ?></td>
-				<td><a href="index.php?c=category&a=edit&id=<?php echo $category['category_id'] ?>">Edit</a></td>
-				<td><a href="index.php?c=category&a=delete&id=<?php echo $category['category_id'] ?>">Delete</a></td>
-			</tr>
-			<?php endforeach;	?>
-		<?php endif;  ?>
-		
-	</table>
-	
+    <a href='index.php?c=category&a=add'>Add Category</a>
+            <h2>All Records</h2>
+            <table cellpadding="7px" width="100%" border="3">
+                <thead>
+                    <th>Category ID</th>
+                    <th>Name</th>
+                    
+                    <th>Status</th>
+                    <th>Created Date</th>
+                    <th>Updated Date</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <?php
+                        if(!$categories):?>
+                            <tr><td colspan="10">No Record available.</td></tr>
+                    
+                <?php else:
+                    foreach ($categories as $category):
+                ?>
+                <tr>
+                    <td><?php echo($category['categoryID']); ?></td>
+                    <td><?php echo $result[$category['categoryID']]; ?></td>
+                    <td>
+                        <?php 
+                            if($category['status'] == 1){
+                                echo("Active");
+                            } 
+                            else{
+                                echo("Inactive");
+                            } ?>
+                    </td>
+                    <td><?php echo($category['createdDate']); ?></td>
+                    <td><?php echo($category['updatedDate']); ?></td>
+                    <td>
+                        <a href="index.php?c=category&a=edit&id=<?php echo $category['categoryID'] ?>">Edit</a>
+                        <a href="index.php?c=category&a=delete&id=<?php echo $category['categoryID'] ?>">Delete</a>
+                    </td>
+                </tr>
+                <?php
+                        endforeach;
+                    endif;
+                ?>
+        </tbody>
+    </table>
 </body>
+</html>

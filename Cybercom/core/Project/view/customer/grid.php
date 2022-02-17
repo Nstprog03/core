@@ -1,21 +1,8 @@
-<?php
+<?php $customers = $this->getData('customers');
 
 	$adapter = new Adapter();
 
-	try
-	{
 
-		$customers = $adapter->fetchAll('select * FROM `customer`');
-		if(!$customers)
-		{
-			throw new Exception("System unable to fetch", 1);
-			
-		}
-	}
-	catch(Exception $e)
-	{
-		throw new Exception("System unable to fetch", 1);
-	}
 
 ?>
 <html>
