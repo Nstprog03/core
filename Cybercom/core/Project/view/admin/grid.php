@@ -1,21 +1,8 @@
 <?php
 
-	$adapter = new Adapter();
+	
+	$admins = $this->getAdmins();
 
-	try
-	{
-
-		$admins = $adapter->fetchAll('select * FROM `admin`');
-		if(!$admins)
-		{
-			throw new Exception("System unable to fetch", 1);
-			
-		}
-	}
-	catch(Exception $e)
-	{
-		throw new Exception("System unable to fetch", 1);
-	}
 
 ?>
 <html>

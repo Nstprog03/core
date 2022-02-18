@@ -1,4 +1,8 @@
-<?php require_once('Model/Core/Adapter.php') ?>
+<?php 
+
+
+
+ ?>
 <html>
 <head><title>Admin Add</title></head>
 <body>

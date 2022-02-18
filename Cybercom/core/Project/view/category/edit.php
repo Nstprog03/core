@@ -1,91 +1,57 @@
-
-<?php require_once('Model/Core/Adapter.php'); ?>
-<?php $id=$_GET['id']; ?>
 <?php
+    $Controller_Category = new Controller_Category();
 
-	$id=$_GET['id'];
+    $categories = $this->getData('categories');
+    
+    $row = $this->getData('allData');
 
-	try
-	{
-		$id=$_GET['id'];
-		if(!$id)
-		{
-			throw new Exception("Invelid Request", 1);
-			
-		}
-
-		$adapter=new Adapter();
-		$row = $adapter->fetchRow("select * FROM `category` WHERE `category`.`category_id` = '$id'");
-	}
-	catch(Exception $e)
-	{
-		throw new Exception("Invelid Request", 1);
-	}
-
-	$categories = $adapter->fetchAll("SELECT * FROM `category`");
-/*function path($category_id,$array){
-
-    $len = count($array);
-
-    for($i = 0;$i< $len;$i++){
-
-        if($category_id == $array[$i]["category_id"]){
-            if($array[$i]["p_category_id"] == null){
-                return $array[$i]["name"];
-            }
-            return path($array[$i]["p_category_id"],$array)."=>".$array[$i]["name"];
-        }
-
-    }
-}*/
-$result=$adapter->pathAction();
-
+    $result = $Controller_Category->pathAction();
 ?>
-<html>
-<head><title>Category Add</title></head>
-<body>
 
-<form action="index.php?c=category&a=save&id=<?php echo $id ?>" method="POST">
-	<table border="1" width="100%" cellspacing="4">
-		<tr>
-			<td colspan="2"><b>Category Information</b></td>
-		</tr>
-		 <tr>
-                    <td width="10%">Subcategory</td>
-                    <td>
-                        <select name="category[parentId]" id="parentId">
-                            <option value="<?php echo $row['category_id']; ?>"><?php echo $result[$id];?></option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-		<tr>
-			<td width="10%">Category Name<input type="text" name="category[category_id]" value="<?php echo $row['category_id'] ?>" hidden></td>
-			<td><input type="text" name="category[name]" value="<?php echo $row['name'] ?>"></td>
-		</tr>
-		<tr>
-			<td width="10%">Status</td>
-			<td>
-				<select name="category[status]">
-					<?php if($category['status']==1): ?>
-					<option value="1" selected>Active</option>
-					<option value="2">Inactive</option>
-					<?php else: ?>
-					<option value="1">Active</option>
-					<option value="2" selected>Inactive</option>				
-					<?php endif; ?>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td width="10%">&nbsp;</td>
-			<td>
-				<input type="submit" name="submit" value="update">
-				<button type="button"><a href="index.php?c=cateogry&a=grid">Cancel</a></button>
-			</td>
-		</tr>
-		
-	</table>	
-</form>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit Category</title>
+</head>
+<body>
+    <h2>Edit Category</h2>
+    <form action="index.php?c=category&a=save&id=<?php echo $categories['categoryID']?>" method="post">
+        <input type="text" name="category[parentID]" value="<?php echo $categories['parentID']; ?>" hidden />
+        <label>Name</label>
+        <input type="text" name="category[name]" value="<?php echo $categories['name']; ?>" required/>
+        <br>
+        <br>
+
+        <label>Sub-Category</label>
+        <select name="category[root]">
+            <option selected value="" <?php echo ($categories['parentID']==NULL) ? "selected" : ''; ?>>Root Category</option>
+            <?php foreach ($row as $value) { ?>
+                <option value="<?php echo $value['categoryID']; ?>" <?php echo ($value['categoryID']==$categories['parentID']) ? "selected" : ''; ?>>
+                    <?php echo $result[$value['categoryID']]; ?>
+                </option>
+            <?php }?>
+        </select>
+
+
+        <br>
+        <br>
+        
+        <label>Status</label>
+        <select name="category[status]">
+            <?php if($categories['status']==1): ?>
+            <option value="1" selected>Active</option>
+            <option value="2">Inactive</option>
+            <?php else: ?>
+            <option value="1">Active</option>
+            <option value="2" selected>Inactive</option>                
+            <?php endif; ?>
+        </select>
+        <br>
+        <br>        
+        <input type='submit' name='Update' id='submit' value='update'/>
+    </form>
 </body>
 </html>

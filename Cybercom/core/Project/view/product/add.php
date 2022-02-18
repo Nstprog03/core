@@ -1,4 +1,4 @@
-<?php require_once('Model/Core/Adapter.php') ?>
+
 <html>
 <head><title>Product Add</title></head>
 <body>

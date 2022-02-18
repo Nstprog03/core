@@ -1,77 +1,58 @@
-<?php require_once('Model/Core/Adapter.php'); ?>
-<?php
+<?php Ccc::loadClass('Controller_Core_Action');
+		Ccc::loadClass('Model_Product');
+		Ccc::loadClass('Model_Core_Request');
 
-class Controller_Product{
+
+?>
+<?php $c = new Ccc();
+
+class Controller_Product extends Controller_Core_Action{
+
 
 	public function gridAction()
 	{
-		//echo "111";
-		require_once('view/product/grid.php');
-	}
-
-	public function saveAction()
-	{
-		try
-		{
-			if(!isset($_POST['product']))
-			{
-				throw new Exception("Request Invelid", 1);
-				
-			}
-			$adapter=new Adapter();
-			$row=$_POST['product'];
-			$name=$_POST['product']['name'];
-			$price=$_POST['product']['price'];
-			$quantity=$_POST['product']['quantity'];
-			$status=$_POST['product']['status'];
-			$date=date('y-m-d h:m:s');
-
-			if(array_key_exists('product_id',$row))
-			{
-				$product_id=$_POST['product']['product_id'];
-				if(!(int)$row['product_id'])
-				{
-					throw new Exception("Invelid Request", 1);
-					
-				}
-				$updateQuery="UPDATE `product` SET `name` = '$name', `price` = '$price', `quantity` = '$quantity', `status` = '$status', `updated_date` = '$date' WHERE `product`.`product_id` = $product_id";
-				$update=$adapter->update($updateQuery);
-				if(!$update)
-				{
-					throw new Exception("System unable to update", 1);
-					
-				}
-			}
-			else
-			{
-				$insertQuery="INSERT INTO `product` ( `name`, `price`, `quantity`, `status`, `created_date`) VALUES ( '$name', '$price', '$quantity', '$status', '$date')";
-				$insert=$adapter->insert($insertQuery);
-				if(!$insert)
-				{
-					throw new Exception("System unable to insert", 1);
-					
-				}
-
-
-
-			}
-			$this->redirect('index.php?c=product&a=grid');
-			
-		}
-		catch(Exception $e)
-		{
-			$this->redirect('index.php?c=product&a=grid');
-		}
-	}
-
-	public function editAction()
-	{
-		require_once('view/product/edit.php');
+		
+		$adminModel = Ccc::getModel('Product');
+		$admins=$adminModel->fetchAll();
+		$view = $this->getView();
+		$view->setTemplate('view/admin/grid.php');
+		$view->addData('admins',$admins);
+		$view->toHtml();
 	}
 
 	public function addAction()
 	{
-		require_once('view/product/add.php');
+		$view = $this->getView();
+		$view->setTemplate('view/admin/add.php');
+		$view->toHtml();
+	}
+
+	public function editAction()
+	{
+		try
+		{
+			$adminModel = Ccc::getModel('Product');
+			$request=$this->getRequest();
+			$id=$request->getRequest('id');
+
+			if(!$id)
+			{
+
+				throw new Exception("Invelid Request", 1);
+				
+			}
+			$admin=$adminModel->fetchRow($id);
+			$view = $this->getView();
+			$view->setTemplate('view/admin/edit.php');
+			$view->addData('admin',$admin);
+			$view->toHtml();
+
+		}
+		catch(Exception $e)
+		{
+			throw new Exception("Invelid Request", 1);
+		}
+		
 	}
 
 	public function deleteAction()
@@ -79,27 +60,74 @@ class Controller_Product{
 		
 		try
 		{
-			if(!isset($_GET['id']))
+			$adminModel = Ccc::getModel('Product');
+			$request=$this->getRequest();
+			if(!$request->getRequest('id'))
 			{
 				throw new Exception("Invelid Request", 1);
 				
 			}
-			$id=$_GET['id'];
-			$adapter =new Adapter();
-			$deleteQuery="DELETE FROM `product` WHERE `product`.`product_id` = '$id'";
-			$delete=$adapter->delete($deleteQuery);
-			if(!$delete)
-			{
-				throw new Exception("Invelid Request", 1);
-			}
-			$this->redirect('index.php?c=product&a=grid');
+			$id=$request->getRequest('id');
+			$admin_id=$adminModel->delete($id);
+			//$this->redirect('index.php?c=admin&a=grid');
+			$this->redirect($this->getUrl('admin','grid',[],true));
+
 		}
 		catch(Exception $e)
 		{
-			$this->redirect('index.php?c=product&a=grid');	
+			echo $e->getMessage();
+			$this->redirect($this->getUrl('admin','grid'));
 		}
 	}
-	
+	public function saveAction()
+	{
+		try
+		{
+			
+			$request=$this->getRequest();
+			$adminModel= Ccc::getModel('Product');
+			if(!$request->isPost())
+			{
+				throw new Exception("Request Invalid.",1);
+			}
+
+			$adapter=new Adapter();
+			$postData=$request->getPost('admin');
+			if(!$postData)
+			{
+				throw new Exception("Invalid data Posted.", 1);
+				
+			}
+			if(array_key_exists('admin_id',$postData))
+			{
+				$admin_id=$postData['admin_id'];
+				if(!(int)$postData['admin_id'])
+				{
+					throw new Exception("Invelid Request.",1);
+				}
+				$postData['updated_date'] = date('y-m-d h:m:s');
+
+				$admin_id=$adminModel->update($postData,$admin_id);
+				
+			}
+			else
+			{
+				$postData['created_date'] = date('y-m-d h:m:s');
+
+				$admin_id=$adminModel->insert($postData);
+
+			}
+
+			$this->redirect($this->getUrl('admin','grid'));
+		} 
+		
+		catch (Exception $e) 
+		{
+
+			$this->redirect($this->getUrl('admin','grid'));
+		}
+	}
+
 
 	public function errorAction()
 	{
@@ -111,6 +139,8 @@ class Controller_Product{
 		exit();
 	}
 
+
 }
+
 
 ?>

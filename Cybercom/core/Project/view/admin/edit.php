@@ -1,25 +1,9 @@
 
-<?php require_once('Model/Core/Adapter.php'); ?>
-<?php $id=$_GET['id'];;?>
+<?php $admin=$this->getAdmin(); ?>
+
 <?php
 
-	try
-	{
-		$id=$_GET['id'];
-		if(!$id)
-		{
-			throw new Exception("Invelid Request", 1);
-			
-		}
-
-		$adapter=new Adapter();
-		$admin=$adapter->fetchRow("select * FROM `admin` WHERE `admin`.`admin_id` = '$id'");
-		$address=$adapter->fetchRow("select * FROM `address` WHERE `address`.`admin_id` = '$id'");
-	}
-	catch(Exception $e)
-	{
-		throw new Exception("Invelid Request", 1);
-	}
+	
 
 
 ?>
@@ -27,7 +11,7 @@
 <head><title>Admin Edit</title></head>
 <body>
 
-<form action="index.php?c=admin&a=save&id=<?php echo $id ?>" method="POST">
+<form action="index.php?c=admin&a=save&id=<?php echo $admin['admin_id'] ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<td colspan="2"><b>Admin Information</b></td>
