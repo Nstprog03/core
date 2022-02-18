@@ -37,23 +37,13 @@ class Model_Core_Table
 		$sth = ("INSERT INTO $this->tableName (" . implode(',',array_keys($data)) . 
 			") VALUES ( ". implode(',', array_values($prep)) . ")");
 
-		try{
-			$insertId=$adapter->insert($sth);
-			print_r($insertId);
-			if(!$insertId)
-			{
-				throw new Exception("Error Processing Request", 1);
-				
-			}
-
-		}
-		catch(Exception $e)
+		$insertId=$adapter->insert($sth);
+		print_r($insertId);
+		if(!$insertId)
 		{
-			echo $e->getMessage();
+			throw new Exception("Error Processing Request", 1);
+			
 		}
-
-		
-
 	}
 	public function update(array $data=null,$primaryKey=null)
 	{
@@ -65,59 +55,33 @@ class Model_Core_Table
 		}
 		$final=rtrim($f,',');
 		$updateQuery="UPDATE $this->tableName SET $final WHERE $this->tableName.$this->primaryKey = $primaryKey";
-
-		try{
 			$update=$adapter->update($updateQuery);
-			//print_r($insertId);
-			if(!$update)
-			{
-				throw new Exception("Error Processing Request", 1);
-				
-			}
-
-		}
-		catch(Exception $e)
+		if(!$update)
 		{
-			echo $e->getMessage();
+			throw new Exception("Error Processing Request", 1);
+			
 		}
-
-		
 	}
 	public function delete($primaryKey = null,array $data = null)
 	{
 		$deleteQuery = "DELETE FROM $this->tableName WHERE $this->primaryKey=$primaryKey";
 		global $adapter;
-	
-	try{
-			$delete=$adapter->delete($deleteQuery);
-			//print_r($insertId);
-			if(!$delete)
-			{
-				throw new Exception("Error Processing Request", 1);
-				
-			}
-
-		}
-		catch(Exception $e)
+		$delete=$adapter->delete($deleteQuery);
+		if(!$delete)
 		{
-			echo $e->getMessage();
+			throw new Exception("Error Processing Request", 1);
+			
 		}
 	}
 	public function fetchAll()
 	{
 		$fetchQuery="SELECT * FROM $this->tableName";
 		global $adapter;
-		try{
-			$fetchAll=$adapter->fetchAll($fetchQuery);
-			if(!$fetchAll)
-			{
-				throw new Exception("Error Processing Request", 1);
-				
-			}
-		}
-		catch(Exception $e)
+		$fetchAll=$adapter->fetchAll($fetchQuery);
+		if(!$fetchAll)
 		{
-			echo $e->getMessage();
+			throw new Exception("Error Processing Request", 1);
+			
 		}
 		return $fetchAll;
 	}
@@ -125,17 +89,11 @@ class Model_Core_Table
 	{
 		$fetchQuery="SELECT * FROM $this->tableName WHERE $this->primaryKey=$primaryKey";
 		global $adapter;
-		try{
-			$fetchRow=$adapter->fetchRow($fetchQuery);
-			if(!$fetchRow)
-			{
-				throw new Exception("Error Processing Request", 1);
-				
-			}
-		}
-		catch(Exception $e)
+		$fetchRow=$adapter->fetchRow($fetchQuery);
+		if(!$fetchRow)
 		{
-			echo $e->getMessage();
+			throw new Exception("Error Processing Request", 1);
+			
 		}
 		return $fetchRow;
 	}

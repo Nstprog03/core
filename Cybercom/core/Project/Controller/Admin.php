@@ -4,56 +4,44 @@
 
 
 ?>
-<?php $c = new Ccc();
+<?php 
 
 class Controller_Admin extends Controller_Core_Action{
 
 
 	public function gridAction()
 	{
-		
-		$adminModel = Ccc::getModel('Admin');
-		$admins=$adminModel->fetchAll();
-		$view = $this->getView();
-		$view->setTemplate('view/admin/grid.php');
-		$view->addData('admins',$admins);
-		$view->toHtml();
+		Ccc::getBlock('Admin_Grid')->toHtml();
 	}
-
 	public function addAction()
 	{
-		$view = $this->getView();
-		$view->setTemplate('view/admin/add.php');
-		$view->toHtml();
+		Ccc::getBlock('Admin_Add')->toHtml();
 	}
-
 	public function editAction()
 	{
-		try
-		{
-			$adminModel = Ccc::getModel('Admin');
-			$request=$this->getRequest();
-			$id=$request->getRequest('id');
-
+		try 
+   		{
+   			$adminModel = Ccc::getModel('Admin');
+			$request = $this->getRequest();
+			$id = (int)$request->getRequest('id');
 			if(!$id)
 			{
-
-				throw new Exception("Invelid Request", 1);
+				throw new Exception("Invalid Request", 1);
+			}
+			$admin = $adminModel->fetchRow($id);
+			if(!$admin)
+			{
+				throw new Exception("System is unable to find record.", 1);
 				
 			}
-			$admin=$adminModel->fetchRow($id);
-			$view = $this->getView();
-			$view->setTemplate('view/admin/edit.php');
-			$view->addData('admin',$admin);
-			$view->toHtml();
+			Ccc::getBlock('Admin_Edit')->addData('admin',$admin)->toHtml();
+   		}	 
+   		catch (Exception $e) 
+   		{
+   			throw new Exception("Invalid Request.", 1);
+   		}
+   	}
 
-		}
-		catch(Exception $e)
-		{
-			throw new Exception("Invelid Request", 1);
-		}
-		
-	}
 
 	public function deleteAction()
 	{
@@ -70,7 +58,7 @@ class Controller_Admin extends Controller_Core_Action{
 			$id=$request->getRequest('id');
 			$admin_id=$adminModel->delete($id);
 			//$this->redirect('index.php?c=admin&a=grid');
-			$this->redirect($this->getUrl('admin','grid'));
+			$this->redirect($this->getUrl('admin','grid',[],true));
 
 		}
 		catch(Exception $e)

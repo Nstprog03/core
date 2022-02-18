@@ -9,6 +9,7 @@ class Ccc
 	public static $front = null;
 	public static function loadFile($path)
 	{
+
 		require_once($path);
 	}
 	public static function loadClass($className)
@@ -34,6 +35,12 @@ class Ccc
 	public static function getModel($className)
 	{
 		$className = 'Model_'.$className;
+		self::loadClass($className);
+		return new $className();
+	}
+	public static function getBlock($className)
+	{
+		$className = 'Block_'.$className;
 		self::loadClass($className);
 		return new $className();
 	}

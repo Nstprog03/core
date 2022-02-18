@@ -1,5 +1,5 @@
 
-<?php $admin=$this->getData('admin'); ?>
+<?php $admin=$this->getAdmin(); ?>
 
 <?php
 

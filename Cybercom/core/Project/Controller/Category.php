@@ -1,12 +1,15 @@
 <?php
 Ccc::loadClass('Controller_Core_Action');
-
+Ccc::loadClass('Model_Admin');
+Ccc::loadClass('Model_Core_Request');
+?>
+<?php 
 class Controller_Category extends Controller_Core_Action{
 
     public function gridAction()
     {
-        $adapter = new Adapter();
-        $categories = $adapter->fetchAll("SELECT * FROM category ORDER BY `path`");
+        $categoryModel = Ccc::getModel('Category');
+        $categories=$categoryModel->fetchAll();
 
         
         $view = $this->getView();
@@ -191,13 +194,13 @@ class Controller_Category extends Controller_Core_Action{
             }
             if(!(int)$_GET['id']){
                 throw new Exception("Invalid Request.", 1);
-            }
+            }       
 
             $categoryID = $_GET['id'];
 
             $adapter = new Adapter();
-            $row = $adapter->fetchAssos("SELECT * FROM category WHERE categoryID = $categoryID");
-            $categories = $adapter->fetchAll("SELECT * FROM category ORDER BY `path`");
+            $row = $adapter->fetchAssos("SELECT * FROM `category` WHERE `categoryID` = '$categoryID'");
+            $categories = $adapter->fetchAll("SELECT * FROM `category` WHERE `path` = '%$categoryID%' ORDER BY `path`");
 
             $view = $this->getView();
             $view->addData('categories',$row);

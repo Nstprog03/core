@@ -1,7 +1,7 @@
 <?php
 
 	
-	$admins = $this->getData('admins');
+	$admins = $this->getAdmins();
 
 
 ?>
