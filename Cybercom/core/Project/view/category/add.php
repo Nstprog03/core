@@ -1,7 +1,6 @@
 <?php
-    $Controller_Category = new Controller_Category();
-    $categories = $this->getData('categories');
-    $result = $Controller_Category->pathAction();
+    $categories = $this->getCategories();
+    $result = $this->pathAction();
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +13,7 @@
 <body>
     <h2>Add Category</h2>
 
-    <form action="index.php?c=category&a=save" method="post">
+    <form action="<?php echo $this->getUrl('category','save',[],true) ?>" method="post">
         <label>Name</label>
         <input type="text" name="category[name]" required />
         <br>

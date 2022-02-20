@@ -1,37 +1,12 @@
-
-<?php  ?>
-<?php ?>
-<?php $id=$_GET['id'];
-
-	/*try
-	{
-		$id=$_GET['id'];
-		if(!$id)
-		{
-			throw new Exception("Invelid Request", 1);
-			
-		}
-
-		$adapter=new Adapter();
-		$customer=$adapter->fetchRow("select * FROM `customer` WHERE `customer`.`customer_id` = '$id'");
-		$address=$adapter->fetchRow("select * FROM `address` WHERE `address`.`customer_id` = '$id'");
-	}
-	catch(Exception $e)
-	{
-		throw new Exception("Invelid Request", 1);
-	}*/
-	$data = $this->getData('data');
-	$customer = $data[0];
-	$address = $data[1];
-
-	$adapter = new Adapter();
-
+<?php 
+	$customer = $this->getCustomer();
+	$address = $this->getAddress();
 ?>
 <html>
 <head><title>Customer Edit</title></head>
 <body>
 
-<form action="index.php?c=customer&a=save&id=<?php echo $id ?>" method="POST">
+<form action="<?php echo $this->getUrl('customer','save',['id'=>$customer['customer_id']],true) ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<td colspan="2"><b>Personal Information</b></td>
@@ -75,8 +50,8 @@
 
 
 		<tr>
-			<td width="10%">Address</td>
-			<td><input type="text" name="address[address_detail] " value="<?php echo $address['address'] ?>"></td>
+			<td width="10%">Address</td><input type="text" name="address[customer_id] " value="<?php echo $address['customer_id'] ?>" hidden>
+			<td><input type="text" name="address[address] " value="<?php echo $address['address'] ?>"></td>
 		</tr>
 		
 		<tr>
@@ -117,7 +92,7 @@
 			<td width="10%">&nbsp;</td>
 			<td>
 				<input type="submit" name="submit" value="update">
-				<button type="button"><a href="index.php?c=customer&a=grid">Cancel</a></button>
+				<button type="button"><a href="<?php echo $this->getUrl('customer','grid',[],true) ?>">Cancel</a></button>
 			</td>
 		</tr>
 		

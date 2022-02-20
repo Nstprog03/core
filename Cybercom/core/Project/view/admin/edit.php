@@ -11,7 +11,7 @@
 <head><title>Admin Edit</title></head>
 <body>
 
-<form action="index.php?c=admin&a=save&id=<?php echo $admin['admin_id'] ?>" method="POST">
+<form action="<?php echo $this->getUrl('admin','save',['id'=>$admin['admin_id']],true) ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<td colspan="2"><b>Admin Information</b></td>
@@ -51,7 +51,7 @@
 			<td width="10%">&nbsp;</td>
 			<td>
 				<input type="submit" name="submit" value="update">
-				<button type="button"><a href="index.php?c=admin&a=grid">Cancel</a></button>
+				<button type="button"><a href="<?php echo $this->getUrl('admin','grid') ?>">Cancel</a></button>
 			</td>
 		</tr>
 		

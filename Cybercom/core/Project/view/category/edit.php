@@ -1,11 +1,12 @@
 <?php
-    $Controller_Category = new Controller_Category();
 
-    $categories = $this->getData('categories');
-    
-    $row = $this->getData('allData');
-
-    $result = $Controller_Category->pathAction();
+    //echo "<pre>";
+    $categories = $this->getCategories();
+    //print_r($categories);
+    //echo "<br>";
+    $category = $this->getCategory();
+    //print_r($category);
+    $result = $this->pathAction();
 ?>
 
 
@@ -18,18 +19,19 @@
 </head>
 <body>
     <h2>Edit Category</h2>
-    <form action="index.php?c=category&a=save&id=<?php echo $categories['categoryID']?>" method="post">
-        <input type="text" name="category[parentID]" value="<?php echo $categories['parentID']; ?>" hidden />
+    <form action="<?php echo $this->getUrl('category','save',['id'=>$category['categoryID']],true) ?>   " method="post">
+        <input type="text" name="category[parentID]" value="<?php echo $category['parentID']; ?>" hidden />
+        <input type="text" name="category[categoryID]" value="<?php echo $category['categoryID']; ?>" hidden />
         <label>Name</label>
-        <input type="text" name="category[name]" value="<?php echo $categories['name']; ?>" required/>
+        <input type="text" name="category[name]" value="<?php echo $category['name']; ?>" required/>
         <br>
         <br>
 
         <label>Sub-Category</label>
         <select name="category[root]">
-            <option selected value="" <?php echo ($categories['parentID']==NULL) ? "selected" : ''; ?>>Root Category</option>
-            <?php foreach ($row as $value) { ?>
-                <option value="<?php echo $value['categoryID']; ?>" <?php echo ($value['categoryID']==$categories['parentID']) ? "selected" : ''; ?>>
+            <option selected value="" <?php echo ($category['parentID']==NULL) ? "selected" : ''; ?>>Root Category</option>
+            <?php foreach ($categories as $value) { ?>
+                <option value="<?php echo $value['categoryID']; ?>" <?php echo ($value['categoryID']==$category['parentID']) ? "selected" : ''; ?>>
                     <?php echo $result[$value['categoryID']]; ?>
                 </option>
             <?php }?>

@@ -14,7 +14,7 @@ class Ccc
 	}
 	public static function loadClass($className)
 	{
-		$path = str_replace("_", "/", $className).'.php';
+		$path = str_replace("_", "/", $className).'.php'; 
 		Ccc::loadFile($path);
 	}
 	public static function getFront()
@@ -40,7 +40,7 @@ class Ccc
 	}
 	public static function getBlock($className)
 	{
-		$className = 'Block_'.$className;
+		$className = 'Block_'.$className; 
 		self::loadClass($className);
 		return new $className();
 	}

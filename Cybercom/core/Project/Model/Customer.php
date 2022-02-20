@@ -2,9 +2,9 @@
 
 class Model_Customer extends Model_Core_Table
 {
-	public function __construct($tableName = 'customer')
+	public function __construct()
 	{
-		$this->setTableName($tableName)->setPrimaryKey('customer_id');
+		$this->setTableName('customer')->setPrimaryKey('customer_id');
 	}
 
 }

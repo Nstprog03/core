@@ -1,6 +1,6 @@
 <?php Ccc::loadClass('Controller_Core_Action');
-		Ccc::loadClass('Model_Admin');
-		Ccc::loadClass('Model_Core_Request');
+	Ccc::loadClass('Model_Admin');
+	Ccc::loadClass('Model_Core_Request');
 
 
 ?>
@@ -28,7 +28,7 @@ class Controller_Admin extends Controller_Core_Action{
 			{
 				throw new Exception("Invalid Request", 1);
 			}
-			$admin = $adminModel->fetchRow($id);
+			$admin = $adminModel->fetchRow("SELECT * FROM admin WHERE admin_id = {$id}");
 			if(!$admin)
 			{
 				throw new Exception("System is unable to find record.", 1);
@@ -58,13 +58,13 @@ class Controller_Admin extends Controller_Core_Action{
 			$id=$request->getRequest('id');
 			$admin_id=$adminModel->delete($id);
 			//$this->redirect('index.php?c=admin&a=grid');
-			$this->redirect($this->getUrl('admin','grid',[],true));
+			$this->redirect($this->getView()->getUrl('admin','grid',[],true));
 
 		}
 		catch(Exception $e)
 		{
 			echo $e->getMessage();
-			$this->redirect($this->getUrl('admin','grid'));
+			$this->redirect($this->getView()->getUrl('admin','grid'));
 		}
 	}
 	public function saveAction()
@@ -106,13 +106,13 @@ class Controller_Admin extends Controller_Core_Action{
 
 			}
 
-			$this->redirect($this->getUrl('admin','grid'));
+			$this->redirect($this->getView()->getUrl('admin','grid'));
 		} 
 		
 		catch (Exception $e) 
 		{
 
-			$this->redirect($this->getUrl('admin','grid'));
+			$this->redirect($this->getView()->getUrl('admin','grid'));
 		}
 	}
 

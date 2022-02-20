@@ -1,8 +1,7 @@
-<?php require_once('Model/Core/Adapter.php') ?>
 <html>
 <head><title>Customer Add</title></head>
 <body>
-<form action="index.php?c=customer&a=save" method="POST">
+<form action="<?php echo $this->getUrl('customer','save',[],true) ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<td colspan="2"><b>Personal Information</b></td>
@@ -38,7 +37,7 @@
 		</tr>
 		<tr>
 			<td width="10%">Address</td>
-			<td><input type="text" name="address[address_detail]"></td>
+			<td><input type="text" name="address[address]"></td>
 		</tr>
 		
 		<tr>
@@ -70,7 +69,7 @@
 			<td width="10%">&nbsp;</td>
 			<td>
 				<input type="submit" name="submit" value="Save">
-				<button type="button"><a href="index.php?c=customer&a=grid">Cancel</a></button>
+				<button type="button"><a href="<?php echo $this->getUrl('customer','grid') ?>">Cancel</a></button>
 			</td>
 		</tr>
 		
