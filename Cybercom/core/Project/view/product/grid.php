@@ -1,14 +1,12 @@
-<?php
-$products=$this->getData('products');
-$controllerProducts = new Controller_Product();
-
+	<?php
+$products=$this->getProducts();
 
 ?>
 <html>
 <head>
 </head>
 <body>
-	<button name="Add"><a href="index.php?c=product&a=add"><h3>Add</h3></a></button>
+	<button name="Add"><a href="<?php echo $this->getUrl('product','add') ?>"><h3>Add</h3></a></button>
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<th>product Id</th>
@@ -33,8 +31,8 @@ $controllerProducts = new Controller_Product();
 				<td><?php if($product['status']==1):echo "Active";else : echo "Inactive"; endif;?></td>
 				<td><?php echo $product['created_date'] ?></td>
 				<td><?php echo $product['updated_date'] ?></td>
-				<td><a href="index.php?c=product&a=edit&id=<?php echo $product['product_id'] ?>">Edit</a></td>
-				<td><a href="index.php?c=product&a=delete&id=<?php echo $product['product_id'] ?>">Delete</a></td>
+				<td><a href="<?php echo $this->getUrl('product','edit',['id'=>$product['product_id']],true) ?>">Edit</a></td>
+				<td><a href="<?php echo $this->getUrl('product','delete',['id'=>$product['product_id']],true) ?>">Delete</a></td>
 			</tr>
 			<?php endforeach;	?>
 		<?php endif;  ?>

@@ -21,12 +21,12 @@ class Controller_Core_Front
 
 	public function init()
 	{
-		$request = new Model_Core_Request();
+		$request = $this->getRequest();
 		$actionName = $request->getActionName();
 		$controllerName = $request->getControllerName();
 		$controllerClassName = 'Controller_'.$controllerName;
 		$controllerClassName = $this->prepareClassName($controllerClassName);
-		Ccc::loadClass($controllerClassName);
+		Ccc::loadClass($controllerClassName); 
 		$controller = new $controllerClassName();
 		$controller->$actionName();
 	}

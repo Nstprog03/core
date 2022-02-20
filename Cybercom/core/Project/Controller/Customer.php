@@ -5,181 +5,149 @@ class Controller_Customer extends Controller_Core_Action{
 
 	public function gridAction()
 	{
-		$adapter = new Adapter();
-		$customers = $adapter->fetchAll("SELECT * FROM customer");
-		$view = $this->getView();
-		$view->setTemplate('view/customer/grid.php');
-		$view->addData('customers',$customers);
-		$view->toHtml();
-		//require_once('view/customer/grid.php');
+		Ccc::getBlock('Customer_Grid')->toHtml();
 	}
 
 	public function addAction()
 	{
-		$view = $this->getView();
-		$view->setTemplate('view/customer/add.php');
-		$view->toHtml();
-		//require_once('view/customer/.php');
+		Ccc::getBlock('Customer_Add')->toHtml();
 	}
 
 	public function editAction()
 	{
-		$adapter = new Adapter();
-		try
-		{
-			$id=$_GET['id'];
+		$customerModel = Ccc::getModel('Customer');
+			$request = $this->getRequest();
+			$id = (int)$request->getRequest('id');
 			if(!$id)
 			{
-				throw new Exception("Invelid Request", 1);
+				throw new Exception("Invalid Request", 1);
+			}
+			$customer = $customerModel->fetchRow("SELECT * FROM customer WHERE customer_id = {$id}");
+			if(!$customer)
+			{
+				throw new Exception("System is unable to find record.", 1);
 				
 			}
-
-			$adapter=new Adapter();
-			$customer=$adapter->fetchRow("select * FROM `customer` WHERE `customer`.`customer_id` = '$id'");
-			$address=$adapter->fetchRow("select * FROM `address` WHERE `address`.`customer_id` = '$id'");
-		}
-		catch(Exception $e)
-		{
-			throw new Exception("Invelid Request", 1);
-		}
-		$view = $this->getView();
-		$data=[$customer,$address];	
-		$view->setTemplate('view/customer/edit.php');
-		$view->addData('data',$data);
-		$view->toHtml();	
+			$addressModel = Ccc::getModel('Customer_Address');
+			$address = $addressModel->fetchRow("SELECT * FROM address WHERE customer_id = {$id}");
+			if(!$address)
+			{
+				throw new Exception("System is unable to find record.", 1);
+				
+			}
+			Ccc::getBlock('Customer_Edit')->addData('customer',$customer)->addData('address',$address)->toHtml();
+			
 
 
 	}
 
 	public function deleteAction()
 	{
-		
-		try
+		try 
 		{
-
-			if(!isset($_GET['id']))
+			$customerModel = Ccc::getModel('Customer');
+			$request = $this->getRequest();
+			if(!$request->getRequest('id'))
 			{
-				throw new Exception("Invelid Request", 1);	
-			}	
-			$id=$_GET['id'];
-			$adapter =new Adapter();
-			$customer=$adapter->delete("DELETE FROM `customer` WHERE `customer`.`customer_id` = '$id'");
-			if(!$adapter)
-			{
-				throw new Exception("System Enable to Delete Record",1);
+				throw new Exception("Invalid Request.", 1);
 			}
-			$eddress=$adapter->delete("DELETE FROM `address` WHERE `address`.`customer_id` = '$id'");
-			if(!$adapter)
+
+			$customer_id = $request->getRequest('id');
+			if(!$customer_id)
 			{
-				throw new Exception("System Enable to Delete Record",1);
+				throw new Exception("Unable to fetch ID.", 1);
+				
 			}
-			//echo "query done";
-			$this->redirect('index.php?c=customer&a=grid');
-
-		}
-		catch(Exception $e)
-		{
-			echo "catch";
-			$this->redirect('index.php?c=customer&a=grid');
-		}
-
+			
+			$result = $customerModel->delete($customer_id);
+			if(!$result)
+			{
+				throw new Exception("Unable to Delet Record.", 1);
+				
+			}
+			$this->redirect($this->getView()->getUrl('customer','grid',[],true));
+			} 
+			catch (Exception $e) 
+			{
+				$this->redirect($this->getView()->getUrl('customer','grid',[],true));
+			}		
 	}
 
 	protected function saveCustomer()
 	{
-			if(!isset($_POST['customer']))
+		$customerModel = Ccc::getModel('Customer');
+		$request = $this->getRequest();
+		if(!$request->getPost('customer'))
+		{
+			throw new Exception("Invalid Request", 1);
+		}	
+		$postData = $request->getPost('customer');
+		if(!$postData)
+		{
+			throw new Exception("Invalid data posted.", 1);	
+		}
+
+		if (array_key_exists('customer_id',$postData))
+		{
+			if(!(int)$postData['customer_id'])
 			{
-				throw new Exception("Request Invelid.",1);
+				throw new Exception("Invalid Request.", 1);
 			}
+			$customer_id = $postData["customer_id"];
+			$postData['updated_date']  = date('y-m-d h:m:s');
+			$update = $customerModel->update($postData,$customer_id);
 
-			$adapter=new Adapter();
-			$row=$_POST['customer'];
-			//print_r($row);
-			$firstName=$_POST['customer']['firstName'];
-			$lastName=$_POST['customer']['lastName'];
-			$email=$_POST['customer']['email'];
-			$mobile=$_POST['customer']['mobile'];
-			$status=$_POST['customer']['status'];
-			$date=date('y-m-d h:m:s');
-
-			if(array_key_exists('customer_id',$row))
+		}
+		else
+		{
+			$postData['created_date'] = date('y-m-d h:m:s');
+			$insert = $customerModel->insert($postData);
+			if($insert==null)
 			{
-				
-
-				$customer_id=$_POST['customer']['customer_id'];
-				if(!(int)$row['customer_id'])
-				{
-					throw new Exception("Invelid Request.",1);
-				}
-				$updateCustomerQuery="UPDATE `customer` SET `firstName` = '$firstName', `lastName` = '$lastName', `email` = '$email', `mobile` = '$mobile', `status` = '$status', `updated_date` = '$date' WHERE `customer`.`customer_id` = $customer_id";
-				$update=$adapter->update($updateCustomerQuery);
-				if(!$update)
-				{	
-					throw new Exception("System is unable to Update.",1);
-				}
+				throw new Exception("System is unable to Insert.", 1);
 			}
-			else
-			{
-				$insertCustomerQuery="INSERT INTO `customer` ( `firstName`, `lastName`, `email`, `mobile`, `status`, `created_date`) VALUES ( '$firstName', '$lastName', '$email', '$mobile', '$status', '$date')";
-				$insert=$adapter->insert($insertCustomerQuery);
-				if(!$insert)
-				{	
-					throw new Exception("System unable to insert.", 1);
-					
-				}
-				return $insert;
-			}
-		
-
+			return $insert;
+		}
+		 
 	}
 	protected function saveAddress($customer_id)
 	{
-		if(!isset($_POST['address']))
+
+		$addressModel = Ccc::getModel('Customer_Address');
+		$request = $this->getRequest();
+		if(!$request->getPost('address'))
 		{
-			throw new Exception("Missing Address data in Request", 1);
+			throw new Exception("Invalid Request", 1);
+		}	
+		$postData = $request->getPost('address');
+		if(!$postData)
+		{
+			throw new Exception("Invalid data posted.", 1);	
 		}
 
-		$adapter=new Adapter();
-		$row=$_POST['customer'];
-		$rowAddress=$_POST['address'];
-			
-		$address_detail=$_POST['address']['address_detail'];
-		$postalCode=$_POST['address']['postalCode'];
-		$city=$_POST['address']['city'];
-		$state=$_POST['address']['state'];
-		$country=$_POST['address']['country'];
-		//$billing=$_POST['address']['billing'];
-		//$shiping=$_POST['address']['shiping'];
-		$billing = 0;
-		if(array_key_exists('billing',$rowAddress) && $rowAddress['billing'] == 1){
-			$billing = 1;
-		}
-		$shiping = 0;
-		if(array_key_exists('shiping',$rowAddress) && $rowAddress['shiping'] == 1){
-			$shiping = 1;
-		}
 
-		if(array_key_exists('customer_id',$row))
+		if (array_key_exists('customer_id',$postData))
 		{
-			$customer_id=$_POST['customer']['customer_id'];
-				
-			$updateAddressQuery="UPDATE `address` SET `address` = '$address_detail', `postalCode` = '$postalCode', `city` = '$city', `state` = '$state', `billing` = '$billing', `shiping` = '$shiping' WHERE `address`.`customer_id` = $customer_id";
-			$update=$adapter->update($updateAddressQuery);
+			if($customer_id)
+			{
+				throw new Exception("Invalid Request.", 1);
+			}
+			//$postData['updated_date']  = date('y-m-d y:m:s');
+			$update = $addressModel->update($postData,$postData['customer_id']);
 			if(!$update)
-			{	
-				throw new Exception("System is unable to Update.",1);
+			{
+				throw new Exception("System is unable to Update.", 1);
 			}
 		}
 		else
 		{
-			$insertAddressQuery="INSERT INTO `address` (`customer_id`, `address`, `postalCode`, `city`, `state`, `country`, `billing`, `shiping`) VALUES ( '$customer_id', '$address_detail', '$postalCode', '$city', '$state', '$country', '$billing', '$shiping');";
 			
-			$insert=$adapter->insert($insertAddressQuery);
-			
+			$postData['customer_id'] = $customer_id;
+
+			$insert = $addressModel->insert($postData);
 			if(!$insert)
-			{	
-				throw new Exception("System unable to insert.", 1);
-					
+			{
+				throw new Exception("System is unable to Insert.", 1);
 			}
 		}
 	}
@@ -189,14 +157,19 @@ class Controller_Customer extends Controller_Core_Action{
 		try
 		{
 			$customer_id=$this->saveCustomer();
+			$request = $this->getRequest();
+			if(!$request->getPost('address'))
+			{
+				$this->redirect($this->getView()->getUrl('customer','grid',[],true));
+			}
+
 			$this->saveAddress($customer_id);
 
-			$this->redirect('index.php?c=customer&a=grid');
-		} 
-		
+			$this->redirect($this->getView()->getUrl('customer','grid',[],true));
+		}
 		catch (Exception $e) 
 		{
-			$this->redirect('index.php?c=customer&a=grid');
+			$this->redirect($this->getView()->getUrl('customer','grid',[],true));
 		}
 	}
 

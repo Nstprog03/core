@@ -30,20 +30,20 @@ class Model_Core_Table
 	{
 		global $adapter;
 	
-		$prep = array();
+		$dbData = array();
 		foreach($data as $key => $value ) {
-	    	$prep[''.$key] ="'".$value."'";
+	    	$dbData[''.$key] ="'".$value."'";
 		}
-		$sth = ("INSERT INTO $this->tableName (" . implode(',',array_keys($data)) . 
-			") VALUES ( ". implode(',', array_values($prep)) . ")");
+		$insertQuery = ("INSERT INTO $this->tableName (" . implode(',',array_keys($data)) . 
+			") VALUES ( ". implode(',', array_values($dbData)) . ")");
+		$insertId=$adapter->insert($insertQuery);
 
-		$insertId=$adapter->insert($sth);
-		print_r($insertId);
 		if(!$insertId)
 		{
 			throw new Exception("Error Processing Request", 1);
 			
 		}
+		return $insertId;
 	}
 	public function update(array $data=null,$primaryKey=null)
 	{
@@ -55,7 +55,8 @@ class Model_Core_Table
 		}
 		$final=rtrim($f,',');
 		$updateQuery="UPDATE $this->tableName SET $final WHERE $this->tableName.$this->primaryKey = $primaryKey";
-			$update=$adapter->update($updateQuery);
+
+		$update=$adapter->update($updateQuery);
 		if(!$update)
 		{
 			throw new Exception("Error Processing Request", 1);
@@ -73,11 +74,11 @@ class Model_Core_Table
 			
 		}
 	}
-	public function fetchAll()
+	public function fetchAll($query)
 	{
-		$fetchQuery="SELECT * FROM $this->tableName";
+
 		global $adapter;
-		$fetchAll=$adapter->fetchAll($fetchQuery);
+		$fetchAll=$adapter->fetchAll($query);
 		if(!$fetchAll)
 		{
 			throw new Exception("Error Processing Request", 1);
@@ -85,11 +86,10 @@ class Model_Core_Table
 		}
 		return $fetchAll;
 	}
-	public function fetchRow($primaryKey=null)
+	public function fetchRow($query)
 	{
-		$fetchQuery="SELECT * FROM $this->tableName WHERE $this->primaryKey=$primaryKey";
 		global $adapter;
-		$fetchRow=$adapter->fetchRow($fetchQuery);
+		$fetchRow=$adapter->fetchRow($query);
 		if(!$fetchRow)
 		{
 			throw new Exception("Error Processing Request", 1);

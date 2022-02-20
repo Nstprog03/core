@@ -17,11 +17,14 @@ class Model_Core_View {
 
 	public function toHtml()
 	{
+		$data = $this->data;
 		require($this->getTemplate());
 	}
 
 	public function getData($key = null)
 	{
+		//print_r($this->data);
+		//exit;
 		if(!$key) {
 			return $this->data;	
 		}
@@ -40,7 +43,7 @@ class Model_Core_View {
 	public function addData($key, $value)
 	{
 		$this->data[$key] = $value;
-		return $this->data;
+		return $this;
 	}
 
 	public function removeData($key)
@@ -49,6 +52,29 @@ class Model_Core_View {
 			unset($this->data[$key]);	
 		}
 		return $this;
+	}
+	public function getUrl($c=null,$a=null,array $data = [],$reset = false)
+	{
+
+		$info = [];
+		if($c==null && $a==null && $data==null && $reset==false){
+			$info = Ccc::getFront()->getRequest()->getRequest();
+		}
+		$info['c']= $c==null ?Ccc::getFront()->getRequest()->getRequest('c') : $info['c']=$c ; 
+		$info['a']= $a==null ?Ccc::getFront()->getRequest()->getRequest('a') : $info['a']=$a ; 
+		if($reset){
+			if($data) {
+				$info = array_merge($info,$data);
+			}
+		}
+		else{
+			$info = array_merge(Ccc::getFront()->getRequest()->getRequest(),$info);
+			if($data) {
+				$info = array_merge($info,$data);
+			}	
+		}
+		$url = "index.php?".http_build_query($info);
+		return $url;
 	}
 
 

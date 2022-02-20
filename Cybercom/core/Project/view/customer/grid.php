@@ -1,7 +1,6 @@
-<?php $customers = $this->getData('customers');
-
-	$adapter = new Adapter();
-
+<?php 
+$customers = $this->getCustomers();
+$addresses = $this->getAddresses();
 
 
 ?>
@@ -28,6 +27,7 @@
 			<tr><td colspan="10">No Record available.</td></tr>
 		<?php else:  ?>
 			<?php foreach ($customers as $customer): ?>
+				
 			<tr>
 				<td><?php echo $customer['customer_id'] ?></td>
 				<td><?php echo $customer['firstName'] ?></td>
@@ -37,12 +37,8 @@
 				<td><?php if($customer['status']==1):echo "Active";else : echo "Inactive"; endif;?></td>
 				<td><?php echo $customer['created_date'] ?></td>
 				<td><?php echo $customer['updated_date'] ?></td>
-				<td>
-					<?php 
-							$selectQuery="select * FROM `address` WHERE `address`.`customer_id` = '$customer[customer_id]'";
-
-							$address=$adapter->fetchRow($selectQuery);
-							//print_r($address);
+				<td><?php foreach ($addresses as $address): ?>
+					<?php if($address['customer_id']==$customer['customer_id']):
 							echo "Address : ".$address['address']."<br>";
 							echo "Postal Code : ".$address['postalCode']."<br>";
 							echo "Ciry : ".$address['city']."<br>";
@@ -54,12 +50,15 @@
 							if($address['shiping']==1)
 								echo ",Shiping";
 
-					 ?>
+					endif; ?>
+					<?php endforeach;	?>
 				</td>
-				<td><a href="index.php?c=customer&a=edit&id=<?php echo $customer['customer_id'] ?>">Edit</a></td>
-				<td><a href="index.php?c=customer&a=delete&id=<?php echo $customer['customer_id'] ?>">Delete</a></td>
+				<td><a href="<?php echo $this->getUrl('customer','edit',['id'=>$customer['customer_id']],true) ?>">Edit</a></td>
+				<td><a href="<?php echo $this->getUrl('customer','delete',['id'=>$customer['customer_id']],true) ?>">Delete</a></td>
+			
 			</tr>
-			<?php endforeach;	?>
+			
+		<?php endforeach;	?>
 		<?php endif;  ?>
 		
 	</table>
