@@ -16,7 +16,7 @@ class Block_Customer_Grid extends Block_Core_Template {
 	public function getAddresses()
 	{
 		$addressModel = Ccc::getModel('Customer_Address');
-		$addresses = $addressModel->fetchAll("SELECT * FROM address");
+		$addresses = $addressModel->fetchAll("SELECT * FROM customer_address");
 		return $addresses;	
 
 	}

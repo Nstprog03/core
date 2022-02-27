@@ -1,57 +1,45 @@
+<?php $admin=$this->getAdmin();  ?>
 
-<?php $admin=$this->getAdmin(); ?>
-
-<?php
-
-	
-
-
-?>
 <html>
 <head><title>Admin Edit</title></head>
 <body>
 
-<form action="<?php echo $this->getUrl('admin','save',['id'=>$admin['admin_id']],true) ?>" method="POST">
+<form action="<?php echo $this->getUrl('save','admin',['id'=>$admin->adminId],true) ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
 			<td colspan="2"><b>Admin Information</b></td>
 		</tr>
 		<tr>
-			<td width="10%">First Name<input type="text" name="admin[admin_id]" value="<?php echo $admin['admin_id'] ?>" hidden></td>
-			<td><input type="text" name="admin[firstName]" value="<?php echo $admin['firstName'] ?>"></td>
+			<td width="10%">First Name<input type="text" name="admin[adminId]" value="<?php echo $admin->adminId ?>" hidden></td>
+			<td><input type="text" name="admin[firstName]" value="<?php echo $admin->firstName ?>"></td>
 		</tr>
 		
 		<tr>
 			<td width="10%">Last Name</td>
-			<td><input type="text" name="admin[lastName]" value="<?php echo $admin['lastName'] ?>"></td>
+			<td><input type="text" name="admin[lastName]" value="<?php echo $admin->lastName ?>"></td>
 		</tr>
 		<tr>
 			<td width="10%">Email</td>
-			<td><input type="text" name="admin[email]" value="<?php echo $admin['email'] ?>"></td>
+			<td><input type="text" name="admin[email]" value="<?php echo $admin->email ?>"></td>
 		</tr>
 		<tr>
 			<td width="10%">Password</td>
-			<td><input type="text" name="admin[password]" value="<?php echo $admin['password'] ?>"></td>
+			<td><input type="text" name="admin[password]" value="<?php echo $admin->password ?>"></td>
 		</tr>
 		<tr>
 			<td width="10%">Status</td>
 			<td>
 				<select name="admin[status]">
-					<?php if($admin['status']==1): ?>
-					<option value="1" selected>Active</option>
-					<option value="2">Inactive</option>
-					<?php else: ?>
-					<option value="1">Active</option>
-					<option value="2" selected>Inactive</option>				
-					<?php endif; ?>
+					<option value="1" <?php echo ($admin->getStatus($admin->status)=='Active')?'selected':'' ?>>Active</option>
+					<option value="2" <?php echo ($admin->getStatus($admin->status)=='Inactive')?'selected':'' ?>>Inactive</option>
 				</select>
 			</td>
 		</tr>
 		<tr>
 			<td width="10%">&nbsp;</td>
 			<td>
-				<input type="submit" name="submit" value="update">
-				<button type="button"><a href="<?php echo $this->getUrl('admin','grid') ?>">Cancel</a></button>
+				<input type="submit" name="submit" value="Save">
+				<button type="button"><a href="<?php echo $this->getUrl('grid','admin',[],true) ?>">Cancel</a></button>
 			</td>
 		</tr>
 		
