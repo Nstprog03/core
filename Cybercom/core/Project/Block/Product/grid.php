@@ -9,9 +9,17 @@ class Block_Product_Grid extends Block_Core_Template {
 	public function getProducts()
 	{
 		$productModel = Ccc::getModel('Product');
-		$products = $productModel->fetchAll("SELECT * FROM product");
+		$query = "SELECT * FROM `product`";
+		$products = $productModel->fetchAll($query);
 		return $products;	
 
+	}
+	public function getMedia($mediaId)
+	{
+		$mediaModel=Ccc::getModel('Product_Media');
+		$query="SELECT * FROM `product_media` WHERE `mediaId` = {$mediaId}";
+		$media = $mediaModel->fetchAll($query);
+		return $media[0]->getData();
 	}
 	
 }

@@ -53,7 +53,7 @@ class Model_Core_View {
 		}
 		return $this;
 	}
-	public function getUrl($c=null,$a=null,array $data = [],$reset = false)
+	public function getUrl($a=null,$c=null,array $data = [],$reset = false)
 	{
 
 		$info = [];
@@ -76,6 +76,14 @@ class Model_Core_View {
 		$url = "index.php?".http_build_query($info);
 		return $url;
 	}
+	public function getBaseUrl($subUrl = null)
+    {
+        $url = "C:/xampp7.42/htdocs/Practice/core/Cybercom/core/Project";
+        if($subUrl){
+            $url = $url."/".$subUrl;
+        }
+        return $url;
+    }
 
 
 }

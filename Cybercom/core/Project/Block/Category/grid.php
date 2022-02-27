@@ -9,29 +9,33 @@ class Block_Category_Grid extends Block_Core_Template {
 	public function getCategories()
 	{
 		$categoryModel = Ccc::getModel('Category');
-		$categories = $categoryModel->fetchAll("SELECT * FROM category");
+		$categories = $categoryModel->fetchAll("SELECT * FROM `category` ORDER BY `path`");
 		return $categories;
 	}
-	 public function pathAction()
+    public function getPath($categoryId,$path)
     {
-        $adapter = new Adapter();
-        $categoryName = $adapter->fetchPair('SELECT `categoryID`, `name` FROM `category`');
-        $categoryPath = $adapter->fetchPair('SELECT `categoryID`, `path` FROM `category`');
-        $categories=[];
-        foreach ($categoryPath as $key => $value) {
-                $explodeArray=explode('/', $value);
-                $tempArray = [];
-
-                foreach ($explodeArray as $keys => $value) {
-                    if(array_key_exists($value,$categoryName)){
-                        array_push($tempArray,$categoryName[$value]);
-                    }
-                }
-
-                $implodeArray = implode('/', $tempArray);
-                $categories[$key]= $implodeArray;
+        $finalPath = NULL;
+        $path = explode("/",$path);
+        foreach ($path as $path1)
+         {
+            $categoryModel = Ccc::getModel('Category');
+            $category = $categoryModel->fetchRow("SELECT * FROM `category` WHERE `categoryId` = '$path1' ");
+            if($path1 != $categoryId)
+            {
+                $finalPath .= $category->name ."=>";
+            }
+            else
+            {
+                $finalPath .= $category->name;
+            }
         }
-        return $categories;
+        return $finalPath;
+    }
+    public function getMedia($mediaId)
+    {
+        $mediaModel = Ccc::getModel('category');
+        $media = $mediaModel->fetchAll("SELECT * FROM `category_media` WHERE `mediaId` = '$mediaId'");
+        return $media[0]->getData();
     }
 	
 }

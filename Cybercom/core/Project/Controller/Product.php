@@ -1,13 +1,7 @@
 <?php Ccc::loadClass('Controller_Core_Action');
-		Ccc::loadClass('Model_Product');
-		Ccc::loadClass('Model_Core_Request');
 
-
-?>
-<?php $c = new Ccc();
 
 class Controller_Product extends Controller_Core_Action{
-
 
 	public function gridAction()
 	{
@@ -16,7 +10,8 @@ class Controller_Product extends Controller_Core_Action{
 
 	public function addAction()
 	{
-		Ccc::getBlock('Product_Add')->toHtml();
+		$productModel = Ccc::getModel('Product');
+		Ccc::getBlock('Product_Edit')->setData(['product'=>$productModel])->toHtml();
 	}
 
 	public function editAction()
@@ -30,7 +25,7 @@ class Controller_Product extends Controller_Core_Action{
 			{
 				throw new Exception("Invalid Request", 1);
 			}
-			$product = $productModel->fetchRow("SELECT * FROM product WHERE product_id = {$id}");
+			$product = $productModel->load($id);
 			if(!$product)
 			{
 				throw new Exception("System is unable to find record.", 1);
@@ -42,10 +37,6 @@ class Controller_Product extends Controller_Core_Action{
 		catch (Exception $e) 
 		{
 			throw new Exception("System is unable to find record.", 1);
-		}
-		catch(Exception $e)
-		{
-			throw new Exception("Invelid Request", 1);
 		}
 		
 	}
@@ -68,64 +59,75 @@ class Controller_Product extends Controller_Core_Action{
 				throw new Exception("Unable to fetch ID.", 1);
 				
 			}
-			
-			$result = $productModel->delete($productId);
+			$medias = $productModel->fetchAll("SELECT name FROM media WHERE  productId='$productId'");
+			foreach ($medias as $media)
+			{
+				unlink($this->getView()->getBaseUrl("Media/Product/"). $media->name);
+			}
+			$result = $productModel->load($productId)->delete();
 			if(!$result)
 			{
 				throw new Exception("Unable to Delet Record.", 1);
 				
 			}
-		    $this->redirect($this->getView()->getUrl('product','grid',[],true));
+		    $this->redirect($this->getView()->getUrl('grid','product',[],true));
 		} 
 		catch (Exception $e) 
 		{
-			$this->redirect($this->getView()->getUrl('product','grid',[],true));
+			$this->redirect($this->getView()->getUrl('grid','product',[],true));
 		}		
 	}
 	public function saveAction()
 	{
-		try 
+		try
 		{
-			$productModel = Ccc::getModel('Product');
-			$request = $this->getRequest();
-			if(!$request->getPost('product'))
+			
+			$request=$this->getRequest();
+			$productModel= Ccc::getModel('Product');
+			if(!$request->isPost())
 			{
-				throw new Exception("Invalid Request", 1);
-			}	
-			$postData = $request->getPost('product');
+				throw new Exception("Request Invalid.",1);
+			}
+			$postData=$request->getPost('product');
 			if(!$postData)
 			{
-				throw new Exception("Invalid data posted.", 1);	
+				throw new Exception("Invalid data Posted.", 1);
+				
 			}
-
-			if (array_key_exists('product_id',$postData))
+			$product=$productModel;
+			$product->setData($postData);
+			if(!($product->productId))
 			{
-				if(!(int)$postData['product_id'])
+				unset($product->productId);
+				$product->createdAt = date('y-m-d h:m:s');
+				$result=$product->save();
+				if(!$result)
 				{
-					throw new Exception("Invalid Request.", 1);
-				}
-				$product_id = $postData["product_id"];
-				$postData['updated_date']  = date('Y-m-d H:m:s');
-				$update = $productModel->update($postData,$product_id);
-				if(!$update)
-				{
-					throw new Exception("System is unable to Update.", 1);
-				}
+					throw new Exception("unable to Updated Record.", 1);
+					
+				}	
 			}
 			else
 			{
-				$postData['created_date'] = date('Y-m-d H:m:s');
-				$insert = $productModel->insert($postData);
-				if(!$insert)
+
+				if(!(int)$product->productId)
 				{
-					throw new Exception("System is unable to Insert.", 1);
+					throw new Exception("Invelid Request.",1);
+				}
+				$product->updatedAt = date('y-m-d h:m:s');
+				$result=$product->save();
+				if(!$result)
+				{
+					throw new Exception("unable to insert Record.", 1);
+					
 				}
 			}
-			$this->redirect($this->getView()->getUrl('product','grid',[],true));
+			$this->redirect($this->getView()->getUrl('grid','product',[],true));
 		} 
 		catch (Exception $e) 
 		{
-			$this->redirect($this->getView()->getUrl('product','grid',[],true));
+
+			$this->redirect($this->getView()->getUrl('grid','product',[],true));
 		}
 	}
 
