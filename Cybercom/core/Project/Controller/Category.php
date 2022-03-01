@@ -117,6 +117,11 @@ class Controller_Category extends Controller_Core_Action{
                 throw new Exception("Invalid Request", 1);
             }
             $id = $request->getRequest('id');
+            $medias = $categoryModel->fetchAll("SELECT name FROM category_media WHERE  categoryId='$id'");
+            foreach ($medias as $media)
+            {
+                unlink($this->getView()->getBaseUrl("Media/Category/"). $media->name);
+            }
             $result = $categoryModel->load($id)->delete();
             if(!$result){
                 throw new Exception("System is unable to delete data.", 1);

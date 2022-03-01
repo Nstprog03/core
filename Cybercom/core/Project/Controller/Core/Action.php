@@ -4,7 +4,7 @@ Ccc::loadClass('Model_Core_View');
 
 class Controller_Core_Action {
 
-
+	protected $layout = null;
 	protected $view = null;
 
 	public function redirect($url)
@@ -13,6 +13,24 @@ class Controller_Core_Action {
 		exit();
 	}
 
+	public function getLayout()
+	{
+		if(!$this->layout)
+		{
+			$this->setLayout(Ccc::getBlock('Core_Layout'));
+		}
+		return $this->layout;
+	}
+	public function setLayout($layout)
+	{
+		$this->layout = $layout;
+		return $this;
+	}
+	public function renderLayout()
+	{
+		return $this->getLayout()->toHtml();
+	}
+	// when Layout is done View will be deleted; 
 	public function getView()
 	{
 		if (!$this->view)

@@ -7,6 +7,10 @@ class Controller_Product_Media extends Controller_Core_Action{
 	{
 		Ccc::getBlock('product_Media_Grid')->toHtml();
 	}
+	public function galleryAction()
+	{
+		Ccc::getBlock('product_Media_Gallery')->toHtml();
+	}
 
 	public function saveAction()
 	{

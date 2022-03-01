@@ -8,6 +8,10 @@ class Controller_Category_Media extends Controller_Core_Action{
 		Ccc::getBlock('Category_Media_Grid')->toHtml();
 	}
 
+	public function galleryAction()
+	{
+		Ccc::getBlock('Category_Media_Gallery')->toHtml();
+	}
 
 
 	public function saveAction()
