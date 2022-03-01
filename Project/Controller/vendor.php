@@ -71,6 +71,7 @@ class Controller_Vendor extends Controller_Core_Action
 				throw new Exception("Unable to delete Record.", 1);
 				
 			}
+			$this->redirect($this->getView()->getUrl('grid','vendor',[],true));
 		}
 		catch(Exception $e)
 		{
