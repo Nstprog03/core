@@ -3,10 +3,15 @@ class Controller_Vendor extends Controller_Core_Action
 {
 	public function gridAction()
 	{
-		//print_r(get_class_methods($this->getLayout()));
-		//$this->getLayout()->toHtml();;
-
-		Ccc::getBlock('Vendor_Grid')->toHtml();
+		
+		$content = $this->getLayout()->getContent();
+		$footer = $this->getLayout()->getFooter();
+		
+		$adminGrid = Ccc::getBlock('Vendor_Grid');
+		$content->addChild($adminGrid,'grid');	
+		$footer->addChild($adminGrid,'grid2');	
+		//$content->getChild('grid')->toHtml();
+		$this->renderLayout();
 	}
 
 	public function addAction()

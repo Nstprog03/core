@@ -1,1 +1,8 @@
-<h6>Footer</h6>
+<?php 
+	$children =$this->getChildren();
+
+	foreach ($children as $child) {
+
+		$child->toHtml();
+		// code...
+	}
