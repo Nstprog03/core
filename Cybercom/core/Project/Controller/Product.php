@@ -59,7 +59,7 @@ class Controller_Product extends Controller_Core_Action{
 				throw new Exception("Unable to fetch ID.", 1);
 				
 			}
-			$medias = $productModel->fetchAll("SELECT name FROM media WHERE  productId='$productId'");
+			$medias = $productModel->fetchAll("SELECT name FROM product_media WHERE  productId='$productId'");
 			foreach ($medias as $media)
 			{
 				unlink($this->getView()->getBaseUrl("Media/Product/"). $media->name);
@@ -99,6 +99,7 @@ class Controller_Product extends Controller_Core_Action{
 			if(!($product->productId))
 			{
 				unset($product->productId);
+
 				$product->createdAt = date('y-m-d h:m:s');
 				$result=$product->save();
 				if(!$result)
