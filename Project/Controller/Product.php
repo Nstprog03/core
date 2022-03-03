@@ -5,13 +5,19 @@ class Controller_Product extends Controller_Core_Action{
 
 	public function gridAction()
 	{
-		Ccc::getBlock('Product_Grid')->toHtml();
+		$content = $this->getLayout()->getContent();
+		$productGrid = Ccc::getBlock('Product_Grid');
+		$content->addChild($productGrid,'grid');	
+		$this->renderLayout();
 	}
 
 	public function addAction()
 	{
-		$productModel = Ccc::getModel('Product');
-		Ccc::getBlock('Product_Edit')->setData(['product'=>$productModel])->toHtml();
+		$productModel = Ccc::getModel('product');
+		$content = $this->getLayout()->getContent();
+		$productAdd = Ccc::getBlock('Product_Edit')->setData(['product'=>$productModel]);
+		$content->addChild($productAdd,'add'); 
+		$this->renderLayout();
 	}
 
 	public function editAction()
@@ -32,7 +38,10 @@ class Controller_Product extends Controller_Core_Action{
 				
 			}
 			
-			Ccc::getBlock('Product_Edit')->addData('product',$product)->toHtml();	
+			$content = $this->getLayout()->getContent();
+			$productEdit = Ccc::getBlock('Product_Edit')->setData(['product'=>$product]);
+			$content->addChild($productEdit,'edit'); 
+			$this->renderLayout();	
 		} 
 		catch (Exception $e) 
 		{

@@ -4,5 +4,4 @@
 foreach ($children as $child) {
 
 	$child->toHtml();
-	// code...
 }

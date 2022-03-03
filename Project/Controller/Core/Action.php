@@ -6,7 +6,7 @@ class Controller_Core_Action {
 
 	protected $layout = null;
 	protected $view = null;
-
+	protected $message = null;
 	public function redirect($url)
 	{
 		header("Location: $url");
@@ -26,6 +26,22 @@ class Controller_Core_Action {
 		$this->layout = $layout;
 		return $this;
 	}
+
+	public function getMessage()
+	{
+		if(!$this->message)
+		{
+			$this->setMessage(Ccc::getModel('Core_Message'));
+		}
+		return $this->message;
+	}
+
+	public function setMessage($message)
+	{
+		$this->message = $message;
+		return $this;
+	}
+
 	public function renderLayout()
 	{
 		return $this->getLayout()->toHtml();

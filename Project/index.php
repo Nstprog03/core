@@ -1,7 +1,7 @@
 <?php require_once('Model/Core/Adapter.php'); 
 		$adapter = new Adapter();
  ?>
-<?php require_once('menu.php'); ?>
+
 <?php 
 
 class Ccc

@@ -5,11 +5,18 @@ class Controller_Product_Media extends Controller_Core_Action{
 
 	public function gridAction()
 	{
-		Ccc::getBlock('product_Media_Grid')->toHtml();
+		$content = $this->getLayout()->getContent();
+		$mediaGrid = Ccc::getBlock('Product_Media_Grid');;
+		$content->addChild($mediaGrid,'grid');	
+		$this->renderLayout();
 	}
 	public function galleryAction()
 	{
-		Ccc::getBlock('product_Media_Gallery')->toHtml();
+		$content = $this->getLayout()->getContent();
+		$mediaGallery = Ccc::getBlock('product_Media_Gallery');;
+		$content->addChild($mediaGallery,'gallery');	
+		$this->renderLayout();
+		
 	}
 
 	public function saveAction()

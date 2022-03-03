@@ -5,12 +5,8 @@ class Controller_Vendor extends Controller_Core_Action
 	{
 		
 		$content = $this->getLayout()->getContent();
-		$footer = $this->getLayout()->getFooter();
-		
-		$adminGrid = Ccc::getBlock('Vendor_Grid');
-		$content->addChild($adminGrid,'grid');	
-		$footer->addChild($adminGrid,'grid2');	
-		//$content->getChild('grid')->toHtml();
+		$vendorGrid = Ccc::getBlock('Vendor_Grid');
+		$content->addChild($vendorGrid,'grid');	
 		$this->renderLayout();
 	}
 
@@ -18,7 +14,10 @@ class Controller_Vendor extends Controller_Core_Action
 	{
 		$vendorModel = Ccc::getModel('vendor');
 		$addressModel = Ccc::getModel('vendor_address');
-		Ccc::getBlock('Vendor_Edit')->setData(['vendor'=>$vendorModel,'address'=>$addressModel])->toHtml();
+		$content = $this->getLayout()->getContent();
+		$vendorAdd = Ccc::getBlock('Vendor_Edit')->setData(['vendor'=>$vendorModel,'address'=>$addressModel]);
+		$content->addChild($vendorAdd,'add'); 
+		$this->renderLayout();
 	}
 	public function editAction()
 	{
@@ -44,7 +43,10 @@ class Controller_Vendor extends Controller_Core_Action
 			{
 				$address = Ccc::getModel('vendor_address');
 			}
-			Ccc::getBlock('Vendor_Edit')->setData(['vendor'=>$vendor,'address'=>$address])->toHtml();
+			$content = $this->getLayout()->getContent();
+			$vendorEdit = Ccc::getBlock('Vendor_Edit')->setData(['vendor'=>$vendor,'address'=>$address]);
+			$content->addChild($vendorEdit,'edit'); 
+			$this->renderLayout();
 
 		}
 		catch(Exception $e)
@@ -64,6 +66,7 @@ class Controller_Vendor extends Controller_Core_Action
 				throw new Exception("Invalid Request.", 1);
 				
 			}
+
 			$vendorModel = Ccc::getModel('vendor');
 			$vendor = $vendorModel->load($id)->delete();
 			if(!$vendor)
@@ -152,7 +155,7 @@ class Controller_Vendor extends Controller_Core_Action
 	}
 
 	public function saveAction()
-	{
+	{	
 		try
 		{
 			$vendorId = $this->saveVendor();

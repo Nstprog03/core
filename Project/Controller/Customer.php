@@ -6,14 +6,20 @@ class Controller_Customer extends Controller_Core_Action{
 	public function gridAction()
 	{
 		
-		Ccc::getBlock('Customer_Grid')->toHtml();
+		$content = $this->getLayout()->getContent();
+		$customerGrid = Ccc::getBlock('Customer_Grid');
+		$content->addChild($customerGrid,'grid');	
+		$this->renderLayout();
 	}
 
 	public function addAction()
 	{
-		$customerModel = Ccc::getModel('Customer');	
-		$addressModel = Ccc::getModel('Customer_Address');	
-		Ccc::getBlock('Customer_Edit')->setData(['customer'=>$customerModel,'address'=>$addressModel])->toHtml();
+		$customerModel = Ccc::getModel('customer');
+		$addressModel = Ccc::getModel('customer_address');
+		$content = $this->getLayout()->getContent();
+		$customerAdd = Ccc::getBlock('Customer_Edit')->setData(['customer'=>$customerModel,'address'=>$addressModel]);
+		$content->addChild($customerAdd,'add'); 
+		$this->renderLayout();
 	}
 
 	public function editAction()
@@ -36,10 +42,12 @@ class Controller_Customer extends Controller_Core_Action{
 		$address = $addressModel->load($id,'customerId');
 		if(!$address)
 		{
-			$address = ['address' => null,
-						 'postalCode' => null,'city' => null, 'state' => null, 'country' => null, 'billingAddress' => 2, 'shippingAddress'=>2, 'customerId' => $customer['customerId']];	
+			$address = Ccc::getModel('Customer_Address');	
 		}
-		Ccc::getBlock('Customer_Edit')->addData('customer',$customer)->addData('address',$address)->toHtml();
+		$content = $this->getLayout()->getContent();
+		$customerEdit = Ccc::getBlock('Customer_Edit')->setData(['customer'=>$customer,'address'=>$address]);
+		$content->addChild($customerEdit,'edit'); 
+		$this->renderLayout();
 	}
 
 	public function deleteAction()
@@ -88,12 +96,12 @@ class Controller_Customer extends Controller_Core_Action{
 		}
 		$customer = $customerModel;
 		$customer->setData($postData);
-		if($customer->customerId==null)
+		if(!$customer->customerId)
 		{
 			unset($customer->customerId);
 			$customer->createdAt = date('y-m-d h:m:s');
 			$insert = $customer->save();
-			if($insert==null)
+			if(!$insert)
 			{
 				throw new Exception("System is unable to Insert.", 1);
 			}
@@ -101,19 +109,16 @@ class Controller_Customer extends Controller_Core_Action{
 		}
 		else
 		{
-			if(!(int)$customer->customerId)
-			{
-				throw new Exception("Invalid Request.", 1);
-			}
+			
 			$customer->updatedAt = date('y-m-d h:i:s');
 			$update = $customer->save();
+			return $customer->customerId;
 		}
 		 
 	}
 	protected function saveAddress($customerId)
 	{
 
-		$addressModel = Ccc::getModel('Customer_Address');
 		$request = $this->getRequest();
 		if(!$request->getPost('address'))
 		{
@@ -124,12 +129,12 @@ class Controller_Customer extends Controller_Core_Action{
 		{
 			throw new Exception("Invalid data posted.", 1);	
 		}
+		$addressModel = Ccc::getModel('Customer_Address');
 		$address = $addressModel;
 		$address->setData($postData);
-		//$address->getStatus($address->billing)
-		if($address->addressId == null)
+		$address->customerId = $customerId;
+		if(!$address->addressId)
 		{	
-			$address->customerId = $customerId;
 			unset($address->addressId);
 			$insert = $address->save();
 			if(!$insert)
@@ -155,7 +160,8 @@ class Controller_Customer extends Controller_Core_Action{
 		{
 			$customerId=$this->saveCustomer();
 			$request = $this->getRequest();
-			if(!$request->getPost('address'))
+			$postData = $request->getPost('address');		
+			if(!$postData['postalCode'])
 			{
 				$this->redirect($this->getView()->getUrl('grid','customer',[],true));
 			}

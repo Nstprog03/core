@@ -1,4 +1,4 @@
-		<?php Ccc::loadClass('Controller_Core_Action');?>
+<?php Ccc::loadClass('Controller_Core_Action');?>
 <?php 
 
 class Controller_Admin extends Controller_Core_Action{
@@ -6,12 +6,20 @@ class Controller_Admin extends Controller_Core_Action{
 
 	public function gridAction()
 	{
-		Ccc::getBlock('Admin_Grid')->toHtml();
+
+		$content = $this->getLayout()->getContent();
+		$adminGrid = Ccc::getBlock('Admin_Grid');
+		$content->addChild($adminGrid,'grid');	
+		$this->renderLayout();
+	
 	}
 	public function addAction()
 	{
-		$adminModel = Ccc::getModel('Admin');
-		Ccc::getBlock('Admin_Edit')->setData(['admin'=>$adminModel])->toHtml();
+		$adminModel = Ccc::getModel('admin');
+		$content = $this->getLayout()->getContent();
+		$adminAdd = Ccc::getBlock('Admin_Edit')->setData(['admin'=>$adminModel]);
+		$content->addChild($adminAdd,'add'); 
+		$this->renderLayout();
 	}
 	public function editAction()
 	{
@@ -30,7 +38,10 @@ class Controller_Admin extends Controller_Core_Action{
 				throw new Exception("System is unable to find record.", 1);
 				
 			}
-			Ccc::getBlock('Admin_Edit')->setData(['admin'=>$admin])->toHtml();
+			$content = $this->getLayout()->getContent();
+			$adminEdit = Ccc::getBlock('Admin_Edit')->setData(['admin'=>$admin]);
+			$content->addChild($adminEdit,'edit'); 
+			$this->renderLayout();
    		}	 
    		catch (Exception $e) 
    		{
@@ -91,6 +102,7 @@ class Controller_Admin extends Controller_Core_Action{
 					throw new Exception("unable to Updated Record.", 1);
 					
 				}	
+				$this->getMessage()->addMessage('data sachvi lidho',1);
 			}
 			else
 			{
@@ -106,6 +118,7 @@ class Controller_Admin extends Controller_Core_Action{
 					throw new Exception("unable to insert Record.", 1);
 					
 				}
+				$this->getMessage()->addMessage('data badli didho',1);
 			}
 			$this->redirect($this->getView()->getUrl('grid','admin',[],true));
 		} 

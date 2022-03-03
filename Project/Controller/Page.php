@@ -5,12 +5,18 @@ class Controller_Page extends Controller_Core_Action
 
 	public function gridAction()
 	{
-		Ccc::getBlock('Page_Grid')->toHtml();
+		$content = $this->getLayout()->getContent();
+		$pageGrid = Ccc::getBlock('Page_Grid');
+		$content->addChild($pageGrid,'grid');	
+		$this->renderLayout();
 	}
 	public function addAction()
 	{
 		$pageModel = Ccc::getModel('page');
-		Ccc::getBlock('Page_Edit')->setData(['page'=>$pageModel])->toHtml();
+		$content = $this->getLayout()->getContent();
+		$pageAdd = Ccc::getBlock('Page_Edit')->setData(['page'=>$pageModel]);
+		$content->addChild($pageAdd,'add'); 
+		$this->renderLayout();
 	}
 	public function editAction()
 	{
@@ -32,7 +38,10 @@ class Controller_Page extends Controller_Core_Action
 				throw new Exception("Failed to fatch Data", 1);
 				
 			}
-			Ccc::getBlock('Page_Edit')->setData(['page'=>$page])->toHtml();
+			$content = $this->getLayout()->getContent();
+			$pageEdit = Ccc::getBlock('Page_Edit')->setData(['page'=>$page]);
+			$content->addChild($pageEdit,'edit'); 
+			$this->renderLayout();
 		}
 		catch(Exception $e)
 		{

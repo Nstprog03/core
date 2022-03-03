@@ -6,12 +6,18 @@ class Controller_Config extends Controller_Core_Action{
 
 	public function gridAction()
 	{
-		Ccc::getBlock('Config_Grid')->toHtml();
+		$content = $this->getLayout()->getContent();
+		$configGrid = Ccc::getBlock('Config_Grid');
+		$content->addChild($configGrid,'grid');	
+		$this->renderLayout();
 	}
 	public function addAction()
 	{
-		$configModel = Ccc::getModel('Config');
-		Ccc::getBlock('Config_Edit')->setData(['config'=>$configModel])->toHtml();
+		$configModel = Ccc::getModel('config');
+		$content = $this->getLayout()->getContent();
+		$configAdd = Ccc::getBlock('Config_Edit')->setData(['config'=>$configModel]);
+		$content->addChild($configAdd,'add'); 
+		$this->renderLayout();
 	}
 	public function editAction()
 	{
@@ -30,7 +36,10 @@ class Controller_Config extends Controller_Core_Action{
 				throw new Exception("System is unable to find record.", 1);
 				
 			}
-			Ccc::getBlock('Config_Edit')->setData(['config'=>$config])->toHtml();
+			$content = $this->getLayout()->getContent();
+			$configEdit = Ccc::getBlock('Config_Edit')->setData(['config'=>$config]);
+			$content->addChild($configEdit,'edit'); 
+			$this->renderLayout();
    		}	 
    		catch (Exception $e) 
    		{
