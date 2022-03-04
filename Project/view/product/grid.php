@@ -1,8 +1,5 @@
 <?php $products=$this->getProducts();	 ?>
-<html>
-<head>
-</head>
-<body>
+
 	<button name="Add"><a href="<?php echo $this->getUrl('add') ?>"><h3>Add</h3></a></button>
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
@@ -57,5 +54,3 @@
 		<?php endif;  ?>
 		
 	</table>
-	
-</body>

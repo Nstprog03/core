@@ -1,6 +1,6 @@
 <?php $medias=$this->getMedias(); ?>
-<html>
-<body>
+
+
 	<table border="3" height="100%" cellspacing="4">
 		<tr>
 			<th>Image ID</th>
@@ -13,4 +13,3 @@
 		<?php endforeach; ?>
 		<button ><a href="<?php echo $this->getUrl('grid','category',[],true ) ?>">Back</a></button>
 	</table>
-</body>

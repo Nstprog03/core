@@ -102,7 +102,6 @@ class Controller_Admin extends Controller_Core_Action{
 					throw new Exception("unable to Updated Record.", 1);
 					
 				}	
-				$this->getMessage()->addMessage('data sachvi lidho',1);
 			}
 			else
 			{
@@ -118,7 +117,6 @@ class Controller_Admin extends Controller_Core_Action{
 					throw new Exception("unable to insert Record.", 1);
 					
 				}
-				$this->getMessage()->addMessage('data badli didho',1);
 			}
 			$this->redirect($this->getView()->getUrl('grid','admin',[],true));
 		} 

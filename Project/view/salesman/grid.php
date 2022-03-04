@@ -1,13 +1,5 @@
 <?php $salesmen = $this->getSalesmen(); ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Salesmen Grid</title>
-</head>
-<body>
 	<button name="Add"><a href="<?php echo $this->getUrl('add') ?>"><h3>Add</h3></a></button>
 	<table border="3" cellspacing="3" width="100%">
 		<tr>
@@ -44,5 +36,3 @@
 			<?php endforeach ;?>
 		<?php endif; ?>
 	</table>
-</body>
-</html>

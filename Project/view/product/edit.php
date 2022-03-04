@@ -1,8 +1,5 @@
 
 <?php $product=$this->getProduct(); ?>
-<html>
-<head><title>Product Edit</title></head>
-<body>
 
 <form action="<?php echo $this->getUrl('save','product',['id'=>$product->productId],true) ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
@@ -41,5 +38,3 @@
 		
 	</table>	
 </form>
-</body>
-</html>

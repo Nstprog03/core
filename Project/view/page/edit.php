@@ -1,12 +1,5 @@
 <?php $page = $this->getPage() ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Edit Page</title>
-</head>
-<body>
+
 	<form action="<?php echo $this->getUrl('save','page',[],true) ?>" method="post">
 		<table cellpadding="4" border="3" width="100%">
 			<tr colspan="2">
@@ -43,5 +36,3 @@
 			</tr>
 		</table>
 	</form>
-</body>
-</html>

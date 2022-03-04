@@ -5,7 +5,7 @@ class Controller_Category extends Controller_Core_Action{
     public function gridAction()
     {
         $content = $this->getLayout()->getContent();
-        $categoryGrid = Ccc::getBlock('Product_Grid');
+        $categoryGrid = Ccc::getBlock('Category_Grid');
         $content->addChild($categoryGrid,'grid');    
         $this->renderLayout();
     }

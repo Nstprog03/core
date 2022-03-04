@@ -1,13 +1,4 @@
 <?php $medias = $this->getMedias(); ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media</title>
-</head>
-<body>
 
     <form action="<?php echo $this->getUrl('save','product_media') ?>" method="POST" align=center>
         <input type="submit" value="update">
@@ -58,6 +49,3 @@
         <input type="file" name="name">
         <input type="submit" value="upload">
     </form>
-    
-</body>
-</html>
