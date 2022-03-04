@@ -2,10 +2,7 @@
 $vendors = $this->getVendors();
 $addresses = $this->getAddresses();
 ?>
-<html>
-<head>
-</head>
-<body>
+
 	<button name="Add"><a href="<?php echo $this->getUrl('add') ?>"><h3>Add</h3></a></button>
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
@@ -32,7 +29,7 @@ $addresses = $this->getAddresses();
 				<td><?php echo $vendor->lastName ?></td>
 				<td><?php echo $vendor->email ?></td>
 				<td><?php echo $vendor->mobile ?></td>
-				<td><?php if($vendor->status==1):echo "Active";else : echo "Inactive"; endif;?></td>
+				<td><?php echo $vendor->getStatus($vendor->status);?></td>
 				<td><?php echo $vendor->createdAt ?></td>
 				<td><?php echo $vendor->updatedAt ?></td>
 				<?php if(!$addresses) :?>
@@ -59,4 +56,3 @@ $addresses = $this->getAddresses();
 		
 	</table>
 	
-</body>

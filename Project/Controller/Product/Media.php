@@ -39,10 +39,13 @@ class Controller_Product_Media extends Controller_Core_Action{
 					if(in_array($fileExt, $extension)){
 						$result = $mediaModel->save();
 
-						if(!$result){
+						if(!$result)
+						{
+							$this->getMessage()->addMessage('unable to upload.',3);
 							throw new Exception("System is unable to save your data.", 1);
 						}	
 						move_uploaded_file($file['name']['tmp_name'],$this->getView()->getBaseUrl("Media/Product/").$fileName);
+						$this->getMessage()->addMessage('Media uploaded Successfully.',1);
 					}
 				}
 				else{
@@ -54,6 +57,7 @@ class Controller_Product_Media extends Controller_Core_Action{
 							$media = $mediaModel->load($remove);
 							$result = $media->delete();
 							if(!$result){
+								$this->getMessage()->addMessage('unable to delete.',3);
 								throw new Exception("Invalid request", 1);
 							}
 							unlink($this->getView()->getBaseUrl("Media/Product/"). $media->name);
@@ -67,6 +71,7 @@ class Controller_Product_Media extends Controller_Core_Action{
 							if($postData['media']['small'] == $remove){
 								unset($postData['media']['small']);
 							}
+							$this->getMessage()->addMessage('Media Deleted Succesfully.',3);
 
 						}
 					}
@@ -79,6 +84,7 @@ class Controller_Product_Media extends Controller_Core_Action{
 							$mediaData->mediaId = $gallery;
 							$result = $mediaModel->save();
 							if(!$result){
+								$this->getMessage()->addMessage('unable to selected.',3);
 								throw new Exception("Invalid request", 1);
 							}
 						}
@@ -87,6 +93,7 @@ class Controller_Product_Media extends Controller_Core_Action{
 					else{
 						$mediaData->gallery = 2;
 						$result = $mediaModel->save('productId');
+						$this->getMessage()->addMessage('successfully updated.',1);
 					}
 					unset($mediaData->gallery);
 
@@ -114,6 +121,7 @@ class Controller_Product_Media extends Controller_Core_Action{
 						}
 						unset($mediaData->small);
 					}
+					$this->getMessage()->addMessage('succesfully Updated Media.',1);
 				}
 			} 	
 			$this->redirect($this->getView()->getUrl('grid','product_media',['id' => $productId],true));	

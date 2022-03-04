@@ -6,7 +6,7 @@ class Model_Core_Message
 	const MESSAGE_SUCCESS = 1;
 	const MESSAGE_WARNING = 2;
 	const MESSAGE_ERROR = 3;
-	const MESSAGE_DEFAULT = 3;
+	const MESSAGE_DEFAULT = 1;
 	const MESSAGE_SUCCESS_LBL = 'Success';
 	const MESSAGE_WARNING_LBL = 'Warning';
 	const MESSAGE_ERROR_LBL = 'Error';

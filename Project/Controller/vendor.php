@@ -103,10 +103,11 @@ class Controller_Vendor extends Controller_Core_Action
 			$insert = $vendor->save();
 			if(!$insert)
 			{
-				$this->getMessage()->addMessage('unable to insert Customer.',3);
+				$this->getMessage()->addMessage('unable to insert Vendor.',3);
 				throw new Exception("Unable to Save.", 1);
 				
 			}
+			$this->getMessage()->addMessage('data inserted succesfully.',1);
 			return $insert;
 		}
 		else
@@ -115,10 +116,11 @@ class Controller_Vendor extends Controller_Core_Action
 			$update = $vendor->save();
 			if(!$update)
 			{
-				$this->getMessage()->addMessage('unable to update Customer.',3);
+				$this->getMessage()->addMessage('unable to update Vendor.',3);
 				throw new Exception("Unable to Save.", 1);
 				
 			}
+			$this->getMessage()->addMessage('data updated succesfully.',1);
 			return $vendor->vendorId;
 		}
 		
@@ -126,6 +128,7 @@ class Controller_Vendor extends Controller_Core_Action
 	public function saveAddress($vendorId)
 	{
 		$request = $this->getRequest();
+
 		$postData = $request->getPost('address');
 		if(!$postData)
 		{

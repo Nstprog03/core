@@ -1,14 +1,6 @@
 <?php $categories = $this->getCategories(); ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories</title>
-</head>
-<body>
+
     <div id="add"><button><a href="<?php echo $this->getUrl('add','category') ?>">Add CATEGORY</a></button></div>
     <div id="item">
         <table border=1 width=100%>
@@ -60,7 +52,5 @@
             </tr>
             <?php endforeach; ?>
             <?php endif; ?>
-        </tabel>
+        </table>
     </div>
-</body>
-</html>

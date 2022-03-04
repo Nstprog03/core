@@ -1,9 +1,5 @@
 <?php $admin=$this->getAdmin();  ?>
 
-<html>
-<head><title>Admin Edit</title></head>
-<body>
-
 <form action="<?php echo $this->getUrl('save','admin',['id'=>$admin->adminId],true) ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
 		<tr>
@@ -44,6 +40,3 @@
 		</tr>
 		
 	</table>	
-</form>
-</body>
-</html>

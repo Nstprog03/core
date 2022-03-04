@@ -1,9 +1,6 @@
 <?php 
 	$salesman = $this->getSalesman();
 ?>
-<html>
-<head><title>Customer Edit</title></head>
-<body>
 
 <form action="<?php echo $this->getUrl('save','salesman',['id'=>$salesman->salesmanId],true) ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
@@ -47,5 +44,3 @@
 		
 	</table>	
 </form>
-</body>
-</html>

@@ -1,6 +1,5 @@
 <?php $medias=$this->getMedias(); ?>
-<html>
-<body>
+
 	<table border="3" height="100%" cellspacing="4">
 		<tr>
 			<th>Image ID</th>
@@ -20,4 +19,3 @@
 	<?php endif; ?>
 		<button ><a href="<?php echo $this->getUrl('grid','product',[],true ) ?>">Back</a></button>
 	</table>
-</body>

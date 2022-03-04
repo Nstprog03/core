@@ -2,9 +2,7 @@
 	$vendor = $this->getVendor();
 	$address = $this->getAddress();
 ?>
-<html>
-<head><title>Customer Edit</title></head>
-<body>
+
 
 <form action="<?php echo $this->getUrl('save','vendor',['id'=>$vendor->vendorId],true) ?>" method="POST">
 	<table border="1" width="100%" cellspacing="4">
@@ -77,5 +75,3 @@
 		
 	</table>	
 </form>
-</body>
-</html>

@@ -2,17 +2,7 @@
 $categoryData =  $this->getCategory();  
 $categories = $this->getCategories();
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADD POST</title>
-</head>
-
-<body>
     <div id="form">
         <form action="<?php echo $this->getUrl('save','category',['id'=>$categoryData->categoryId],true) ?>" method="POST" enctype="multipart/form-data">
             <table border="1" width="100%" cellspacing="4">
@@ -37,13 +27,8 @@ $categories = $this->getCategories();
                     <td width="10%">Status</td>
                     <td>
                         <select name="category[status]" id="status">
-                            <?php if($categoryData->status == 1):?>
-                            <option value="1" selected>Enabel</option>
-                            <option value="2">Disabel</option>
-                        <?php else: ?>
-                            <option value="1">Enabel</option>
-                            <option value="2" selected>Disabel</option>
-                        <?php endif; ?>
+                           <option value="1" <?php echo ($categoryData->getStatus($categoryData->status)=='Active')?'selected':'' ?>>Active</option>
+                    <option value="2" <?php echo ($categoryData->getStatus($categoryData->status)=='Inactive')?'selected':'' ?>>Inactive</option>
                         </select>
                     </td>
                 </tr>
@@ -57,6 +42,3 @@ $categories = $this->getCategories();
             </table>   
         </form>
     </div>
-</body>
-
-</html>
