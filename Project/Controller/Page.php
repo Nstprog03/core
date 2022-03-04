@@ -71,9 +71,11 @@ class Controller_Page extends Controller_Core_Action
 				$insert = $page->save();
 				if(!$insert)
 				{
+					$this->getMessage()->addMessage('unable to inserted.',3);
 					throw new Exception("Unable to Save", 1);
 					
 				}
+				$this->getMessage()->addMessage('Data save succesfully',1);
 			}
 			else
 			{
@@ -82,9 +84,11 @@ class Controller_Page extends Controller_Core_Action
 				$update = $page->save();
 				if(!$update)
 				{
+					$this->getMessage()->addMessage('unable to update.',3);
 					throw new Exception("Unable to Save", 1);
 					
 				}
+				$this->getMessage()->addMessage('data updated succesfully.',1);
 			}
 			$this->redirect($this->getView()->getUrl('grid','page',[],true));
 
@@ -110,9 +114,11 @@ class Controller_Page extends Controller_Core_Action
 			$delete = $pageModel->load($id)->delete();
 			if(!$delete)
 			{
+				$this->getMessage()->addMessage('unable to delete.',3);
 				throw new Exception("Unable to Save", 1);
 				
 			}
+			$this->getMessage()->addMessage('data deleted succesfully.',1);
 			$this->redirect($this->getView()->getUrl('grid','page',[],true));
 		}
 		catch(Exception $e)

@@ -59,11 +59,13 @@ class Controller_Admin extends Controller_Core_Action{
 			$request=$this->getRequest();
 			if(!$request->getRequest('id'))
 			{
+				$this->getMessage()->addMessage('unable to delete.',3);
 				throw new Exception("Invelid Request", 1);
 				
 			}
 			$id=$request->getRequest('id');
 			$admin_id=$adminModel->load($id)->delete();
+			$this->getMessage()->addMessage('data deleted succesfully.',1);
 			$this->redirect($this->getView()->getUrl('grid','admin',[],true));
 
 		}
@@ -99,10 +101,11 @@ class Controller_Admin extends Controller_Core_Action{
 				$result=$admin->save();
 				if(!$result)
 				{
+					$this->getMessage()->addMessage('unable to inserted.',3);
 					throw new Exception("unable to Updated Record.", 1);
 					
 				}	
-				$this->getMessage()->addMessage('data sachvi lidho',1);
+				$this->getMessage()->addMessage('Data save succesfully',1);
 			}
 			else
 			{
@@ -115,10 +118,11 @@ class Controller_Admin extends Controller_Core_Action{
 				$result=$admin->save();
 				if(!$result)
 				{
+					$this->getMessage()->addMessage('unable to update.',3);
 					throw new Exception("unable to insert Record.", 1);
 					
 				}
-				$this->getMessage()->addMessage('data badli didho',1);
+				$this->getMessage()->addMessage('data updated succesfully.',1);
 			}
 			$this->redirect($this->getView()->getUrl('grid','admin',[],true));
 		} 

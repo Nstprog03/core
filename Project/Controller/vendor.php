@@ -71,9 +71,11 @@ class Controller_Vendor extends Controller_Core_Action
 			$vendor = $vendorModel->load($id)->delete();
 			if(!$vendor)
 			{
+				$this->getMessage()->addMessage('unable to delete.',3);
 				throw new Exception("Unable to delete Record.", 1);
 				
 			}
+			$this->getMessage()->addMessage('deleted succesfully.',1);
 			$this->redirect($this->getView()->getUrl('grid','vendor',[],true));
 		}
 		catch(Exception $e)
@@ -101,6 +103,7 @@ class Controller_Vendor extends Controller_Core_Action
 			$insert = $vendor->save();
 			if(!$insert)
 			{
+				$this->getMessage()->addMessage('unable to insert Customer.',3);
 				throw new Exception("Unable to Save.", 1);
 				
 			}
@@ -112,6 +115,7 @@ class Controller_Vendor extends Controller_Core_Action
 			$update = $vendor->save();
 			if(!$update)
 			{
+				$this->getMessage()->addMessage('unable to update Customer.',3);
 				throw new Exception("Unable to Save.", 1);
 				
 			}
@@ -138,6 +142,7 @@ class Controller_Vendor extends Controller_Core_Action
 			$insert = $address->save();
 			if(!$insert)
 			{
+				$this->getMessage()->addMessage('Address Inserted succesfully.',1);
 				throw new Exception("Unable to Save.", 1);
 				
 			}
@@ -147,6 +152,7 @@ class Controller_Vendor extends Controller_Core_Action
 			$update = $address->save();
 			if(!$update)
 			{
+				$this->getMessage()->addMessage('unable to insert address.',3);
 				throw new Exception("Unable to Save.", 1);
 				
 			}

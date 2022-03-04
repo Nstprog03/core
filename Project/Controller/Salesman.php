@@ -62,14 +62,14 @@ class Controller_Salesman extends Controller_Core_Action
 			{
 				unset($salesmen->salesmanId);
 				$salesmen->createdAt = date("Y-m-d h:i:s");
-		// print_r($salesmen);
-		// exit;
 				$insert = $salesmen->save();
 				if(!$insert)
 				{
+					$this->getMessage()->addMessage('unable to insert Salesman.',3);
 					throw new Exception("Unable to Save Record.", 1);
 					
 				}
+				$this->getMessage()->addMessage('Salesman Inserted succesfully.',1);
 			} 
 			else
 			{
@@ -79,7 +79,8 @@ class Controller_Salesman extends Controller_Core_Action
 				{
 					throw new Exception("Unable to Save Record.", 1);
 					
-				}	
+				}
+				$this->getMessage()->addMessage('Salesman Details Updated.',1);	
 			}
 			$this->redirect($this->getView()->getUrl('grid','salesman',[],true));
 		}
@@ -104,8 +105,10 @@ class Controller_Salesman extends Controller_Core_Action
 			$delete = $salesmenModel->load($id)->delete();
 			if(!$delete)
 			{
+				$this->getMessage()->addMessage('unable to delete.',3);
 				throw new Exception("unable to fatch Record.", 1);
 			}
+			$this->getMessage()->addMessage('deleted succesfully.',1);
 			$this->redirect($this->getView()->getUrl('grid','salesman',[],true));
 		}
 		catch(Exception $e)

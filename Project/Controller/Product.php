@@ -76,9 +76,11 @@ class Controller_Product extends Controller_Core_Action{
 			$result = $productModel->load($productId)->delete();
 			if(!$result)
 			{
+				$this->getMessage()->addMessage('unable to delete.',3);
 				throw new Exception("Unable to Delet Record.", 1);
 				
 			}
+			$this->getMessage()->addMessage('data deleted succesfully.',1);
 		    $this->redirect($this->getView()->getUrl('grid','product',[],true));
 		} 
 		catch (Exception $e) 
@@ -113,9 +115,11 @@ class Controller_Product extends Controller_Core_Action{
 				$result=$product->save();
 				if(!$result)
 				{
+					$this->getMessage()->addMessage('unable to inserted.',3);
 					throw new Exception("unable to Updated Record.", 1);
 					
 				}	
+				$this->getMessage()->addMessage('Data save succesfully',1);
 			}
 			else
 			{
@@ -128,9 +132,11 @@ class Controller_Product extends Controller_Core_Action{
 				$result=$product->save();
 				if(!$result)
 				{
+					$this->getMessage()->addMessage('unable to update.',3);
 					throw new Exception("unable to insert Record.", 1);
 					
 				}
+				$this->getMessage()->addMessage('data updated succesfully.',1);
 			}
 			$this->redirect($this->getView()->getUrl('grid','product',[],true));
 		} 

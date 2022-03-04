@@ -1,4 +1,5 @@
 <?php $messages = $this->getMessages();
+	
 
 if($messages)
 {

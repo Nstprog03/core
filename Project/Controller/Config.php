@@ -1,4 +1,4 @@
-		<?php Ccc::loadClass('Controller_Core_Action');?>
+<?php Ccc::loadClass('Controller_Core_Action');?>
 <?php 
 
 class Controller_Config extends Controller_Core_Action{
@@ -62,6 +62,7 @@ class Controller_Config extends Controller_Core_Action{
 			}
 			$id=$request->getRequest('id');
 			$config_id=$configModel->load($id)->delete();
+			$this->getMessage()->addMessage('deleted succesfully.',1);
 			$this->redirect($this->getView()->getUrl('grid','config',[],true));
 
 		}
@@ -97,9 +98,11 @@ class Controller_Config extends Controller_Core_Action{
 				$result=$config->save();
 				if(!$result)
 				{
+					$this->getMessage()->addMessage('unable to inserted.',3);
 					throw new Exception("unable to Updated Record.", 1);
 					
 				}	
+				$this->getMessage()->addMessage('Data save succesfully',1);
 			}
 			else
 			{
@@ -111,9 +114,11 @@ class Controller_Config extends Controller_Core_Action{
 				$result=$config->save();
 				if(!$result)
 				{
-					throw new Exception("unable to insert Record.", 1);
+					$this->getMessage()->addMessage('unable to update.',3);
+					throw new Exception("unable to update Record.", 1);
 					
 				}
+				$this->getMessage()->addMessage('data updated succesfully.',1);
 			}
 			$this->redirect($this->getView()->getUrl('grid','config',[],true));
 		} 

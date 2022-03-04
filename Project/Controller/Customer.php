@@ -64,15 +64,18 @@ class Controller_Customer extends Controller_Core_Action{
 			$customerId = $request->getRequest('id');
 			if(!$customerId)
 			{
+
 				throw new Exception("Unable to fetch ID.", 1);
 				
 			}
 			$result = $customerModel->load($customerId)->delete();
 			if(!$result)
 			{
+				$this->getMessage()->addMessage('unable to delete.',3);
 				throw new Exception("Unable to Delet Record.", 1);
 				
 			}
+			$this->getMessage()->addMessage('deleted succesfully.',1);
 			$this->redirect($this->getView()->getUrl('grid','customer',[],true));
 		} 
 		catch (Exception $e) 
@@ -103,8 +106,10 @@ class Controller_Customer extends Controller_Core_Action{
 			$insert = $customer->save();
 			if(!$insert)
 			{
+				$this->getMessage()->addMessage('unable to insert Customer.',3);
 				throw new Exception("System is unable to Insert.", 1);
 			}
+			$this->getMessage()->addMessage('Customer Inserted succesfully.',1);
 			return $insert;
 		}
 		else
@@ -112,6 +117,7 @@ class Controller_Customer extends Controller_Core_Action{
 			
 			$customer->updatedAt = date('y-m-d h:i:s');
 			$update = $customer->save();
+			$this->getMessage()->addMessage('Customer Details Updated.',1);
 			return $customer->customerId;
 		}
 		 
@@ -139,6 +145,7 @@ class Controller_Customer extends Controller_Core_Action{
 			$insert = $address->save();
 			if(!$insert)
 			{
+				$this->getMessage()->addMessage('Customer Details Updated.',3);
 				throw new Exception("System is unable to Insert.", 1);
 			}
 		}
@@ -165,7 +172,6 @@ class Controller_Customer extends Controller_Core_Action{
 			{
 				$this->redirect($this->getView()->getUrl('grid','customer',[],true));
 			}
-
 			$this->saveAddress($customerId);
 
 			$this->redirect($this->getView()->getUrl('grid','customer',[],true));

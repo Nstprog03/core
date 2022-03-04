@@ -30,19 +30,27 @@ class Model_Core_Message
 
 	public function getMessages()
 	{
-		$this->getSession()->start();
-		
-		return $_SESSION;
+	
+		if(!$this->getSession()->messages)
+		{
+			return null;
+		}
+		return $this->getSession()->messages;
 	}
 
-	public function unsetSession($key)
+	public function unsetSession()
 	{
-		unset($_SESSION['message'][$key]);
+	
+		if(!$this->getSession()->messages)
+		{
+			return null;
+		}
+		unset($this->getSession()->messages);
 	}
 
 	public function addMessage($message,$type = null)
 	{
-		$messages = [
+		$types = [
 
 			self::MESSAGE_SUCCESS => self::MESSAGE_SUCCESS_LBL,
 			self::MESSAGE_WARNING => self::MESSAGE_WARNING_LBL,
@@ -50,13 +58,14 @@ class Model_Core_Message
 			self::MESSAGE_DEFAULT => self::MESSAGE_SUCCESS_LBL
 		];
 
-		if(!array_key_exists($type,$messages))
+		if(!array_key_exists($type,$types))
 		{
 			$type =  self::MESSAGE_DEFAULT;
 		}
-		$type = $messages[$type];
-		$this->getSession()->start();
-		return $_SESSION[$type] = $message;
+		$type = $types[$type];
+		$messages[$type] = $message;
+		$this->getSession()->messages = $messages;
+		return $this;
 	}
 
 }
