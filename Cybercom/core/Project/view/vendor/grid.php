@@ -32,7 +32,7 @@ $addresses = $this->getAddresses();
 				<td><?php echo $vendor->lastName ?></td>
 				<td><?php echo $vendor->email ?></td>
 				<td><?php echo $vendor->mobile ?></td>
-				<td><?php if($vendor->status==1):echo "Active";else : echo "Inactive"; endif;?></td>
+				<td><?php echo $vendor->getStatus($vendor->status)?></td>
 				<td><?php echo $vendor->createdAt ?></td>
 				<td><?php echo $vendor->updatedAt ?></td>
 				<?php if(!$addresses) :?>

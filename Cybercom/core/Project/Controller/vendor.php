@@ -3,15 +3,7 @@ class Controller_Vendor extends Controller_Core_Action
 {
 	public function gridAction()
 	{
-		
-		$content = $this->getLayout()->getContent();
-		$footer = $this->getLayout()->getFooter();
-		
-		$adminGrid = Ccc::getBlock('Vendor_Grid');
-		$content->addChild($adminGrid,'grid');	
-		$footer->addChild($adminGrid,'grid2');	
-		//$content->getChild('grid')->toHtml();
-		$this->renderLayout();
+		Ccc::getBlock('Vendor_Grid')->toHtml();
 	}
 
 	public function addAction()
@@ -71,6 +63,7 @@ class Controller_Vendor extends Controller_Core_Action
 				throw new Exception("Unable to delete Record.", 1);
 				
 			}
+			$this->redirect($this->getView()->getUrl('grid','vendor',[],true));
 		}
 		catch(Exception $e)
 		{

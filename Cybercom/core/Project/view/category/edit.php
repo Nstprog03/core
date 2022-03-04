@@ -37,13 +37,8 @@ $categories = $this->getCategories();
                     <td width="10%">Status</td>
                     <td>
                         <select name="category[status]" id="status">
-                            <?php if($categoryData->status == 1):?>
-                            <option value="1" selected>Enabel</option>
-                            <option value="2">Disabel</option>
-                        <?php else: ?>
-                            <option value="1">Enabel</option>
-                            <option value="2" selected>Disabel</option>
-                        <?php endif; ?>
+                           <option value="1" <?php echo ($categoryData->getStatus($categoryData->status)=='Active')?'selected':'' ?>>Active</option>
+                    <option value="2" <?php echo ($categoryData->getStatus($categoryData->status)=='Inactive')?'selected':'' ?>>Inactive</option>
                         </select>
                     </td>
                 </tr>

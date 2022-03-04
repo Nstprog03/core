@@ -32,7 +32,7 @@ $addresses = $this->getAddresses();
 				<td><?php echo $customer->lastName ?></td>
 				<td><?php echo $customer->email ?></td>
 				<td><?php echo $customer->mobile ?></td>
-				<td><?php if($customer->status==1):echo "Active";else : echo "Inactive"; endif;?></td>
+				<td><?php echo $customer->getStatus($customer->status)?></td>
 				<td><?php echo $customer->createdAt ?></td>
 				<td><?php echo $customer->updatedAt ?></td>
 				<td><?php foreach ($addresses as $address): ?>
