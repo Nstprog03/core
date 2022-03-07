@@ -95,6 +95,7 @@ class Controller_Product extends Controller_Core_Action{
 			
 			$request=$this->getRequest();
 			$productModel= Ccc::getModel('Product');
+			$categoryData = $request->getPost('category');
 			if(!$request->isPost())
 			{
 				throw new Exception("Request Invalid.",1);
@@ -118,6 +119,13 @@ class Controller_Product extends Controller_Core_Action{
 					$this->getMessage()->addMessage('unable to inserted.',3);
 					throw new Exception("unable to Updated Record.", 1);
 					
+				}
+				foreach($categoryData as $categoryId)
+				{
+					$categoryProductModel = Ccc::getModel('Product_CategoryProduct');
+					$categoryProductModel->product_id = $result;
+					$categoryProductModel->category_id = $categoryId;
+					$categoryProductModel->save();
 				}	
 				$this->getMessage()->addMessage('Data save succesfully',1);
 			}
@@ -136,6 +144,20 @@ class Controller_Product extends Controller_Core_Action{
 					throw new Exception("unable to insert Record.", 1);
 					
 				}
+				$categoryProductModel = Ccc::getModel('Product_CategoryProduct');
+				$categoryProduct = $categoryProductModel->fetchAll("SELECT * FROM `category_product` WHERE `product_id` = '$product->productId' ");
+				foreach($categoryProduct as $category)
+				{
+					$categoryProductModel->load($category->entity_id)->delete();
+				}
+				foreach($categoryData as $categoryId)
+				{
+					$categoryProductModel = Ccc::getModel('Product_CategoryProduct');
+					$categoryProductModel->product_id = $product->productId;
+					$categoryProductModel->category_id = $categoryId;
+					$categoryProductModel->save();
+				}
+
 				$this->getMessage()->addMessage('data updated succesfully.',1);
 			}
 			$this->redirect($this->getView()->getUrl('grid','product',[],true));

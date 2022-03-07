@@ -12,8 +12,6 @@ class Block_Category_Edit extends Block_Core_Template
    	{
    		$categoryModel = Ccc::getModel('category');
         $categories = $categoryModel->fetchAll("SELECT * FROM `category` ORDER BY `path`");
-        //print_r($categories);
-        //exit;
         return $categories;
    	}
     public function getCategory()

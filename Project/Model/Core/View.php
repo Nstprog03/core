@@ -78,7 +78,7 @@ class Model_Core_View {
 	}
 	public function getBaseUrl($subUrl = null)
     {
-        $url = "C:/xampp7.42/htdocs/Practice/core-message/Project";
+        $url = "C:/xampp7.42/htdocs/Practice/category_product/Project";
         if($subUrl){
             $url = $url."/".$subUrl;
         }
