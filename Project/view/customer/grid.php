@@ -15,11 +15,12 @@ $addresses = $this->getAddresses();
 			<th>Created Date</th>
 			<th>Updated Date</th>
 			<th>Address</th>
+			<th>Price</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
 		<?php if(!$customers):  ?>
-			<tr><td colspan="10">No Record available.</td></tr>
+			<tr><td colspan="11">No Record available.</td></tr>
 		<?php else:  ?>
 			<?php foreach ($customers as $customer): ?>
 				
@@ -48,6 +49,7 @@ $addresses = $this->getAddresses();
 					endif; ?>
 					<?php endforeach;	?>
 				</td>
+				<td><a href="<?php echo $this->getUrl('grid','customer_price',['id' => $customer->customerId],true); ?>">Price</a></td>
 				<td><a href="<?php echo $this->getUrl('edit','customer',['id'=>$customer->customerId],true) ?>">Edit</a></td>
 				<td><a href="<?php echo $this->getUrl('delete','customer',['id'=>$customer->customerId],true) ?>">Delete</a></td>
 			

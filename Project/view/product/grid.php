@@ -9,6 +9,8 @@
 			<th>Thumb Image</th>
 			<th>Image</th>
 			<th>Price</th>
+			<th>Cost Price</th>
+			<th>MSP</th>
 			<th>Quantity</th>
 			<th>Status</th>
 			<th>Created Date</th>
@@ -41,6 +43,8 @@
 				<td>No Small Image</td>
 				<?php endif; ?>	
 				<td><?php echo $product->price ?></td>
+				<td><?php echo $product->costPrice ?></td>
+				<td><?php echo $product->msp ?></td>
 				<td><?php echo $product->quantity ?></td>
 				<td><?php echo $product->getStatus($product->status)?></td>
 				<td><?php echo $product->createdAt ?></td>

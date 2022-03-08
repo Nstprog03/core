@@ -40,6 +40,14 @@
 			<td><input type="text" name="product[price]" value="<?php echo $product->price ?>"></td>
 		</tr>
 		<tr>
+			<td width="10%">MSP</td>
+			<td><input type="text" name="product[msp]" value="<?php echo $product->msp ?>"></td>
+		</tr>
+		<tr>
+			<td width="10%">Cost Price</td>
+			<td><input type="text" name="product[costPrice]" value="<?php echo $product->costPrice ?>"></td>
+		</tr>
+		<tr>
 			<td width="10%">Quantity</td>
 			<td><input type="text" name="product[quantity]" value="<?php echo $product->quantity ?>"></td>
 		</tr>
