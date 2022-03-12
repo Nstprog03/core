@@ -8,8 +8,16 @@ class Block_Category_Grid extends Block_Core_Template {
 	}
 	public function getCategories()
 	{
+        $request = Ccc::getModel('Core_Request');
+        $page = (int)$request->getRequest('p', 1);
+        $ppr = (int)$request->getRequest('ppr',20);
+
+        $pagerModel = Ccc::getModel('Core_Pager');
 		$categoryModel = Ccc::getModel('Category');
-		$categories = $categoryModel->fetchAll("SELECT * FROM `category` ORDER BY `path`");
+        $totalCount = $pagerModel->getAdapter()->fetchOne("SELECT count(categoryId) FROM `category`");
+        $pagerModel->execute($totalCount,$page,$ppr);
+        $this->setPager($pagerModel);
+		$categories = $categoryModel->fetchAll("SELECT * FROM `category` ORDER BY `path` LIMIT {$pagerModel->getStartLimit()} , {$pagerModel->getEndLimit()}");
 		return $categories;
 	}
     public function getPath($categoryId,$path)

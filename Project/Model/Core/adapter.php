@@ -2,16 +2,27 @@
 <?php 
 date_default_timezone_set('Asia/Kolkata');
 class Adapter{
-    public $config = [
-        'host'=>'localhost',
-        'user'=>'root',
-        'password'=>'',
-        'dbname'=>'project_nishith'
-    ];
+    private $config = null;
     private $connect = NULL;
+    public function __construct()
+    {
+        $this->setConfig(Ccc::getConfig('connection'));
+    }
+
+    public function setConfig($config)
+    {
+        $this->config = $config;
+        return $this;
+    }
+
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
     public function connect()
     {
-        $connect = mysqli_connect($this->config['host'],$this->config['user'],$this->config['password'],$this->config['dbname']);
+        $connect = mysqli_connect($this->config['host'],$this->config['userName'],$this->config['password'],$this->config['dbName']);
         $this->setConnect($connect);
         return $connect;
     }
@@ -27,17 +38,6 @@ class Adapter{
         return $this->connect;
     }
 
-
-    public function setConfig($config)
-    {
-        $this->config = $config;
-        return $this;
-    }
-
-    public function getConfig()     
-    {
-        return $this->config;
-    }
 
     public function query($query)
     {

@@ -14,21 +14,24 @@ class Model_Core_View {
 		
 		$this->template = $template;
 	}
-
+	
 	public function toHtml()
-	{
-		$data = $this->data;
-		require($this->getTemplate());
-	}
+    {
+        ob_start();
+        require($this->getTemplate());
+        $html = ob_get_contents();
+        ob_end_flush();
+    }
 
 	public function getData($key = null)
 	{
-		//print_r($this->data);
-		//exit;
-		if(!$key) {
+
+		if(!$key) 
+		{
 			return $this->data;	
 		}
-		if(array_key_exists($key, $this->data)) {
+		if(array_key_exists($key, $this->data)) 
+		{
 			return $this->data[$key];	
 		}
 		return null;
@@ -48,7 +51,8 @@ class Model_Core_View {
 
 	public function removeData($key)
 	{
-		if (array_key_exists($key, $this->data)) {
+		if (array_key_exists($key, $this->data)) 
+		{
 			unset($this->data[$key]);	
 		}
 		return $this;
@@ -57,19 +61,24 @@ class Model_Core_View {
 	{
 
 		$info = [];
-		if($c==null && $a==null && $data==null && $reset==false){
+		if($c==null && $a==null && $data==null && $reset==false)
+		{
 			$info = Ccc::getFront()->getRequest()->getRequest();
 		}
 		$info['c']= $c==null ?Ccc::getFront()->getRequest()->getRequest('c') : $info['c']=$c ; 
 		$info['a']= $a==null ?Ccc::getFront()->getRequest()->getRequest('a') : $info['a']=$a ; 
-		if($reset){
-			if($data) {
+		if($reset)
+		{
+			if($data)
+			{
 				$info = array_merge($info,$data);
 			}
 		}
-		else{
+		else
+		{
 			$info = array_merge(Ccc::getFront()->getRequest()->getRequest(),$info);
-			if($data) {
+			if($data) 
+			{
 				$info = array_merge($info,$data);
 			}	
 		}
@@ -78,8 +87,9 @@ class Model_Core_View {
 	}
 	public function getBaseUrl($subUrl = null)
     {
-        $url = "C:/xampp7.42/htdocs/Practice/main-model-save/Project";
-        if($subUrl){
+        $url = "C:/xampp7.42/htdocs/Practice/mix-update/Project";
+        if($subUrl)
+        {
             $url = $url."/".$subUrl;
         }
         return $url;

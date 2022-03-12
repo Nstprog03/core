@@ -3,6 +3,17 @@
 class Block_Core_Template extends Model_Core_View {
 
 	protected $children = [];
+	protected $pager = null;
+
+    public function getPager()
+    {
+        return $this->pager;
+    }
+    public function setPager($pager)
+    {
+        $this->pager=$pager;
+        return $this;
+    }
 
 	public function getChildren()
 	{

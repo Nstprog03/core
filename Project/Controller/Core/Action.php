@@ -8,6 +8,11 @@ class Controller_Core_Action {
 	protected $view = null;
 	protected $message = null;
 	
+	protected function setTitle($title)
+    {
+        $this->getLayout()->getHead()->setTitle($title);
+    }
+
 	public function redirect($a=null,$c=null,array $data = [],$reset = false)
     {
         $url = Ccc::getModel('core_view')->getUrl($a,$c,$data,$reset);
@@ -45,9 +50,11 @@ class Controller_Core_Action {
 	}
 
 	public function renderLayout()
-	{
-		return $this->getLayout()->toHtml();
-	}
+    {
+        $this->getResponse()
+            ->setHeader('Content-type', 'text/html')
+            ->render($this->getLayout()->toHtml());
+    }
 	public function getAdapte()
 	{
 		global $adapter;
@@ -57,5 +64,9 @@ class Controller_Core_Action {
 	{
 		return Ccc::getFront()->getRequest(); 
 	}
+	 public function getResponse()
+    {
+        return Ccc::getFront()->getResponse();
+    }
 		
 }

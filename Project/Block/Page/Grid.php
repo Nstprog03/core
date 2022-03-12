@@ -2,7 +2,7 @@
 
 class Block_Page_Grid extends Block_Core_Template   
 {
-    public $pager;
+    
 
     public function __construct()
     {
@@ -21,7 +21,7 @@ class Block_Page_Grid extends Block_Core_Template
         $totalCount = $pagerModel->getAdapter()->fetchOne("SELECT count(pageId) FROM `page`");
         
         $pagerModel->execute($totalCount,$page,$ppr);
-        $this->pager = $pagerModel;
+        $this->setPager($pagerModel);
         $pages = $pageModel->fetchAll("SELECT * FROM `page` LIMIT {$pagerModel->getStartLimit()} , {$pagerModel->getEndLimit()}");
         
         return $pages;

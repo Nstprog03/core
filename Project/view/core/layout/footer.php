@@ -7,6 +7,6 @@
 
 	foreach ($children as $child) {
 
-		$child->toHtml();
+		echo $child->toHtml();
 		// code...
 	}

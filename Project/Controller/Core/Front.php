@@ -1,8 +1,10 @@
 <?php 
+Ccc::loadClass('Model_Core_Response');
 Ccc::loadClass('Model_Core_Request');
 class Controller_Core_Front
 {
 	protected $request = null;
+	protected $response = null;
 	public function getRequest()
 	{
 		if(!$this->request)
@@ -18,6 +20,22 @@ class Controller_Core_Front
 		$this->request = $request;
 		return $this;
 	}
+
+	public function getResponse()
+    {
+        if(!$this->response)
+        {
+            $response = new Model_Core_Response();
+            $this->setResponse($response);
+        }
+        return $this->response;
+    }
+
+    public function setResponse($response)
+    {
+        $this->response = $response;
+        return $this;
+    }
 
 	public function init()
 	{
