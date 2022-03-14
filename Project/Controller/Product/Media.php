@@ -11,6 +11,7 @@ class Controller_Product_Media extends Controller_Admin_Action{
 	}
 	public function gridAction()
 	{
+		$this->setTitle('Product Media Grid');
 		$content = $this->getLayout()->getContent();
 		$mediaGrid = Ccc::getBlock('Product_Media_Grid');;
 		$content->addChild($mediaGrid,'grid');	
@@ -18,6 +19,7 @@ class Controller_Product_Media extends Controller_Admin_Action{
 	}
 	public function galleryAction()
 	{
+		$this->setTitle('Product Media Gallery');
 		$content = $this->getLayout()->getContent();
 		$mediaGallery = Ccc::getBlock('product_Media_Gallery');;
 		$content->addChild($mediaGallery,'gallery');	

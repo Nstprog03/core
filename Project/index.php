@@ -44,14 +44,15 @@ class Ccc
     }
 	public static function loadFile($path)
 	{
-
-		return require_once($path);
+		return require_once(getcwd().'/'.$path);
 	}
+
 	public static function loadClass($className)
 	{
 		$path = str_replace("_", "/", $className).'.php'; 
 		Ccc::loadFile($path);
 	}
+
 	public static function getFront()
 	{
 		if(!self::$front)

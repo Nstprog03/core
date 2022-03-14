@@ -12,6 +12,7 @@ class Controller_Config extends Controller_Admin_Action{
 
 	public function gridAction()
 	{
+		$this->setTitle('Config Grid');
 		$content = $this->getLayout()->getContent();
 		$configGrid = Ccc::getBlock('Config_Grid');
 		$content->addChild($configGrid,'grid');	
@@ -19,6 +20,7 @@ class Controller_Config extends Controller_Admin_Action{
 	}
 	public function addAction()
 	{
+		$this->setTitle('Config Add');
 		$configModel = Ccc::getModel('config');
 		$content = $this->getLayout()->getContent();
 		$configAdd = Ccc::getBlock('Config_Edit')->setData(['config'=>$configModel]);
@@ -42,6 +44,7 @@ class Controller_Config extends Controller_Admin_Action{
 				throw new Exception("System is unable to find record.", 1);
 				
 			}
+			$this->setTitle('Config Edit');
 			$content = $this->getLayout()->getContent();
 			$configEdit = Ccc::getBlock('Config_Edit')->setData(['config'=>$config]);
 			$content->addChild($configEdit,'edit'); 

@@ -12,7 +12,7 @@ class Controller_Admin extends Controller_Admin_Action{
 	
 	public function gridAction()
 	{
-			
+		$this->setTitle('Admin Grid');	
 		$content = $this->getLayout()->getContent();
 		$adminGrid = Ccc::getBlock('Admin_Grid');
 		$content->addChild($adminGrid,'grid');	
@@ -21,6 +21,7 @@ class Controller_Admin extends Controller_Admin_Action{
 	}
 	public function addAction()
 	{
+		$this->setTitle('Admin Add');
 		$adminModel = Ccc::getModel('admin');
 		$content = $this->getLayout()->getContent();
 		$adminAdd = Ccc::getBlock('Admin_Edit')->setData(['admin'=>$adminModel]);
@@ -44,6 +45,7 @@ class Controller_Admin extends Controller_Admin_Action{
 				throw new Exception("System is unable to find record.", 1);
 				
 			}
+			$this->setTitle('Admin Edit');
 			$content = $this->getLayout()->getContent();
 			$adminEdit = Ccc::getBlock('Admin_Edit')->setData(['admin'=>$admin]);
 			$content->addChild($adminEdit,'edit'); 

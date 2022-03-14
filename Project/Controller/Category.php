@@ -11,6 +11,7 @@ class Controller_Category extends Controller_Admin_Action{
 
     public function gridAction()
     {
+        $this->setTitle('Category Grid');
         $content = $this->getLayout()->getContent();
         $categoryGrid = Ccc::getBlock('Category_Grid');
         $content->addChild($categoryGrid,'grid');    
@@ -19,6 +20,7 @@ class Controller_Category extends Controller_Admin_Action{
 
     public function addAction()
     {
+        $this->setTitle('Category Add');
        $categoryModel = Ccc::getModel('category');
         $content = $this->getLayout()->getContent();
         $categoryAdd = Ccc::getBlock('Category_Edit')->setData(['category'=>$categoryModel]);
@@ -28,6 +30,7 @@ class Controller_Category extends Controller_Admin_Action{
 
     public function editAction()
     {
+        
         $categoryModel = Ccc::getModel('Category');
         $request = $this->getRequest();
         $id = $request->getRequest('id');
@@ -40,6 +43,7 @@ class Controller_Category extends Controller_Admin_Action{
         {
             throw new Exception("Invalid request", 1);
         }
+        $this->setTitle('Category Edit');
         $content = $this->getLayout()->getContent();
         $categoryEdit = Ccc::getBlock('Category_Edit')->setData(['category'=>$category]);
         $content->addChild($categoryEdit,'add'); 

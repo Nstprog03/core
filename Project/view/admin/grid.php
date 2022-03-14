@@ -62,7 +62,7 @@
 				<?php foreach($this->getPager()->getPerPageCountOption() as $perPageCount) :?>	
 				<option value="<?php echo $perPageCount ?>" ><?php echo $perPageCount ?></a></option>
 				<?php endforeach;?>
-			</select>
+			</select>	
 		</tr>
 		<tr><button><a style="<?php echo ($this->getPager()->getStart()==NULL)? "pointer-events: none" : "" ?>" href="<?php echo $this->getUrl(null,null,['p' => $this->getPager()->getStart()]) ?>">Start</a></button></tr>
             <tr><button><a style="<?php echo ($this->getPager()->getPrev()==NULL)? "pointer-events: none" : "" ?>" href="<?php echo $this->getUrl(null,null,['p' => $this->getPager()->getPrev()]) ?>">Prev</a></button>

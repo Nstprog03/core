@@ -10,6 +10,7 @@ class Controller_Core_Action {
 	
 	protected function setTitle($title)
     {
+    	
         $this->getLayout()->getHead()->setTitle($title);
     }
 

@@ -12,6 +12,7 @@ class Controller_Category_Media extends Controller_Admin_Action{
 	
 	public function gridAction()
 	{
+		$this->setTitle('Category Media Grid');
 		$content = $this->getLayout()->getContent();
 		$mediaGrid = Ccc::getBlock('Category_Media_Grid');;
 		$content->addChild($mediaGrid,'grid');	
@@ -20,6 +21,7 @@ class Controller_Category_Media extends Controller_Admin_Action{
 
 	public function galleryAction()
 	{
+		$this->setTitle('Category Media Gallery');
 		$content = $this->getLayout()->getContent();
 		$mediaGallery = Ccc::getBlock('Category_Media_Gallery');;
 		$content->addChild($mediaGallery,'gallery');	

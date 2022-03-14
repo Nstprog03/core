@@ -11,6 +11,7 @@ class Controller_Salesman extends Controller_Admin_Action
 	
 	public function gridAction()
 	{
+		$this->setTitle('Salesman Grid');
 		$content = $this->getLayout()->getContent();
 		$salesmanGrid = Ccc::getBlock('Salesman_Grid');
 		$content->addChild($salesmanGrid,'grid');	
@@ -18,6 +19,8 @@ class Controller_Salesman extends Controller_Admin_Action
 	}
 	public function addAction()
 	{
+		$this->setTitle('Salesman Add');
+
 		$salesmanModel = Ccc::getModel('salesman');
 		$content = $this->getLayout()->getContent();
 		$salesmanAdd = Ccc::getBlock('Salesman_Edit')->setData(['salesman'=>$salesmanModel]);
@@ -41,6 +44,8 @@ class Controller_Salesman extends Controller_Admin_Action
 			{
 				throw new Exception("unable to fatch Record.", 1);
 			}
+			$this->setTitle('Salesman Edit');
+
 			$content = $this->getLayout()->getContent();
 			$salesmanEdit = Ccc::getBlock('Salesman_Edit')->setData(['salesman'=>$salesmen]);
 			$content->addChild($salesmanEdit,'edit'); 

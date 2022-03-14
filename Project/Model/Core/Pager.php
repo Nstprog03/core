@@ -125,18 +125,11 @@ class Model_Core_Pager
     
     public function execute($totalCount,$current,$perPageCountOption)
     {
+            
         $this->setPerPageCount($perPageCountOption);
-        $this->setPageCount($perPageCountOption);
-        $this->setEnd($perPageCountOption);
-        $this->setPrev($perPageCountOption);
-        $this->setNext($perPageCountOption);
-        $this->setCurrent($perPageCountOption);
-        $this->setStartLimit($perPageCountOption);
-        $this->setEndLimit($perPageCountOption);
+        $this->setEndLimit(($totalCount == 0)?1:$perPageCountOption);
         $this->setTotalCount($totalCount);
-        // var_dump($this->getTotalCount());
-        // var_dump($this->getPerPageCount());
-        // exit;
+     
         $this->setPageCount(ceil($this->getTotalCount() / $this->getPerPageCount()));
         $this->setCurrent(($current > $this->getPageCount()) ? $this->getPageCount() : $current);
         $this->setCurrent(($current < $this->getStart()) ? $this->getStart() : $this->getCurrent());
@@ -144,7 +137,7 @@ class Model_Core_Pager
         $this->setStart(($this->getCurrent() == 1) ? null : 1);
         $this->setEnd(($this->getCurrent() == $this->getPageCount()) ? null : $this->getPageCount());
 
-        $this->setStartLimit($this->getPerPageCount() * ($this->getCurrent() - 1));
+        $this->setStartLimit(($totalCount == 0)?1:$this->getPerPageCount() * ($this->getCurrent() - 1));
 
         $this->setPrev(($this->getCurrent() == 1) ? null : $this->getCurrent()-1);
 

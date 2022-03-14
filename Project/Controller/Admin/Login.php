@@ -5,6 +5,7 @@ class Controller_Admin_Login extends Controller_Admin_Action{
 
 	public function loginAction()
 	{
+		$this->setTitle('Admin Login');
 
 		$content = $this->getLayout()->getContent();
 		$loginGrid = Ccc::getBlock('Admin_Login_Grid','grid');

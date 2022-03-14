@@ -13,7 +13,7 @@ class Controller_Customer_Price extends Controller_Admin_Action{
 	public function gridAction()
 	{
 		
-
+		$this->setTitle('Customer Price Grid');
 		$content = $this->getLayout()->getContent();
 		$customerPriceGrid = Ccc::getBlock('Customer_Price_Grid');
 		$content->addChild($customerPriceGrid,'grid');

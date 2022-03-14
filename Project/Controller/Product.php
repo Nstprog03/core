@@ -12,6 +12,7 @@ class Controller_Product extends Controller_Admin_Action{
 	
 	public function gridAction()
 	{
+		$this->setTitle('Product Grid');
 		$content = $this->getLayout()->getContent();
 		$productGrid = Ccc::getBlock('Product_Grid');
 		$content->addChild($productGrid,'grid');	
@@ -20,6 +21,7 @@ class Controller_Product extends Controller_Admin_Action{
 
 	public function addAction()
 	{
+		$this->setTitle('Product Add');
 		$productModel = Ccc::getModel('product');
 		$content = $this->getLayout()->getContent();
 		$productAdd = Ccc::getBlock('Product_Edit')->setData(['product'=>$productModel]);
@@ -44,7 +46,7 @@ class Controller_Product extends Controller_Admin_Action{
 				throw new Exception("System is unable to find record.", 1);
 				
 			}
-			
+			$this->setTitle('Product Edit');
 			$content = $this->getLayout()->getContent();
 			$productEdit = Ccc::getBlock('Product_Edit')->setData(['product'=>$product]);
 			$content->addChild($productEdit,'edit'); 

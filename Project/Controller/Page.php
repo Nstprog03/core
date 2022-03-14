@@ -12,6 +12,7 @@ class Controller_Page extends Controller_Admin_Action
 	
 	public function gridAction()
 	{
+		$this->setTitle('Page Grid');
 		$content = $this->getLayout()->getContent();
 		$pageGrid = Ccc::getBlock('Page_Grid');
 		$content->addChild($pageGrid,'grid');	
@@ -19,6 +20,7 @@ class Controller_Page extends Controller_Admin_Action
 	}
 	public function addAction()
 	{
+		$this->setTitle('Page Add');
 		$pageModel = Ccc::getModel('page');
 		$content = $this->getLayout()->getContent();
 		$pageAdd = Ccc::getBlock('Page_Edit')->setData(['page'=>$pageModel]);
@@ -45,6 +47,7 @@ class Controller_Page extends Controller_Admin_Action
 				throw new Exception("Failed to fatch Data", 1);
 				
 			}
+			$this->setTitle('Page Edit');
 			$content = $this->getLayout()->getContent();
 			$pageEdit = Ccc::getBlock('Page_Edit')->setData(['page'=>$page]);
 			$content->addChild($pageEdit,'edit'); 
