@@ -87,7 +87,7 @@ class Model_Core_View {
 	}
 	public function getBaseUrl($subUrl = null)
     {
-        $url = "C:/xampp7.42/htdocs/Practice/mix-update/Project";
+        $url = "C:/xampp7.42/htdocs/Practice/orm-reletionship/Project";
         if($subUrl)
         {
             $url = $url."/".$subUrl;

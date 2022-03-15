@@ -121,31 +121,41 @@ class Controller_Customer extends Controller_Admin_Action{
 			throw new Exception("System is unable to Insert.", 1);
 		}
 		$this->getMessage()->addMessage('Customer Inserted succesfully.',1);
-		return $save->customerId;
+		return $save;
 		 
 	}
-	protected function saveAddress($customerId,$type)
+	protected function saveAddress($customer)
 	{
 
 		$request = $this->getRequest();
-		if(!$request->getPost($type))
+		if(!$request->getPost())
 		{
 			throw new Exception("Invalid Request", 1);
 		}	
-		$postData = $request->getPost($type);
-		if(!$postData)
+		$postBilling = $request->getPost('billingAddress');
+		$postShipping = $request->getPost('shippingAddress');
+		$billing = $customer->getBillingAddress();
+		$shipping = $customer->getShippingAddress();
+		if(!$billing->addressId)
 		{
-			throw new Exception("Invalid data posted.", 1);	
+			unset($billing->addressId);
 		}
-		$addressModel = Ccc::getModel('Customer_Address');
-		$address = $addressModel;
-		$address->setData($postData);
-		$address->customerId = $customerId;
-		if(!$address->addressId)
-		{	
-			unset($address->addressId);
+		if(!$shipping->addressId)
+		{
+			unset($shipping->addressId);
 		}
-		$save = $address->save();
+		$billing->setData($postBilling);
+		$billing->customerId = $customer->customerId;
+		$shipping->setData($postShipping);	
+		$shipping->customerId = $customer->customerId;
+		
+		$save = $billing->save();
+		if(!$save)
+		{
+			$this->getMessage()->addMessage('Customer Details Not Saved.',3);
+			throw new Exception("System is unable to Save.", 1);
+		}
+		$save = $shipping->save();
 		if(!$save)
 		{
 			$this->getMessage()->addMessage('Customer Details Not Saved.',3);
@@ -157,9 +167,8 @@ class Controller_Customer extends Controller_Admin_Action{
 	{
 		try
 		{
-			$customerId=$this->saveCustomer();		
-			$this->saveAddress($customerId,'billingAddress');
-			$this->saveAddress($customerId,'shippingAddress');
+			$customer=$this->saveCustomer();		
+			$this->saveAddress($customer);
 
 			$this->redirect('grid','customer',[],true);
 		}

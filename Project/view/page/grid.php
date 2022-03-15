@@ -11,7 +11,7 @@
 	</table>
 	<table border="3" width="100%" cellspacing="4">
 		<tr>
-			<th>Check box <input type="checkbox" name="select" id="select" onclick="select()"></th>
+			<th>Check box <input type="checkbox" name="select" id="selectaction"></th>
 			<th>Page Id</th>
 			<th>Name</th>
 			<th>Code</th>
@@ -28,7 +28,7 @@
 
 		<?php foreach ($pages as $page) : ?>
 			<tr>
-				<td><input type="checkbox" name="page[]" id="<?php echo $page->pageId ?>" value="<?php echo $page->pageId ?>"></td>
+				<td><input type="checkbox" name="page[]" id="deleteact" value="<?php echo $page->pageId ?>"></td>
 				<td><?php echo $page->pageId ?></td>
 				<td><?php echo $page->name ?></td>
 				<td><?php echo $page->code ?></td>
@@ -47,22 +47,42 @@
 </form>
 	<table>
 		<tr>
-			<script type="text/javascript"> 
-				function select() {
-					var checkbox = document.getElementByName('page');
-					alert(111);
-					// for (i = 0; i < myArray.length; i++)
-					// {
-						
-					// }
-					// for (var checkbox of checkboxes) {
-     //    				checkbox.checked = this.checked;
-    	// 			}	
-				}
+			<select onchange="ppr()" id="ppr">
+				<option selected>select</option>
+				<?php foreach($this->getPager()->getPerPageCountOption() as $perPageCount) :?>	
+				<option value="<?php echo $perPageCount ?>" ><?php echo $perPageCount ?></a></option>
+				<?php endforeach;?>
+			</select>
+		</tr>
+		<tr><button><a style="<?php echo ($this->getPager()->getStart()==NULL)? "pointer-events: none" : "" ?>" href="<?php echo $this->getUrl(null,null,['p' => $this->getPager()->getStart()]) ?>">Start</a></button></tr>
+            <tr><button><a style="<?php echo ($this->getPager()->getPrev()==NULL)? "pointer-events: none" : "" ?>" href="<?php echo $this->getUrl(null,null,['p' => $this->getPager()->getPrev()]) ?>">Prev</a></button>
+            &nbsp;&nbsp;&nbsp;&nbsp;<?php echo "<b>".$this->getPager()->getCurrent()."</b>"?>&nbsp;&nbsp;&nbsp;&nbsp;</tr>
+            <tr><button><a style="<?php echo ($this->getPager()->getNext()==NULL)? "pointer-events: none" : "" ?>" href="<?php echo $this->getUrl(null,null,['p' => $this->getPager()->getNext()]) ?>">Next</a></button></tr>
+            <tr><button><a style="<?php echo ($this->getPager()->getEnd()==NULL)? "pointer-events: none" : "" ?>" href="<?php echo $this->getUrl(null,null,['p' => $this->getPager()->getEnd()]) ?>">End</a></button></tr>
 
+	</table>
+<script type="text/javascript"> 
+			
+	    document.getElementById('selectaction').onclick = function() {
+		    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+		    for (var checkbox of checkboxes)
+		     {
+		        checkbox.checked = this.checked;
+		    }
+		}
 
+		document.getElementById('deleteact').onclick = function() {
+			var checkbox =  document.getElementById('selectaction');
+			if(!this.checked)
+			{
+				//alert("unchecked");
+				checkbox.checked = false;	
+			}
+			
+		}
+ 
 
-				function ppr() {
+			function ppr() {
 				const pprValue = document.getElementById('ppr').selectedOptions[0].value;
 				let language = window.location.href;
 				if(!language.includes('ppr'))
@@ -84,18 +104,4 @@
  				const str = myArray.join("&");	
  				location.replace(str);
 			}
-			</script>
-			<select onchange="ppr()" id="ppr">
-				<option selected>select</option>
-				<?php foreach($this->getPager()->getPerPageCountOption() as $perPageCount) :?>	
-				<option value="<?php echo $perPageCount ?>" ><?php echo $perPageCount ?></a></option>
-				<?php endforeach;?>
-			</select>
-		</tr>
-		<tr><button><a style="<?php echo ($this->getPager()->getStart()==NULL)? "pointer-events: none" : "" ?>" href="<?php echo $this->getUrl(null,null,['p' => $this->getPager()->getStart()]) ?>">Start</a></button></tr>
-            <tr><button><a style="<?php echo ($this->getPager()->getPrev()==NULL)? "pointer-events: none" : "" ?>" href="<?php echo $this->getUrl(null,null,['p' => $this->getPager()->getPrev()]) ?>">Prev</a></button>
-            &nbsp;&nbsp;&nbsp;&nbsp;<?php echo "<b>".$this->getPager()->getCurrent()."</b>"?>&nbsp;&nbsp;&nbsp;&nbsp;</tr>
-            <tr><button><a style="<?php echo ($this->getPager()->getNext()==NULL)? "pointer-events: none" : "" ?>" href="<?php echo $this->getUrl(null,null,['p' => $this->getPager()->getNext()]) ?>">Next</a></button></tr>
-            <tr><button><a style="<?php echo ($this->getPager()->getEnd()==NULL)? "pointer-events: none" : "" ?>" href="<?php echo $this->getUrl(null,null,['p' => $this->getPager()->getEnd()]) ?>">End</a></button></tr>
-
-	</table>
+</script>

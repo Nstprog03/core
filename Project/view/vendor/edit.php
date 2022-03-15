@@ -39,8 +39,6 @@
 			<td colspan="2"><b>Address Information</b></td>
 		</tr>
 		
-		<input type="text" name="address[vendorId] " value="<?php echo $address->vendorId ?>" hidden>
-		<input type="text" name="address[addressId] " value="<?php echo $address->addressId ?>" hidden>
 
 
 		<tr>

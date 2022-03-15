@@ -65,7 +65,7 @@ class Controller_Category_Media extends Controller_Admin_Action{
 				else
 				{
 					$mediaData = $mediaModel;
-					$categoryModel = Ccc::getModel('category');
+					$categoryModel = $mediaModel->getCategory();
 					$categoryData = $categoryModel;
 					$categoryData->categoryId = $id;
 					$mediaData->categoryId = $id;

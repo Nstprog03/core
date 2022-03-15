@@ -41,8 +41,8 @@
 			<td colspan="2"><b>Billing Address</b></td>
 		</tr>
 		
-		<input type="text" name="billingAddress[customerId] " value="<?php echo $billingAddress->customerId ?>" hidden>
-		<input type="text" name="billingAddress[addressId] " value="<?php echo $billingAddress->addressId ?>" hidden>
+		
+		
 
 
 		<tr>
@@ -75,8 +75,7 @@
 			<td colspan="2"><input type = "checkbox"  name = "sameBill" id="sameBill" onclick="same()"><b>Same As Billing Address</b></td>
 		</tr>
 		
-		<input type="text" name="shippingAddress[customerId] "  value="<?php echo $shippingAddress->customerId ?>" hidden>
-		<input type="text" name="shippingAddress[addressId] "  value="<?php echo $shippingAddress->addressId ?>" hidden>
+		
 
 
 		<tr>
@@ -117,7 +116,6 @@
 <script type="text/javascript">
     function same() {
             var checkedBox = document.getElementById("sameBill");
-            
             if(checkedBox.checked == true){
                 document.getElementById("shippingaddress").value = document.getElementById("billingaddress").value; 
 				document.getElementById("shippingpostalcode").value = document.getElementById("billingpostalcode").value; 

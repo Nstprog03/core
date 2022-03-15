@@ -26,19 +26,19 @@
                 <td><?php  echo $category->categoryId; ?></td>
                 <td><?php echo $this->getPath($category->categoryId,$category->path); ?></td>
                 <?php if($category->base ): ?>
-                <td><img src="<?php echo 'Media/Category/'.$category->getBase(); ?>" alt="No Image found" width=50 height=50></td>
+                <td><img src="<?php echo 'Media/Category/'.$category->getBase()->name; ?>" alt="No Image found" width=50 height=50></td>
                 <?php else: ?>
                 <td>No base image</td>
                 <?php endif; ?>
 
                 <?php if($category->thumb ): ?>
-                <td><img src="<?php echo 'Media/Category/'.$category->getThumb(); ?>" alt="No Image found" width=50 height=50></td>
+                <td><img src="<?php echo 'Media/Category/'.$category->getThumb()->name; ?>" alt="No Image found" width=50 height=50></td>
                 <?php else: ?>
                 <td>No thumb image</td>
                 <?php endif; ?>
 
                 <?php if($category->small ): ?>
-                <td><img src="<?php echo 'Media/Category/'.$category->getSmall(); ?>" alt="No Image found" width=50 height=50></td>
+                <td><img src="<?php echo 'Media/Category/'.$category->getSmall()->name; ?>" alt="No Image found" width=50 height=50></td>
                 <?php else: ?>
                 <td>No small image</td>
                 <?php endif; ?>

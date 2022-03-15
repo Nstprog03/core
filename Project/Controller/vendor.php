@@ -124,29 +124,26 @@ class Controller_Vendor extends Controller_Admin_Action
 			
 		}
 		$this->getMessage()->addMessage('data inserted succesfully.',1);
-		return $save->vendorId; 
+		return $save; 
 		
 	}
-	public function saveAddress($vendorId)
+	public function saveAddress($vendor)
 	{
 		$request = $this->getRequest();
-
+		$address = $vendor->getAddress();
 		$postData = $request->getPost('address');
 		if(!$postData)
 		{
 			throw new Exception("Invalid Request.", 1);
 			
 		}
-		$addressModel = Ccc::getModel('vendor_address');
-		$address = $addressModel;
-		$vendor->getAddress();
-		$address->setData($postData);
-		$address->vendorId=$vendorId;
 		if(!$address->addressId)
 		{
 			unset($address->addressId);
-
 		}
+		$address->setData($postData);
+		$address->vendorId=$vendor->vendorId;
+		
 		$save = $address->save();
 		if(!$save->addressId)
 		{
@@ -161,16 +158,10 @@ class Controller_Vendor extends Controller_Admin_Action
 	{	
 		try
 		{
-			$vendorId = $this->saveVendor();
-			$request = $this->getRequest();
-			$postData = $request->getPost('address');
+			$vendor = $this->saveVendor();
 			
-			if(!$postData['postalCode'])
-			{
-				$this->redirect('grid','vendor',[],true);
-				
-			}
-			$this->saveAddress($vendorId);
+			
+			$this->saveAddress($vendor);
 			$this->redirect('grid','vendor',[],true);
 
 		}

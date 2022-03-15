@@ -32,7 +32,7 @@ class Controller_Product_Media extends Controller_Admin_Action{
 		try 
 		{
 			$mediaModel = Ccc::getModel('Product_Media');
-			$productModel = Ccc::getModel('product');
+			$productModel = $mediaModel->getProduct();
 			$request = $this->getRequest();
 			$productId = $request->getRequest('id');
 			if($request->isPost())
