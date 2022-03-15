@@ -23,9 +23,10 @@ class Controller_Customer extends Controller_Admin_Action{
 	{
 		$this->setTitle('Customer Add');
 		$customerModel = Ccc::getModel('customer');
-		$addressModel = Ccc::getModel('customer_address');
+		$billingAddress = $customerModel->getBillingAddress();
+		$shippingAddress = $customerModel->getShippingAddress();
 		$content = $this->getLayout()->getContent();
-		$customerAdd = Ccc::getBlock('Customer_Edit')->setData(['customer'=>$customerModel,'address'=>$addressModel]);
+		$customerAdd = Ccc::getBlock('Customer_Edit')->setData(['customer'=>$customerModel,'billingAddress'=>$billingAddress,'shippingAddress'=>$shippingAddress]);
 		$content->addChild($customerAdd,'add'); 
 		$this->renderLayout();
 	}
@@ -35,6 +36,7 @@ class Controller_Customer extends Controller_Admin_Action{
 		$customerModel = Ccc::getModel('Customer');
 		$request = $this->getRequest();
 		$id = (int)$request->getRequest('id');
+		
 		if(!$id)
 		{
 			throw new Exception("Invalid Request", 1);
@@ -46,15 +48,10 @@ class Controller_Customer extends Controller_Admin_Action{
 		{	
 			throw new Exception("System is unable to find record.", 1);	
 		}
-		$addressModel = Ccc::getModel('Customer_Address');
-		$address = $addressModel->load($id,'customerId');
-		if(!$address)
-		{
-			$address = Ccc::getModel('Customer_Address');	
-		}
-		$content = $this->getLayout()->getContent();
+
 		$this->setTitle('Customer Edit');
-		$customerEdit = Ccc::getBlock('Customer_Edit')->setData(['customer'=>$customer,'address'=>$address]);
+		$content = $this->getLayout()->getContent();
+		$customerEdit = Ccc::getBlock('Customer_Edit')->setData(['customer'=>$customer]);
 		$content->addChild($customerEdit,'edit'); 
 		$this->renderLayout();
 	}
@@ -127,15 +124,15 @@ class Controller_Customer extends Controller_Admin_Action{
 		return $save->customerId;
 		 
 	}
-	protected function saveAddress($customerId)
+	protected function saveAddress($customerId,$type)
 	{
 
 		$request = $this->getRequest();
-		if(!$request->getPost('address'))
+		if(!$request->getPost($type))
 		{
 			throw new Exception("Invalid Request", 1);
 		}	
-		$postData = $request->getPost('address');
+		$postData = $request->getPost($type);
 		if(!$postData)
 		{
 			throw new Exception("Invalid data posted.", 1);	
@@ -147,12 +144,6 @@ class Controller_Customer extends Controller_Admin_Action{
 		if(!$address->addressId)
 		{	
 			unset($address->addressId);
-		}
-		else
-		{
-			$address->billing = (!array_key_exists('billing',$postData))?2:1;
-			$address->shipping = (!array_key_exists('shipping',$postData))?2:1;
-		
 		}
 		$save = $address->save();
 		if(!$save)
@@ -166,14 +157,9 @@ class Controller_Customer extends Controller_Admin_Action{
 	{
 		try
 		{
-			$customerId=$this->saveCustomer();
-			$request = $this->getRequest();
-			$postData = $request->getPost('address');		
-			if(!$postData['postalCode'])
-			{
-				$this->redirect('grid','customer',[],true);
-			}
-			$this->saveAddress($customerId);
+			$customerId=$this->saveCustomer();		
+			$this->saveAddress($customerId,'billingAddress');
+			$this->saveAddress($customerId,'shippingAddress');
 
 			$this->redirect('grid','customer',[],true);
 		}

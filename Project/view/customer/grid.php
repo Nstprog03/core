@@ -1,6 +1,5 @@
 <?php 
 $customers = $this->getCustomers();
-$addresses = $this->getAddresses();
 ?>
 
 	<button name="Add"><a href="<?php echo $this->getUrl('add') ?>"><h3>Add</h3></a></button>
@@ -14,13 +13,14 @@ $addresses = $this->getAddresses();
 			<th>Status</th>
 			<th>Created Date</th>
 			<th>Updated Date</th>
-			<th>Address</th>
+			<th>Billing Address</th>
+			<th>Shipping Address</th>
 			<th>Price</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
 		<?php if(!$customers):  ?>
-			<tr><td colspan="11">No Record available.</td></tr>
+			<tr><td colspan="12">No Record available.</td></tr>
 		<?php else:  ?>
 			<?php foreach ($customers as $customer): ?>
 				
@@ -29,25 +29,23 @@ $addresses = $this->getAddresses();
 				<td><?php echo $customer->firstName ?></td>
 				<td><?php echo $customer->lastName ?></td>
 				<td><?php echo $customer->email ?></td>
-				<td><?php echo $customer->mobile ?></td>
+					<td><?php echo $customer->mobile ?></td>
 				<td><?php echo $customer->getStatus($customer->status)?></td>
 				<td><?php echo $customer->createdAt ?></td>
 				<td><?php echo $customer->updatedAt ?></td>
-				<td><?php foreach ($addresses as $address): ?>
-					<?php if($address->customerId==$customer->customerId):
-							echo "Address : ".$address->address."<br>";
-							echo "Postal Code : ".$address->postalCode."<br>";
-							echo "Ciry : ".$address->city."<br>";
-							echo "State : ".$address->state."<br>";
-							echo "Country : ".$address->country."<br>";
-							echo "Address Type : ";
-							if($address->getStatus($address->billing)=='Active')
-								echo "Billing";
-							if($address->getStatus($address->shipping)=='Active')
-								echo ",Shipping";
-
-					endif; ?>
-					<?php endforeach;	?>
+				<td><?php $billingAddress = $customer->getBillingAddress()  ?>
+					<?php echo "Address : ".$billingAddress->address."<br>"  ?>
+					<?php echo "Postal Code : ".$billingAddress->postalCode."<br>"  ?>
+					<?php echo "Ciry : ".$billingAddress->city."<br>"  ?>
+					<?php echo "State : ".$billingAddress->state."<br>"  ?>
+					<?php echo "Country : ".$billingAddress->country."<br>" ?>
+				</td>
+				<td><?php $ShippingAddress = $customer->getShippingAddress()  ?>
+					<?php echo "Address : ".$ShippingAddress->address."<br>"  ?>
+					<?php echo "Postal Code : ".$ShippingAddress->postalCode."<br>"  ?>
+					<?php echo "Ciry : ".$ShippingAddress->city."<br>"  ?>
+					<?php echo "State : ".$ShippingAddress->state."<br>"  ?>
+					<?php echo "Country : ".$ShippingAddress->country."<br>" ?>
 				</td>
 				<td><a href="<?php echo $this->getUrl('grid','customer_price',['id' => $customer->customerId],true); ?>">Price</a></td>
 				<td><a href="<?php echo $this->getUrl('edit','customer',['id'=>$customer->customerId],true) ?>">Edit</a></td>

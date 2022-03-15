@@ -139,6 +139,7 @@ class Controller_Vendor extends Controller_Admin_Action
 		}
 		$addressModel = Ccc::getModel('vendor_address');
 		$address = $addressModel;
+		$vendor->getAddress();
 		$address->setData($postData);
 		$address->vendorId=$vendorId;
 		if(!$address->addressId)

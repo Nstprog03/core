@@ -28,17 +28,17 @@
 				<td><?php echo $product->productId ?></td>
 				<td><?php echo $product->name ?></td>
 				<?php if($product->base): ?>
-				<td><img src="<?php echo "Media/Product/".$this->getMedia($product->base)['name']  ?>" alt="No Image Found" width="50" height="50"></td>
+				<td><img src="<?php echo "Media/Product/".$product->getBase(); ?>" alt="No Image Found" width="50" height="50"></td>
 				<?php else: ?>
 				<td>No Base Image</td>
 				<?php endif; ?>	
 				<?php if($product->thumb): ?>
-				<td><img src="<?php echo "Media/Product/".$this->getMedia($product->thumb)['name']  ?>" alt="No Image Found" width="50" height="50"></td>
+				<td><img src="<?php echo "Media/Product/".$product->getThumb();  ?>" alt="No Image Found" width="50" height="50"></td>
 				<?php else: ?>
 				<td>No Thumb Image</td>
 				<?php endif; ?>	
 				<?php if($product->small): ?>
-				<td><img src="<?php echo "Media/Product/".$this->getMedia($product->small)['name']  ?>" alt="No Image Found" width="50" height="50"></td>
+				<td><img src="<?php echo "Media/Product/".$product->getSmall();  ?>" alt="No Image Found" width="50" height="50"></td>
 				<?php else: ?>
 				<td>No Small Image</td>
 				<?php endif; ?>	

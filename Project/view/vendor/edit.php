@@ -1,6 +1,6 @@
 <?php 
 	$vendor = $this->getVendor();
-	$address = $this->getAddress();
+	$address = $vendor->getAddress();
 ?>
 
 

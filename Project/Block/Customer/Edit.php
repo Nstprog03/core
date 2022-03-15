@@ -12,7 +12,7 @@ class Block_Customer_Edit extends Block_Core_Template
    	{
    		return $this->getData('customer');
    	}
-   	public function getAddress()
+   	public function getBillingAddress()
    	{
    		return $this->getData('address');
    	}

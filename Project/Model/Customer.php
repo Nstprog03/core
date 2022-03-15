@@ -2,6 +2,8 @@
 
 class Model_Customer extends Model_Core_Row
 {
+	protected $billingAddress;
+	protected $shippingAddress;
 	const STATUS_ENABLED = 1;
 	const STATUS_DISABLED = 2;
 	const STATUS_DEFAULT = 1;
@@ -28,6 +30,59 @@ class Model_Customer extends Model_Core_Row
 			return $statuses[$key];
 		}
 		return self::STATUS_DEFAULT;
+	}
+	public function getBillingAddress($reload = false)
+	{
+		$addressModel = Ccc::getModel('Customer_Address');
+		if(!$this->customerId)
+		{
+			return $addressModel;
+		}
+		if($this->billingAddress && !$reload)
+		{
+			return $this->billingAddress;
+		}
+		$address=$addressModel->fetchRow("SELECT * FROM `customer_address` WHERE `customerId` = {$this->customerId} AND `billing` = 1");
+		if(!$address)
+		{
+			return $addressModel;
+		}
+		$this->setBillingAddress($address);
+
+		return $address;
+	}
+
+	public function setBillingAddress(model_customer_address $address)
+	{
+		$this->billingAddress = $address;
+		return $this;
+	}
+	public function getShippingAddress($reload = false)
+	{
+
+		$addressModel = Ccc::getModel('Customer_Address');
+		if(!$this->customerId)
+		{
+			return $addressModel;
+		}
+		if($this->shippingAddress && !$reload)
+		{
+			return $this->shippingAddress;
+		}
+		$address=$addressModel->fetchRow("SELECT * FROM `customer_address` WHERE `customerId` = {$this->customerId} AND `shipping` = 1");
+		if(!$address)
+		{
+			return $addressModel;
+		}
+		$this->setShippingAddress($address);
+
+		return $address;
+	}
+
+	public function setShippingAddress(model_customer_address $address)
+	{
+		$this->shippingAddress = $address;
+		return $this;
 	}
 
 }
