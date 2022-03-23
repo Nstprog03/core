@@ -6,5 +6,9 @@
             "userName" => "root",
             "password" => "",
             "dbName" => "project_nishith"
-        ]
+        ],
+        'baseUrl' => "http://localhost/Practice/cart/Project/"
+
     ];
+
+    

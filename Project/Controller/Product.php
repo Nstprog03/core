@@ -105,6 +105,7 @@ class Controller_Product extends Controller_Admin_Action{
 			$request=$this->getRequest();
 			$productModel= Ccc::getModel('Product');
 			$categoryIds = $request->getPost('category');
+			$type = $request->getPost('discountMethod');
 			if(!$request->isPost())
 			{
 				throw new Exception("Request Invalid.",1);
@@ -117,17 +118,22 @@ class Controller_Product extends Controller_Admin_Action{
 			}
 			$product=$productModel;
 			$product->setData($postData);
+			if($type == 1)
+			{
+				$product->discount = $product->price * $product->discount / 100 ;
+			}
+			if(!($product->costPrice <= ($product->price-$product->discount) && $product->price-$product->discount <= $product->price) || $product->discount<0)
+			{
+				$this->getMessage()->addMessage('Baap ni dukan chhe su.',3);
+				throw new Exception("Discount not valid.", 1);
+			}
 			if(!($product->productId))
 			{
 				unset($product->productId);
-
-				$product->createdAt = date('y-m-d h:m:s');
-				
+				$product->createdAt = date('y-m-d h:m:s');	
 			}
 			else
 			{
-
-
 				if(!(int)$product->productId)
 				{
 					throw new Exception("Invelid Request.",1);

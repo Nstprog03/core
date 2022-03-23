@@ -2,6 +2,7 @@
 
 class Model_Category_Media extends Model_Core_Row
 {
+	protected $mediaPath = 'Media/Category/';
 	protected $category;
 	public function __construct()
 	{
@@ -35,6 +36,10 @@ class Model_Category_Media extends Model_Core_Row
 		$this->category =$category;
 		return $this;
 	}
+	public function getImgPath()
+    {
+        return Ccc::getBaseUrl($this->mediaPath.$this->name);
+    }
 
 }
 

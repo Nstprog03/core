@@ -26,6 +26,16 @@
 			<td><input type="text" name="product[costPrice]" value="<?php echo $product->costPrice ?>"></td>
 		</tr>
 		<tr>
+			<td width="10%">Discount</td>
+			<td><input type="text" name="product[discount]" value="<?php echo $product->discount ?>">
+			In Percentage:<input type="radio" name="discountMethod" value="1">&nbsp;&nbsp;&nbsp;
+			In Money:<input type="radio" name="discountMethod" value="2" checked ></td>
+		</tr>
+		<tr>
+			<td width="10%">Tax</td>
+			<td><input type="text" name="product[tax]" value="<?php echo $product->tax ?>"></td>
+		</tr>
+		<tr>
 			<td width="10%">Quantity</td>
 			<td><input type="text" name="product[quantity]" value="<?php echo $product->quantity ?>"></td>
 		</tr>

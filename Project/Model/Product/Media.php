@@ -2,6 +2,7 @@
 
 class Model_Product_Media extends Model_Core_Row
 {
+	protected $mediaPath = 	'Media/Product/';
 	protected $product;
 	public function __construct()
 	{
@@ -35,6 +36,10 @@ class Model_Product_Media extends Model_Core_Row
 		$this->product =$product;
 		return $this;
 	}
+	public function getImgPath()
+    {
+        return Ccc::getBaseUrl($this->mediaPath.$this->name);
+    }
 
 }
 
