@@ -31,6 +31,15 @@ class Model_Admin extends Model_Core_Row
 		}
 		return self::STATUS_DEFAULT;
 	}
+	public function getEditUrl()
+	{
+		return Ccc::getModel('Core_View')->getUrl('edit','admin',['id'=>$this->adminId]);
+	}
+
+	public function getDeleteUrl()
+	{
+		return Ccc::getModel('Core_View')->getUrl('delete','admin',['id'=>$this->adminId]);
+	}
 
 }
 

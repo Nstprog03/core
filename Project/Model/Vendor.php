@@ -55,4 +55,13 @@ class Model_Vendor extends Model_Core_Row
 		$this->address =$address;
 		return $this;
 	}
+	public function getEditUrl()
+	{
+		return Ccc::getModel('Core_View')->getUrl('edit','vendor',['id'=>$this->vendorId]);
+	}
+
+	public function getDeleteUrl()
+	{
+		return Ccc::getModel('Core_View')->getUrl('delete','vendor',['id'=>$this->vendorId]);
+	}
 }

@@ -7,7 +7,7 @@
             "password" => "",
             "dbName" => "project_nishith"
         ],
-        'baseUrl' => "http://localhost/Practice/cart/Project/"
+        'baseUrl' => "http://localhost/Practice/tab/Project/"
 
     ];
 

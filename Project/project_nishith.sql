@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2022 at 09:08 AM
+-- Generation Time: Mar 27, 2022 at 08:45 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -43,8 +43,10 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`adminId`, `firstName`, `lastName`, `email`, `password`, `status`, `createdAt`, `updatedAt`) VALUES
-(57, 'Nishith', 'parmar', 'npdev03@gmail.com', '0dd5488520fe46c3c3641e2e50bcc276', 1, '2022-03-10 02:03:27', NULL),
-(58, 'Dhruv', 'Prajapati', 'dp@gmail.com', 'ed2b1f468c5f915f3f1cf75d7068baae', 1, '2022-03-11 01:03:19', NULL);
+(58, 'Dhruv', 'Prajapati', 'dp@gmail.com', 'ed2b1f468c5f915f3f1cf75d7068baae', 1, '2022-03-11 01:03:19', NULL),
+(59, 'Jayveer', 'Jadeja', 'rj@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 1, '2022-03-25 11:03:08', '2022-03-26 05:03:24'),
+(60, 'Nishith', 'Parmar', 'nishithparmar03@gmail.com', 'f4aee210c0ae3683d4d93d8fceb7eb8f', 1, '2022-03-26 23:02:44', '2022-03-26 18:32:16'),
+(61, 'Dhanshree', 'Patel', 'dp@gmail.com', '95687afb5d9a2a9fa39038f991640b0c', 1, '2022-03-26 11:03:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -59,19 +61,12 @@ CREATE TABLE `cart` (
   `shippingMethod` int(11) NOT NULL,
   `shippingCharge` float NOT NULL,
   `paymentMethod` int(11) NOT NULL,
+  `taxAmount` float NOT NULL,
+  `discount` float NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 2,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cartId`, `customerId`, `subTotal`, `shippingMethod`, `shippingCharge`, `paymentMethod`, `status`, `createdAt`, `updatedAt`) VALUES
-(30, 163, 0, 2, 75, 2, 2, '0000-00-00 00:00:00', NULL),
-(31, 164, 0, 2, 75, 2, 2, '0000-00-00 00:00:00', NULL),
-(32, 151, 0, 0, 0, 0, 2, '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -93,18 +88,6 @@ CREATE TABLE `cart_address` (
   `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `cart_address`
---
-
-INSERT INTO `cart_address` (`addressId`, `cartId`, `firstName`, `lastName`, `city`, `state`, `country`, `postalCode`, `billing`, `shipping`, `address`) VALUES
-(13, 30, 'Nishith', 'parmar', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '1ST FLOOR,NR. RADHAKRISHNNIVS'),
-(14, 30, 'Nishith', 'parmar', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '1ST FLOOR,NR. RADHAKRISHNNIVS'),
-(15, 31, 'aaa', 'aaa', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, 'b'),
-(16, 31, 'aaa', 'aaa', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, 'b'),
-(17, 32, 'Nishith', 'parmar', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 1, '1ST FLOOR,NR. RADHAKRISHNNIVS'),
-(18, 32, 'Nishith', 'parmar', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 1, '1ST FLOOR,NR. RADHAKRISHNNIVS');
-
 -- --------------------------------------------------------
 
 --
@@ -117,7 +100,9 @@ CREATE TABLE `cart_item` (
   `productId` int(11) NOT NULL,
   `itemTotal` float NOT NULL,
   `discount` float NOT NULL DEFAULT 0,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  `tax` float NOT NULL,
+  `taxAmount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -223,14 +208,9 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customerId`, `salesmanId`, `firstName`, `lastName`, `email`, `mobile`, `status`, `createdAt`, `updatedAt`) VALUES
-(105, 6, 'Dhruv', 'Prajapati', 'dhruv@gmail.com', 45127896354, 2, '2022-02-24 02:02:34', '2022-02-24 09:37:41'),
-(122, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-02-26 03:02:29', NULL),
-(145, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 2, '2022-02-26 04:02:43', NULL),
-(150, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-02-26 07:02:35', NULL),
-(151, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-02-26 07:02:19', '2022-02-26 07:35:29'),
+(122, 6, 'Nishith', 'kk', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-02-26 03:02:29', '2022-03-26 11:57:32'),
+(151, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-02-26 07:02:19', '2022-03-26 11:03:48'),
 (152, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-02 02:03:08', '2022-03-15 05:41:45'),
-(153, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-02 02:03:36', '2022-03-02 02:04:44'),
-(154, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-03 10:03:54', NULL),
 (155, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-04 01:03:00', NULL),
 (156, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-04 01:03:03', '2022-03-04 01:19:30'),
 (157, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-08 11:03:15', '2022-03-15 05:42:28'),
@@ -242,7 +222,30 @@ INSERT INTO `customer` (`customerId`, `salesmanId`, `firstName`, `lastName`, `em
 (163, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-14 09:03:04', '2022-03-14 09:42:43'),
 (164, NULL, 'aaa', 'aaa', 'a@a.com', 1234, 1, '2022-03-15 11:03:07', '2022-03-15 11:51:00'),
 (165, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-15 01:03:15', '2022-03-15 01:16:29'),
-(166, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-15 06:03:02', '2022-03-15 06:20:10');
+(166, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-15 06:03:02', '2022-03-15 06:20:10'),
+(167, NULL, 'Priyanshi', 'lunavat', 'p@gmail.com', 5455465898, 1, '2022-03-23 07:03:29', NULL),
+(168, NULL, 'Priyanshi', 'lunavat', 'p@gmail.com', 54545454545, 1, '2022-03-24 12:03:46', NULL),
+(169, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 12:03:48', NULL),
+(170, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 12:03:23', '2022-03-26 12:50:18'),
+(171, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 12:03:58', NULL),
+(172, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:58', NULL),
+(173, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:03', NULL),
+(174, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:48', NULL),
+(175, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:27', NULL),
+(176, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:15', NULL),
+(177, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:19', NULL),
+(178, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:04', NULL),
+(179, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:31', NULL),
+(180, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:31', NULL),
+(181, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:42', NULL),
+(182, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:41', NULL),
+(183, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:56', NULL),
+(184, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:55', NULL),
+(185, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:25', NULL),
+(186, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:55', NULL),
+(187, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:44', NULL),
+(188, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:16', NULL),
+(189, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -267,16 +270,11 @@ CREATE TABLE `customer_address` (
 --
 
 INSERT INTO `customer_address` (`addressId`, `customerId`, `address`, `postalCode`, `city`, `state`, `country`, `billing`, `shipping`) VALUES
-(24, 105, 'Ahmdabad', 455454, 'Ahmedabad', 'GUJARAT', 'India', 2, 1),
-(29, 122, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360, 'kjk', 'GUJA', 'India', 1, 1),
-(30, 145, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
-(31, 150, '', 0, '', '', '', 2, 2),
+(29, 122, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
 (32, 151, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
 (33, 152, 'qknsdlnclasISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(34, 153, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 2),
-(35, 154, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
 (36, 155, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
-(37, 156, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
+(37, 156, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
 (38, 157, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
 (39, 158, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
 (40, 159, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
@@ -292,11 +290,23 @@ INSERT INTO `customer_address` (`addressId`, `customerId`, `address`, `postalCod
 (50, 164, 'b', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
 (51, 164, 'b', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
 (52, 165, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(53, 165, '', 0, '', '', '', 2, 1),
-(54, 152, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
+(53, 165, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
+(54, 152, 'qknsdlnclasISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
 (55, 157, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
 (56, 166, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(57, 166, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1);
+(57, 166, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
+(59, 167, 'mgroad', 456265, 'dahod', 'gujarat', 'india', 1, 2),
+(60, 167, 'mgroad', 456265, 'dahod', 'gujarat', 'india', 2, 1),
+(62, 168, '', 0, '', '', '', 1, 2),
+(63, 168, 'mgroad', 454545, 'dahod', 'gujarat', 'Los vagos', 2, 1),
+(73, 183, '', 0, '', '', '', 1, 2),
+(74, 184, '', 0, '', '', '', 1, 2),
+(75, 184, '', 0, '', '', '', 2, 1),
+(76, 122, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
+(77, 188, '', 0, '', '', '', 1, 2),
+(78, 188, '', 0, '', '', '', 2, 1),
+(79, 189, '', 0, '', '', '', 1, 2),
+(80, 189, '', 0, '', '', '', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -310,13 +320,6 @@ CREATE TABLE `customer_price` (
   `productId` int(11) NOT NULL,
   `price` float DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `customer_price`
---
-
-INSERT INTO `customer_price` (`entityId`, `customerId`, `productId`, `price`) VALUES
-(17, 105, 26, 22000);
 
 -- --------------------------------------------------------
 
@@ -346,8 +349,14 @@ CREATE TABLE `order_address` (
 --
 
 INSERT INTO `order_address` (`addressId`, `orderId`, `firstName`, `lastName`, `email`, `mobile`, `address`, `city`, `state`, `country`, `postalCode`, `billing`, `shipping`, `createdAt`) VALUES
-(1, 7, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '2022-03-22 13:07:06'),
-(2, 7, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '2022-03-22 13:07:06');
+(15, 25, 'aaa', 'aaa', 'a@a.com', 1234, 'b', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '2022-03-23 16:09:29'),
+(16, 25, 'aaa', 'aaa', 'a@a.com', 1234, 'b', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '2022-03-23 16:09:29'),
+(17, 26, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 1, '2022-03-23 17:16:43'),
+(18, 26, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 1, '2022-03-23 17:16:43'),
+(19, 27, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '2022-03-24 11:50:44'),
+(20, 27, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '2022-03-24 11:50:44'),
+(25, 36, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 'qknsdlnclasISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '2022-03-25 12:17:07'),
+(26, 36, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 'qknsdlnclasISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '2022-03-25 12:17:07');
 
 -- --------------------------------------------------------
 
@@ -360,9 +369,11 @@ CREATE TABLE `order_item` (
   `orderId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `sku` varchar(255) NOT NULL,
+  `sku` varchar(255) DEFAULT NULL,
   `price` float NOT NULL,
   `discount` float DEFAULT NULL,
+  `tax` float NOT NULL,
+  `taxAmount` float NOT NULL,
   `quantity` int(11) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -371,9 +382,12 @@ CREATE TABLE `order_item` (
 -- Dumping data for table `order_item`
 --
 
-INSERT INTO `order_item` (`itemId`, `orderId`, `productId`, `name`, `sku`, `price`, `discount`, `quantity`, `createdAt`) VALUES
-(1, 4, 26, 'Laptop i7', '', 525000, NULL, 21, '2022-03-22 13:01:24'),
-(2, 5, 26, 'Laptop i7', '', 525000, NULL, 21, '2022-03-22 13:05:05');
+INSERT INTO `order_item` (`itemId`, `orderId`, `productId`, `name`, `sku`, `price`, `discount`, `tax`, `taxAmount`, `quantity`, `createdAt`) VALUES
+(13, 25, 26, 'Laptop i7', NULL, 525000, NULL, 10, 52500, 21, '2022-03-23 16:09:29'),
+(14, 25, 27, 'Laptop i15', NULL, 10500000, NULL, 10, 1050000, 21, '2022-03-23 16:09:29'),
+(15, 26, 26, 'Laptop i7', NULL, 50000, 100, 10, 5000, 2, '2022-03-23 17:16:43'),
+(16, 26, 27, 'Laptop i15', NULL, 100000, 100, 10, 10000, 2, '2022-03-23 17:16:43'),
+(17, 27, 27, 'Laptop i15', NULL, 1150000, 1150, 10, 115000, 23, '2022-03-24 11:50:44');
 
 -- --------------------------------------------------------
 
@@ -391,6 +405,8 @@ CREATE TABLE `order_record` (
   `grandTotal` int(11) NOT NULL,
   `shippingId` int(11) NOT NULL,
   `shippingCharge` int(11) NOT NULL,
+  `taxAmount` float NOT NULL,
+  `discount` float NOT NULL,
   `paymentId` int(11) NOT NULL,
   `state` tinyint(1) NOT NULL DEFAULT 1,
   `status` tinyint(1) NOT NULL DEFAULT 1,
@@ -401,11 +417,11 @@ CREATE TABLE `order_record` (
 -- Dumping data for table `order_record`
 --
 
-INSERT INTO `order_record` (`orderId`, `customerId`, `firstName`, `lastName`, `email`, `mobile`, `grandTotal`, `shippingId`, `shippingCharge`, `paymentId`, `state`, `status`, `createdAt`) VALUES
-(4, 164, 'aaa', 'aaa', 'a@a.com', 1234, 577625, 2, 75, 3, 1, 1, '2022-03-22 13:01:24'),
-(5, 163, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 577625, 2, 75, 2, 1, 1, '2022-03-22 13:05:05'),
-(6, 163, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 577625, 2, 75, 2, 1, 1, '2022-03-22 13:06:35'),
-(7, 163, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 577625, 2, 75, 2, 1, 1, '2022-03-22 13:07:06');
+INSERT INTO `order_record` (`orderId`, `customerId`, `firstName`, `lastName`, `email`, `mobile`, `grandTotal`, `shippingId`, `shippingCharge`, `taxAmount`, `discount`, `paymentId`, `state`, `status`, `createdAt`) VALUES
+(25, 164, 'aaa', 'aaa', 'a@a.com', 1234, 12127600, 1, 100, 1102500, 0, 1, 1, 1, '2022-03-23 16:09:29'),
+(26, 155, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 164850, 3, 50, 15000, 200, 4, 1, 1, '2022-03-23 17:16:43'),
+(27, 159, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1265850, 3, 50, 115000, -800, 2, 1, 1, '2022-03-24 11:50:44'),
+(36, 152, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1361900, 3, 50, 123900, 1050, 3, 1, 1, '2022-03-25 12:17:07');
 
 -- --------------------------------------------------------
 
@@ -537,10 +553,10 @@ CREATE TABLE `payment_method` (
 --
 
 INSERT INTO `payment_method` (`methodId`, `name`) VALUES
-(1, 'card payment'),
-(2, 'upi'),
+(1, 'Card Payment (Credit/Debit Card)'),
+(2, 'UPI'),
 (3, 'QR'),
-(4, 'case on delivery');
+(4, 'Case On Delivery');
 
 -- --------------------------------------------------------
 
@@ -556,6 +572,8 @@ CREATE TABLE `product` (
   `thumb` int(11) DEFAULT NULL,
   `small` int(11) DEFAULT NULL,
   `price` float DEFAULT NULL,
+  `tax` float NOT NULL,
+  `discount` float NOT NULL,
   `msp` float NOT NULL,
   `costPrice` float NOT NULL,
   `quantity` int(5) DEFAULT NULL,
@@ -568,9 +586,9 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`productId`, `sku`, `name`, `base`, `thumb`, `small`, `price`, `msp`, `costPrice`, `quantity`, `status`, `createdAt`, `updatedAt`) VALUES
-(26, NULL, 'Laptop i7', 40, 40, 40, 25000, 0, 0, 600, 1, '2022-03-08 10:03:07', NULL),
-(27, NULL, 'Laptop i15', 38, 38, 38, 500000, 22500, 21000, 600, 1, '2022-03-09 09:03:56', NULL);
+INSERT INTO `product` (`productId`, `sku`, `name`, `base`, `thumb`, `small`, `price`, `tax`, `discount`, `msp`, `costPrice`, `quantity`, `status`, `createdAt`, `updatedAt`) VALUES
+(26, NULL, 'Laptop', 41, 41, 41, 59000, 10, 50, 45000, 18500, 533, 1, '2022-03-08 10:03:07', '2022-03-24 12:03:27'),
+(27, NULL, 'mobile', 42, 42, 42, 42000, 10, 50, 40000, 35000, 567, 1, '2022-03-09 09:03:56', '2022-03-24 12:03:47');
 
 -- --------------------------------------------------------
 
@@ -590,8 +608,8 @@ CREATE TABLE `product_media` (
 --
 
 INSERT INTO `product_media` (`mediaId`, `productId`, `name`, `gallery`) VALUES
-(38, 27, 'vbh20220322120657.png', 1),
-(40, 26, 'dh20220322011712.png', 1);
+(41, 26, 'istockphoto-1294325987-170667a20220324124023.jpg', 1),
+(42, 27, 'SPARK8T-blue20220324124121.png', 1);
 
 -- --------------------------------------------------------
 
@@ -1048,9 +1066,9 @@ CREATE TABLE `shipping_method` (
 --
 
 INSERT INTO `shipping_method` (`methodId`, `name`, `charge`) VALUES
-(1, 'same day delivery', 100),
-(2, 'express delivery', 70),
-(3, 'normal delivery', 50);
+(1, 'Same Day Delivery', 100),
+(2, 'Express Delivery', 70),
+(3, 'Normal Delivery', 50);
 
 -- --------------------------------------------------------
 
@@ -1285,25 +1303,25 @@ ALTER TABLE `vendor_address`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `cart_address`
 --
 ALTER TABLE `cart_address`
-  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -1333,13 +1351,13 @@ ALTER TABLE `config`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 
 --
 -- AUTO_INCREMENT for table `customer_address`
 --
 ALTER TABLE `customer_address`
-  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `customer_price`
@@ -1351,19 +1369,19 @@ ALTER TABLE `customer_price`
 -- AUTO_INCREMENT for table `order_address`
 --
 ALTER TABLE `order_address`
-  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `order_record`
 --
 ALTER TABLE `order_record`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `page`
@@ -1387,7 +1405,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `product_media`
 --
 ALTER TABLE `product_media`
-  MODIFY `mediaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `mediaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `salesman`
@@ -1427,7 +1445,7 @@ ALTER TABLE `cart`
 -- Constraints for table `cart_address`
 --
 ALTER TABLE `cart_address`
-  ADD CONSTRAINT `cartId_from_cart` FOREIGN KEY (`cartId`) REFERENCES `cart` (`cartId`);
+  ADD CONSTRAINT `cartId_from_cart` FOREIGN KEY (`cartId`) REFERENCES `cart` (`cartId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `cart_item`

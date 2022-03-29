@@ -24,8 +24,9 @@ class Controller_Admin extends Controller_Admin_Action{
 		$this->setTitle('Admin Add');
 		$adminModel = Ccc::getModel('admin');
 		$content = $this->getLayout()->getContent();
-		$adminAdd = Ccc::getBlock('Admin_Edit')->setData(['admin'=>$adminModel]);
-		$content->addChild($adminAdd,'add'); 
+		$adminAdd = Ccc::getBlock('Admin_Edit');
+		Ccc::register('admin',$adminModel);
+		$content->addChild($adminAdd,'add');
 		$this->renderLayout();
 	}
 	public function editAction()
@@ -47,7 +48,8 @@ class Controller_Admin extends Controller_Admin_Action{
 			}
 			$this->setTitle('Admin Edit');
 			$content = $this->getLayout()->getContent();
-			$adminEdit = Ccc::getBlock('Admin_Edit')->setData(['admin'=>$admin]);
+			$adminEdit = Ccc::getBlock('Admin_Edit');
+			Ccc::register('admin',$admin);
 			$content->addChild($adminEdit,'edit'); 
 			$this->renderLayout();
    		}	 

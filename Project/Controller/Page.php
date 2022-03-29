@@ -1,4 +1,4 @@
-	<?php Ccc::loadClass('Controller_Admin_Action');
+<?php Ccc::loadClass('Controller_Admin_Action');
 
 class Controller_Page extends Controller_Admin_Action
 {
