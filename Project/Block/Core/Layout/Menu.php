@@ -9,21 +9,31 @@ class Block_Core_Layout_Menu extends Block_Core_Template
 	public function getLoginName()
 	{
 
-		$messageModel = Ccc::getModel('Admin_Message');
-		$messages = $messageModel->getSession()->getNamespace();
-
-		if($_SESSION[$messages])
+		$loginModel = Ccc::getModel('Admin_Login');
+		if($loginModel->getLogin())
 		{
-
-			$email = $_SESSION[$messages]['login']['loginId'];
+			$email = $loginModel->getLoginId();
 			$firstName = $this->getAdapter()->fetchOne("SELECT `firstName` FROM `admin` WHERE `email` = '{$email}'");
-			$lastName = $this->getAdapter()->fetchOne("SELECT `lastName` FROM `admin` WHERE `email` = '{$email}'");
-			return ucfirst($firstName)." ".ucfirst($lastName);
-			
+			return ucfirst($firstName);			
 		}
 		else
 		{
-			return null;
+			return 'Login';
+		}
+	}
+	public function getLoginLastName()
+	{
+
+		$loginModel = Ccc::getModel('Admin_Login');
+		if($loginModel->getLogin())
+		{
+			$email = $loginModel->getLoginId();
+			$lastName = $this->getAdapter()->fetchOne("SELECT `lastName` FROM `admin` WHERE `email` = '{$email}'");
+			return ucfirst($lastName);			
+		}
+		else
+		{
+			return 'Please';
 		}
 	}
 	function getAdapter()

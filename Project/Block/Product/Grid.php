@@ -81,9 +81,10 @@ class Block_Product_Grid extends Block_Core_Grid {
         'type' => 'datetime',
         'key' =>'updatedAt'
         ],'Updated Date');
-        $this->addAction(['title' => 'Edit','method' => 'getEditUrl','class' => 'product' ],'Edit');
-        $this->addAction(['title' => 'Manage','method' => 'getMediaUrl','class' => 'product_media' ],'Media');
-        $this->addAction(['title' => 'Delete','method' => 'getDeleteUrl','class' => 'product' ],'Delete');
+        $this->addAction([
+            'title' => 'edit','method' => 'getEditUrl','class' => 'category' 
+        ],'Edit');
+        $this->addAction(['title' => 'delete','method' => 'getDeleteUrl','class' => 'product' ],'Delete');
         $this->prepareCollectionContent();
     }
 

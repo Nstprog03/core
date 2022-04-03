@@ -9,6 +9,27 @@ class Controller_Salesman_SalesmanCustomer extends Controller_Admin_Action{
             $this->redirect('login','admin_login');
         }
     }
+
+    public function gridBlockAction()
+    {
+        
+        $customerManageGrid = Ccc::getBlock('Salesman_SalesmanCustomer_Grid')->toHtml();
+        $messageBlock = Ccc::getBlock('Core_Layout_Message')->toHtml();
+        $response = [
+            'status' => 'success',
+            'elements' => [
+                [
+                    'element' => '#indexContent',
+                    'content' => $customerManageGrid
+                ],
+                [
+                    'element' => '#adminMessage',
+                    'content' => $messageBlock
+                ]
+            ]
+        ];
+        $this->renderJson($response);
+    }
     
 	public function gridAction()
 	{
@@ -40,7 +61,7 @@ class Controller_Salesman_SalesmanCustomer extends Controller_Admin_Action{
                     throw new Exception("Error Processing Request", 1);
                 }
             }
-			$this->redirect('grid','Salesman_SalesmanCustomer');
+			$this->gridBlockAction();
         }
     }
 

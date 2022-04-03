@@ -38,7 +38,7 @@ class Controller_Admin_Login extends Controller_Admin_Action{
 			}
 			$loginModel->login($admin[0]->email);
 			$this->getMessage()->addMessage('You are Logedin');
-			$this->redirect('grid','product');
+			$this->redirect('index','admin');
 		}
 		catch (Exception $e) 
 		{

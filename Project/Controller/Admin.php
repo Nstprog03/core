@@ -5,7 +5,8 @@ class Controller_Admin extends Controller_Admin_Action{
 
 	public function __construct()
 	{
-		if(!$this->authentication()){
+		if(!$this->authentication())
+		{
 			$this->redirect('login','admin_login');
 		}
 	}
@@ -66,25 +67,7 @@ class Controller_Admin extends Controller_Admin_Action{
 		
 	}
 
-	// public function gridAction()
-	// {
-	// 	$this->setTitle('Admin Grid');	
-	// 	$content = $this->getLayout()->getContent();
-	// 	$adminGrid = Ccc::getBlock('Admin_Grid');
-	// 	$content->addChild($adminGrid,'grid');	
-	// 	$this->renderLayout();
 	
-	// }
-	// public function addAction()
-	// {
-	// 	$this->setTitle('Admin Add');
-	// 	$adminModel = Ccc::getModel('admin');
-	// 	$content = $this->getLayout()->getContent();
-	// 	$adminAdd = Ccc::getBlock('Admin_Edit');
-	// 	Ccc::register('admin',$adminModel);
-	// 	$content->addChild($adminAdd,'add');
-	// 	$this->renderContent();
-	// }
 	public function editBlockAction()
 	{
 		try 
@@ -176,6 +159,7 @@ class Controller_Admin extends Controller_Admin_Action{
 			if(!($admin->adminId))
 			{
 				unset($admin->adminId);
+				$admin->password = md5($admin->password);
 				$admin->createdAt = date('y-m-d h:m:s');
 			}
 			else

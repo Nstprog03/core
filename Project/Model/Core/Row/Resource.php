@@ -56,6 +56,7 @@ class Model_Core_Row_Resource
 
 		$query = "INSERT INTO $tableName($columnNames) VALUES($columnValues)";
 		
+		
 		$result = $this->getAdapter()->insert($query);
 
 		return $result;
@@ -86,6 +87,7 @@ class Model_Core_Row_Resource
 		}
 		$setString = implode(",", $valueArray);
 		$query = "UPDATE $tableName SET $setString WHERE $key = $value";
+		
 		$result = $this->getAdapter()->update($query);
 		return $result;
 	}

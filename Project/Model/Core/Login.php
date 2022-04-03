@@ -50,9 +50,14 @@ class Model_Core_Login{
         }
         return true;        
     }
-    public function getLogin()
+    public function getLoginId()
     {
-        return $this->getSession()->login['loginId'];
+        $login = $this->getSession()->login;
+        if(!array_key_exists('loginId',$login))
+        {
+            return null;
+        }
+        return $login['loginId'];
     }
 }
 

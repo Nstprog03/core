@@ -1,7 +1,7 @@
 <?php
 class Model_Core_Pager
 {
-    protected $perPageCountOption = [10,20,30,40,50,60];
+    protected $perPageCountOption = [1,10,20,30,40,50,60];
     protected $perPageCount = null;
     protected $totalCount = 0;
     protected $pageCount = null;

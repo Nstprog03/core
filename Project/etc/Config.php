@@ -7,7 +7,7 @@
             "password" => "",
             "dbName" => "project_nishith"
         ],
-        'baseUrl' => "http://localhost/Practice/ajax/Project/"
+        'baseUrl' => "http://localhost/Practice/ajax-bootstrap/Project/"
 
     ];
 

@@ -1,20 +1,24 @@
-<?php
-Ccc::loadClass('Block_Core_Template');
-class Block_Product_Edit extends Block_Core_Template   
-{ 
+<?php Ccc::loadClass("Block_Core_Edit"); ?>
+<?php Ccc::loadClass("Block_Product_Edit_Tab");
+class Block_Product_Edit extends Block_Core_Edit
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+        
+    public function getSaveUrl()
+    {
+        return $this->getUrl('save','product');
+    }
 
-	public function __construct()
-	{
+    public function getproduct()
+    {
+        $product = $this->product;
+        return $product;
+    }
 
-		$this->setTemplate('view/product/edit.php');
-	}
-	
-	public function getProduct()
-   	{
-  
-   		return $this->getData('product');
-   	}
-   	public function getCategories()
+    public function getCategories()
     {
         $category = Ccc::getModel('Category');
         $categories = $category->fetchAll("SELECT * FROM `category` WHERE `status` = 1 ");
@@ -40,17 +44,6 @@ class Block_Product_Edit extends Block_Core_Template
         return $finalPath;
     }
 
-    public function selected($categoryId)
-    {
-        $request = Ccc::getFront()->getRequest();
-        $productId = $request->getRequest('id');
-        $categoryProductModel = Ccc::getModel('Product_CategoryProduct');
-        $select = $categoryProductModel->fetchAll("SELECT * FROM `category_product` WHERE `product_id` = '$productId' AND `category_id` = '$categoryId'");
-        if($select){
-            return 'checked';
-        }
-        return null;
-    }
-
 }
+
 ?>

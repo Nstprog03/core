@@ -25,7 +25,6 @@ class Model_Salesman extends Model_Core_Row
 		{
 			return $statuses;
 		}
-
 		if(array_key_exists($key, $statuses)) {
 			return $statuses[$key];
 		}
@@ -69,7 +68,7 @@ class Model_Salesman extends Model_Core_Row
 		return Ccc::getModel('Core_View')->getUrl('delete','customer',['id'=>$this->customerId]);
 	}
 
-	public function getCoustomerUrl()
+	public function getCustomerUrl()
 	{
 		return Ccc::getModel('Core_View')->getUrl('grid','salesman_salesmanCustomer',['id'=>$this->customerId]);
 	}

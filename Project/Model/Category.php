@@ -64,31 +64,31 @@ class Model_Category extends Model_Core_Row
 	}
 	
 
-	public function getMedia($reload = false)
-	{
-		$mediaModel = Ccc::getModel('Category_Media'); 
-		if(!$this->media)
-		{
-			return null;
-		}
-		if($this->media && !$reload)
-		{
-			return $this->media;
-		}
-		$media = $mediaModel->fetchRow("SELECT * FROM `category_media` WHERE `categoryId` = {$this->categoryId}");
-		if(!$media)
-		{
-			return null;
-		}
-		$this->setMedia($media);
+	 public function setMedia($media)
+    {
+        $this->media = $media;
+        return $this;
+    }
 
-		return $this->media;
-	}
-	public function setMedia(Model_Product_Media $media)
-	{
-		$this->media =$media;
-		return $this;
-	}
+    public function getMedia($reload = false)
+    {
+        $mediaModel = Ccc::getModel('Category_Media'); 
+        if(!$this->categoryId)
+        {
+            return $mediaModel;
+        }
+        if($this->media && !$reload)
+        {
+            return $this->media;
+        }
+        $media = $mediaModel->fetchAll("SELECT * FROM `category_media` WHERE `categoryId` = {$this->categoryId}");
+        if(!$media)
+        {
+            return null;
+        }
+        $this->setMedia($media);
+        return $this->media;
+    }
 
 
 
@@ -123,6 +123,24 @@ class Model_Category extends Model_Core_Row
 	{
 		return Ccc::getModel('Core_View')->getUrl('grid','Category_Media',['id'=>$this->CategoryId]);
 	}	
+
+	public function getPath()
+    {
+		$categoryId = $this->categoryId;
+		$path = $this->path;
+        $finalPath = NULL;
+        $path = explode("/",$path);
+        foreach ($path as $path1) {
+            $categoryModel = Ccc::getModel('Category');
+            $category = $categoryModel->fetchRow("SELECT * FROM `category` WHERE `categoryId` = '$path1' ");
+            if($path1 != $categoryId){
+                $finalPath .= $category->name ."=>";
+            }else{
+                $finalPath .= $category->name;
+            }
+        }
+        return $finalPath;
+    }
 }
 
 ?>
