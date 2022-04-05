@@ -29,6 +29,11 @@ $pager = $this->getPager(); ?>
     </tr>
     </thead>
     <tbody>
+        <?php if(!$collections): ?>
+            <tr>
+                <td colspan="<?php echo sizeOf($actions)+sizeOf($columns) ?>" align="center">NO DATA AVALILABLE , INSERT SOME DATA</td>
+            </tr>
+        <?php else :?>
         <?php foreach ($collections as $collection) :?>
         <tr>
             <?php foreach ($columns as $key => $column):?>
@@ -40,6 +45,8 @@ $pager = $this->getPager(); ?>
             <?php endforeach; ?>
         </tr>
         <?php endforeach; ?>
+        <?php endif; ?>
+
     </tbody>
 </table>
 

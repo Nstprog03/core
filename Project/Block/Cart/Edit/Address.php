@@ -11,7 +11,8 @@ class Block_Cart_Edit_Address extends Block_Core_Template{
 
     public function getCart()
 	{
-		if(!Ccc::getModel('Admin_Cart')->getCart()){
+		if(!Ccc::getModel('Admin_Cart')->getCart())
+		{
 			return Ccc::getModel('Cart');
 		}
 		$cartId = Ccc::getModel('Admin_Cart')->getCart();

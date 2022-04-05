@@ -64,10 +64,14 @@ class Block_Config_Grid extends Block_Core_Grid {
         $this->getPager()->execute($totalCount,$current,$perPageCount);
         $configs = $configModel->fetchAll("SELECT * FROM `config` LIMIT {$this->getPager()->getStartLimit()},{$this->getPager()->getPerPageCount()}");
         $configColumn = [];
-        foreach ($configs as $config) 
+        if($configs)
         {
-            array_push($configColumn,$config);
-        }        
+            foreach ($configs as $config) 
+            {
+                array_push($configColumn,$config);
+            }  
+        }
+              
         return $configColumn;
     }
     public function getAdapter()

@@ -11,7 +11,8 @@ class Block_Cart_Edit_SubTotal extends Block_Core_Template{
 
     public function getCart()
 	{
-		if(!Ccc::getModel('Admin_Cart')->getCart()){
+		if(!Ccc::getModel('Admin_Cart')->getCart())
+		{
 			return Ccc::getModel('Cart');
 		}
 		$cartId = Ccc::getModel('Admin_Cart')->getCart();
@@ -22,7 +23,8 @@ class Block_Cart_Edit_SubTotal extends Block_Core_Template{
     public function getItems()
 	{
 		$itemModel = Ccc::getModel('Cart_Item');
-		if(!Ccc::getModel('Admin_Cart')->getCart()){
+		if(!Ccc::getModel('Admin_Cart')->getCart())
+		{
 			return null;
 		}
 		$cartId = Ccc::getModel('Admin_Cart')->getCart();
@@ -33,7 +35,8 @@ class Block_Cart_Edit_SubTotal extends Block_Core_Template{
     public function getTotal()
 	{
 		$itemModel = Ccc::getModel('Cart_Item');
-		if(!Ccc::getModel('Admin_Cart')->getCart()){
+		if(!Ccc::getModel('Admin_Cart')->getCart())
+		{
 			return null;
 		}
 		$cartId = Ccc::getModel('Admin_Cart')->getCart();
@@ -43,7 +46,8 @@ class Block_Cart_Edit_SubTotal extends Block_Core_Template{
 
 	public function getTax($cartId)
 	{
-		if($cartId){
+		if($cartId)
+		{
 			$tax =Ccc::getModel('Core_Row_Resource')->getAdapter()->fetchOne("SELECT sum(ci.itemTotal * p.tax / 100) FROM `cart_item` as ci JOIN `product` as p ON ci.productId = p.productId WHERE ci.cartId = {$cartId}");
 			return $tax;	
 		}

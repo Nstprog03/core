@@ -100,26 +100,31 @@ class Controller_cart extends Controller_Admin_Action{
 
     public function addCartAction()
     {
-        try {
+        try 
+        {
             $request = $this->getRequest();
             $customerId = $request->getRequest('id');
-            if($this->getCart()->getCart()){
+            if($this->getCart()->getCart())
+            {
                 $this->editBlockAction();   
                 exit;
             }
             else{
                 $cartModel = Ccc::getModel('Cart');
                 $cart = $cartModel->fetchRow("SELECT * FROM `cart` WHERE `customerId` = {$customerId}");
-                if($cart){
+                if($cart)
+                {
                     $this->getCart()->addCart($cart->cartId);
                     $this->editBlockAction();   
                     exit;
                 }
-                else{
+                else
+                {
                     $cartModel->customerId = $customerId;
                     $cartModel->status = 1;
                     $cart = $cartModel->save();
-                    if(!$cart){
+                    if(!$cart)
+                    {
                         $this->getMessage()->addMessage('Cart can not created');
                     }
                     $this->saveAddressAction($cart);
@@ -127,7 +132,8 @@ class Controller_cart extends Controller_Admin_Action{
                 }
                 $this->editBlockAction();   
             }
-        }catch (Exception $e)
+        }
+        catch (Exception $e)
         {
             $this->getMessage()->addMessage($e->getMessage(),Model_Core_Message::MESSAGE_ERROR);
             $this->editBlockAction();   
@@ -137,12 +143,14 @@ class Controller_cart extends Controller_Admin_Action{
 
     public function saveAddressAction($cart)
     {
-        try {
+        try 
+        {
             $request = $this->getRequest();
             $customer = $cart->getCustomer();
             $customerBillingAddress = $customer->getBillingAddress();
             $customerShippingAddress = $customer->getShippingAddress();
-            if($customerBillingAddress){
+            if($customerBillingAddress)
+            {
                 $billingAddress = $cart->getBillingAddress();
                 $billingAddress->cartId = $cart->cartId;
                 $billingAddress->firstName = $customer->firstName;
@@ -151,11 +159,13 @@ class Controller_cart extends Controller_Admin_Action{
                 unset($billingAddress->addressId);
                 unset($billingAddress->customerId);
                 $billingAddress->save();
-                if(!$billingAddress){
+                if(!$billingAddress)
+                {
                     throw new Exception("Billing address not saved.", 1);
                 }
             }
-            if($customerShippingAddress){
+            if($customerShippingAddress)
+            {
                 $shippingAddress = $cart->getShippingAddress();
                 $shippingAddress->cartId = $cart->cartId;
                 $shippingAddress->firstName = $customer->firstName;
@@ -164,12 +174,14 @@ class Controller_cart extends Controller_Admin_Action{
                 unset($shippingAddress->addressId);
                 unset($shippingAddress->customerId);
                 $shippingAddress->save();
-                if(!$shippingAddress){
+                if(!$shippingAddress)
+                {
                     throw new Exception("Shipping address not saved.", 1);
                 }
                 return $shippingAddress;
             }       
-        }catch (Exception $e)
+        }
+        catch (Exception $e)
         {
             $this->getMessage()->addMessage($e->getMessage(),Model_Core_Message::MESSAGE_ERROR);
             $this->editBlockAction();   
@@ -178,7 +190,8 @@ class Controller_cart extends Controller_Admin_Action{
 
     public function saveCartAddressAction()
     {
-        try {
+        try 
+        {
             $request = $this->getRequest();
             $cartId = $this->getCart()->getCart();
             $cartModel = Ccc::getModel('Cart');
@@ -191,25 +204,29 @@ class Controller_cart extends Controller_Admin_Action{
             $shippingAddress->setData($shippingData);
             $billingAddress->save();
             $shippingAddress->save();
-            if($request->getPost('saveInBillingBook')){
+            if($request->getPost('saveInBillingBook'))
+            {
                 $customer = $cart->getCustomer();
                 $customerBillingAddress = $customer->getBillingAddress();
                 $customerBillingAddress->setData($billingData);
                 unset($customerBillingAddress->firstName);
                 unset($customerBillingAddress->lastName);
                 $customerBillingAddress->save();
-                if(!$customerBillingAddress){
+                if(!$customerBillingAddress)
+                {
                     throw new Exception("Customer billing address not saved.", 1);
                 }
             }
-            if($request->getPost('saveInShippingBook')){
+            if($request->getPost('saveInShippingBook'))
+            {
                 $customer = $cart->getCustomer();
                 $customerShippingAddress = $customer->getShippingAddress();
                 $customerShippingAddress->setData($shippingData);
                 unset($customerShippingAddress->firstName);
                 unset($customerShippingAddress->lastName);
                 $customerShippingAddress->save();
-                if(!$customerShippingAddress){
+                if(!$customerShippingAddress)
+                {
                     throw new Exception("Customer shipping address not saved.", 1);
                 }
             }
@@ -234,16 +251,18 @@ class Controller_cart extends Controller_Admin_Action{
                 ]
             ];
             $this->renderJson($response);
-            }catch (Exception $e)
-            {
-                $this->getMessage()->addMessage($e->getMessage(),Model_Core_Message::MESSAGE_ERROR);
-                $this->editBlockAction();
-            }
+        }
+        catch (Exception $e)
+        {
+            $this->getMessage()->addMessage($e->getMessage(),Model_Core_Message::MESSAGE_ERROR);
+            $this->editBlockAction();
+        }
     }
 
     public function savePaymentMethodAction()
     {
-        try {
+        try 
+        {
             $request = $this->getRequest();
             $cartId = $this->getCart()->getCart();
             $cartModel = Ccc::getModel('Cart');
@@ -251,7 +270,8 @@ class Controller_cart extends Controller_Admin_Action{
             $paymentData = $request->getPost('paymentMethod');
             $cart->setData(['paymentMethod' => $paymentData]);
             $result = $cart->save();
-            if(!$result){
+            if(!$result)
+            {
                 throw new Exception("Payment method not saved.", 1);
             }
             $this->getMessage()->addMessage("Payment method saved.");
@@ -271,7 +291,8 @@ class Controller_cart extends Controller_Admin_Action{
                 ]
             ];
             $this->renderJson($response);
-        }catch (Exception $e)
+        }
+        catch (Exception $e)
         {
             $this->getMessage()->addMessage($e->getMessage(),Model_Core_Message::MESSAGE_ERROR);
             $this->editBlockAction();
@@ -280,24 +301,29 @@ class Controller_cart extends Controller_Admin_Action{
 
     public function saveShippingMethodAction()
     {
-        try {
+        try 
+        {
             $request = $this->getRequest();
             $cartId = $this->getCart()->getCart();
             $cartModel = Ccc::getModel('Cart');
             $cart = $cartModel->load($cartId);
             $shippingCharge = $request->getPost('shippingMethod');
-            if($shippingCharge == 100){
+            if($shippingCharge == 100)
+            {
                 $shippingMethod = '1';
             }
-            elseif($shippingCharge == 70){
+            elseif($shippingCharge == 70)
+            {
                 $shippingMethod = '2';
             }
-            else{
+            else
+            {
                 $shippingMethod = '3';
             }
             $cart->setData(['shippingMethod' => $shippingMethod, 'shippingCharge' => $shippingCharge]);
             $result = $cart->save();
-            if(!$result){
+            if(!$result)
+            {
                 throw new Exception("Shipping method not saved.", 1);
             }
             $this->getMessage()->addMessage("Shipping method saved.");
@@ -322,7 +348,8 @@ class Controller_cart extends Controller_Admin_Action{
                 ]
             ];
             $this->renderJson($response);
-        }catch (Exception $e)
+        }
+        catch (Exception $e)
         {
             $this->getMessage()->addMessage($e->getMessage(),Model_Core_Message::MESSAGE_ERROR);
             $this->editBlockAction();
@@ -331,7 +358,8 @@ class Controller_cart extends Controller_Admin_Action{
 
     public function addCartItemAction()
     {
-        try {
+        try 
+        {
             $taxAmount = null;
             $discount = null;
             $request = $this->getRequest();
@@ -343,9 +371,11 @@ class Controller_cart extends Controller_Admin_Action{
             $item = Ccc::getModel('Cart_Item');
             $item->cartId = $cart->cartId;
             foreach($cartData as $cartItem){
-                if(array_key_exists('productId',$cartItem)){
+                if(array_key_exists('productId',$cartItem))
+                {
                     $product = $productModel->load($cartItem['productId']);
-                    if($product->quantity >= $cartItem['quantity']){
+                    if($product->quantity >= $cartItem['quantity'])
+                    {
                         $item->setData($cartItem);
                         $item->itemTotal = $product->price * $cartItem['quantity'];
                         $item->tax = $product->tax;
@@ -363,7 +393,8 @@ class Controller_cart extends Controller_Admin_Action{
             $cart->taxAmount += $taxAmount;
             $cart->discount += $discount;
             $result = $cart->save();
-            if(!$result){
+            if(!$result)
+            {
                 throw new Exception("subTotal not updated", 1);
             }
             $this->getMessage()->addMessage("Cart Item added successfully.");
@@ -388,7 +419,8 @@ class Controller_cart extends Controller_Admin_Action{
                 ]
             ];
             $this->renderJson($response);
-        }catch (Exception $e)
+        }
+        catch (Exception $e)
         {
             $this->getMessage()->addMessage($e->getMessage(),Model_Core_Message::MESSAGE_ERROR);
             $this->redirect('edit');
@@ -397,7 +429,8 @@ class Controller_cart extends Controller_Admin_Action{
 
     public function deleteCartItemAction()
     {
-        try {
+        try 
+        {
             $request = $this->getRequest();
             $itemId = $request->getRequest('id');
             $item = Ccc::getModel('Cart_Item')->load($itemId);
@@ -407,7 +440,8 @@ class Controller_cart extends Controller_Admin_Action{
             $cart->discount = $cart->discount - $item->discount;
             $cart->save();
             $result = $item->delete();
-            if(!$result){
+            if(!$result)
+            {
                 throw new Exception("Cart item not deleted.", 1);
             }
             $this->getMessage()->addMessage("Cart item deleted successfully.");
@@ -432,7 +466,8 @@ class Controller_cart extends Controller_Admin_Action{
                 ]
             ];
             $this->renderJson($response);
-        }catch (Exception $e)
+        }
+        catch (Exception $e)
         {
             $this->getMessage()->addMessage($e->getMessage(),Model_Core_Message::MESSAGE_ERROR);
             $this->editBlockAction();
@@ -451,9 +486,11 @@ class Controller_cart extends Controller_Admin_Action{
             $productModel = Ccc::getModel('Product');
             $cartData = $request->getPost('cartItem');
             $item = $cart->getItem();
-            foreach($cartData as $cartItem){
+            foreach($cartData as $cartItem)
+            {
                 $product = $productModel->load($cartItem['productId']);
-                if($product->quantity >= $cartItem['quantity']){
+                if($product->quantity >= $cartItem['quantity'])
+                {
                     $item->setData($cartItem);
                     $item->itemTotal = $product->price * $cartItem['quantity'];
                     $item->tax = $product->tax;
@@ -469,7 +506,8 @@ class Controller_cart extends Controller_Admin_Action{
             $cart->taxAmount = $taxAmount;
             $cart->discount = $discount;
             $result = $cart->save();
-            if(!$result){
+            if(!$result)
+            {
                 throw new Exception("subTotal not updated", 1);
             }
             $this->getMessage()->addMessage("Cart item updated successfully.");
@@ -523,12 +561,14 @@ class Controller_cart extends Controller_Admin_Action{
             $orderModel->taxAmount = $request->getPost('taxAmount');
             $orderModel->discount = $request->getPost('discount');     
             $order = $orderModel->save();
-            if(!$order){
+            if(!$order)
+            {
                 throw new Exception("Order not added.", 1);
             }
     
             $items = $cart->getItems();
-            foreach($items as $item){
+            foreach($items as $item)
+            {
                 $product = $item->getProduct();
                 $itemModel = Ccc::getModel('Order_Item');
                 $itemModel->orderId = $order->orderId;
@@ -541,7 +581,8 @@ class Controller_cart extends Controller_Admin_Action{
                 $itemModel->discount = $product->discount;
                 $itemModel->quantity = $item->quantity;
                 $result = $itemModel->save();
-                if($result){
+                if($result)
+                {
                     $item->delete();
                 }
             }
@@ -565,19 +606,24 @@ class Controller_cart extends Controller_Admin_Action{
     
             $billingResult = $billingAddress->save();
             $shipinhResult = $shippingAddress->save();
-            if(!$billingResult){
+            if(!$billingResult)
+            {
                 throw new Exception("Billing address not saved", 1);
             }
-            if(!$shipinhResult){
+            if(!$shipinhResult)
+            {
                 throw new Exception("Shipping address not saved", 1);
             }
-            if($order){
+            if($order)
+            {
                 $cart->delete();
             }
-            if($billingResult){
+            if($billingResult)
+            {
                 $billingData->delete();
             }
-            if($shipinhResult){
+            if($shipinhResult)
+            {
                 $shippingData->delete();
             }
             

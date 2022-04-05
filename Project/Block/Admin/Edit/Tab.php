@@ -15,15 +15,6 @@ class Block_Admin_Edit_Tab extends Block_Core_Edit_Tab
             'block' => 'Admin_Edit_Tabs_Personal',
             'url' => $this->getUrl(null,null,['tab' => 'personal'])
         ],'personal');
-        // $this->addTab([
-        //     'title' => 'Address Info',
-        //     'block' => 'Admin_Edit_Tabs_Address',
-        //     'url' => $this->getUrl(null,null,['tab' => 'address'])
-        // ],'address');
-        // $this->addTab([
-        //     'title' => 'Address Info 1',
-        //     'block' => 'Admin_Edit_Tabs_Address',
-        //     'url' => $this->getUrl(null,null,['tab' => 'address1'])
-        // ],'address1');
+       
     }
 }

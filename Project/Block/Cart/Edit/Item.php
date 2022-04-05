@@ -11,7 +11,8 @@ class Block_Cart_Edit_Item extends Block_Core_Template{
 
     public function getCart()
 	{
-		if(!Ccc::getModel('Admin_Cart')->getCart()){
+		if(!Ccc::getModel('Admin_Cart')->getCart())
+		{
 			return Ccc::getModel('Cart');
 		}
 		$cartId = Ccc::getModel('Admin_Cart')->getCart();
@@ -22,7 +23,8 @@ class Block_Cart_Edit_Item extends Block_Core_Template{
     public function getProducts()
 	{
 		$productModel = Ccc::getModel('Product');
-		if(!Ccc::getModel('Admin_Cart')->getCart()){
+		if(!Ccc::getModel('Admin_Cart')->getCart())
+		{
 			$products = $productModel->fetchAll("SELECT * FROM `product`");
 			return $products;
 		}
@@ -34,7 +36,8 @@ class Block_Cart_Edit_Item extends Block_Core_Template{
     public function getTotal()
 	{
 		$itemModel = Ccc::getModel('Cart_Item');
-		if(!Ccc::getModel('Admin_Cart')->getCart()){
+		if(!Ccc::getModel('Admin_Cart')->getCart())
+		{
 			return null;
 		}
 		$cartId = Ccc::getModel('Admin_Cart')->getCart();
