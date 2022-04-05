@@ -107,10 +107,13 @@ class Block_Product_Grid extends Block_Core_Grid {
         $this->getPager()->execute($totalCount,$current,$perPageCount);
         $products = $productModel->fetchAll("SELECT * FROM `product`  LIMIT {$this->getPager()->getStartLimit()},{$this->getPager()->getPerPageCount()}");
         $productColumn = [];
-        foreach ($products as $product) 
+        if($products)
         {
-            array_push($productColumn,$product);
-        }        
+            foreach ($products as $product) 
+            {
+                array_push($productColumn,$product);
+            }        
+        }
         return $productColumn;
     }
     public function getAdapter()

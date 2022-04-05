@@ -86,24 +86,27 @@ class Block_Customer_Grid extends Block_Core_Grid {
         $this->getPager()->execute($totalCount,$current,$perPageCount);
         $customers = $customerModel->fetchAll("SELECT * FROM `customer` LIMIT {$this->getPager()->getStartLimit()},{$this->getPager()->getPerPageCount()}");
         $customerColumn = [];
-        foreach ($customers as $customer) {
-            $billing = null;
-            $shipping = null; 
-            //$customer->status = $customer->getStatus($customer->status);
-            foreach($customer->getBillingAddress()->getData() as $key => $value){
-                if($key != 'addressId' && $key != 'customerId'){
-                    $billing .= $key." : ".$value."<br>";
-                }
-            }
-            foreach($customer->getShippingAddress()->getData() as $key => $value){
-                if($key != 'addressId' && $key != 'customerId'){
-                    $shipping .= $key." : ".$value."<br>";
-                }
-            }
-            $customer->setData(['billing' => $billing]);
-            $customer->setData(['shipping' => $shipping]);
-            array_push($customerColumn,$customer);
-        }        
+        if($customers)
+        {	
+	        foreach ($customers as $customer) {
+	            $billing = null;
+	            $shipping = null; 
+	            //$customer->status = $customer->getStatus($customer->status);
+	            foreach($customer->getBillingAddress()->getData() as $key => $value){
+	                if($key != 'addressId' && $key != 'customerId'){
+	                    $billing .= $key." : ".$value."<br>";
+	                }
+	            }
+	            foreach($customer->getShippingAddress()->getData() as $key => $value){
+	                if($key != 'addressId' && $key != 'customerId'){
+	                    $shipping .= $key." : ".$value."<br>";
+	                }
+	            }
+	            $customer->setData(['billing' => $billing]);
+	            $customer->setData(['shipping' => $shipping]);
+	            array_push($customerColumn,$customer);
+	        }        
+        }
         return $customerColumn;
     }
     public function getAdapter()

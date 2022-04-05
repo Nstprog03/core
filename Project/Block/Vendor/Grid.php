@@ -80,17 +80,20 @@ class Block_Vendor_Grid extends Block_Core_Grid {
         $this->getPager()->execute($totalCount,$current,$perPageCount);
         $vendors = $vendorModel->fetchAll("SELECT * FROM `vendor` LIMIT {$this->getPager()->getStartLimit()},{$this->getPager()->getPerPageCount()}");
         $vendorColumn = [];
-        foreach ($vendors as $vendor) {
-            $address = null; 
-            //$vendor->status = $vendor->getStatus($vendor->status);
-            foreach($vendor->getAddress()->getData() as $key => $value){
-                if($key != 'addressId' && $key != 'vendorId'){
-                    $address .= $key." : ".$value."<br>";
-                }
-            }
-            $vendor->setData(['address' => $address]);
-            array_push($vendorColumn,$vendor);
-        }        
+        if($vendors)
+        {
+	        foreach ($vendors as $vendor) {
+	            $address = null; 
+	            //$vendor->status = $vendor->getStatus($vendor->status);
+	            foreach($vendor->getAddress()->getData() as $key => $value){
+	                if($key != 'addressId' && $key != 'vendorId'){
+	                    $address .= $key." : ".$value."<br>";
+	                }
+	            }
+	            $vendor->setData(['address' => $address]);
+	            array_push($vendorColumn,$vendor);
+	        }        
+        }
         return $vendorColumn;
     }
     public function getAdapter()

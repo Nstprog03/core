@@ -69,10 +69,14 @@ class Block_Page_Grid extends Block_Core_Grid {
         $this->getPager()->execute($totalCount,$current,$perPageCount);
         $pages = $pageModel->fetchAll("SELECT * FROM `page` LIMIT {$this->getPager()->getStartLimit()},{$this->getPager()->getPerPageCount()}");
         $pageColumn = [];
-        foreach ($pages as $page) 
+        if($pages)
         {
-            array_push($pageColumn,$page);
-        }        
+            
+            foreach ($pages as $page) 
+            {
+                array_push($pageColumn,$page);
+            }        
+        }
         return $pageColumn;
     }
     public function getAdapter()

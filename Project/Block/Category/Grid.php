@@ -75,11 +75,14 @@ class Block_Category_Grid extends Block_Core_Grid {
         $this->getPager()->execute($totalCount,$current,$perPageCount);
         $categorys = $categoryModel->fetchAll("SELECT * FROM `category` ORDER BY `path`  LIMIT {$this->getPager()->getStartLimit()},{$this->getPager()->getPerPageCount()}");
         $categoryColumn = [];
-        foreach ($categorys as $category) 
-        {
-            $category->finalPath = $this->getPath($category->categoryId,$category->path);
-            array_push($categoryColumn,$category);
-        }        
+        if($categorys)
+        {   
+            foreach ($categorys as $category) 
+            {
+                $category->finalPath = $this->getPath($category->categoryId,$category->path);
+                array_push($categoryColumn,$category);
+            }        
+        }
         return $categoryColumn;
     }
 
