@@ -110,7 +110,7 @@ class Block_Core_Grid extends Block_Core_Template
         }
         if($key == 'small')
         {
-            if($collection->getThumb())
+            if($collection->getSmall())
             {
                 $image = $collection->getSmall()->getImgPath();
                 return "<img src='{$image}' alt='' width='50' height='50'>";

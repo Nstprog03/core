@@ -61,6 +61,7 @@ var admin = {
     },
 
     load : function(){
+
         const self = this;
         $.ajax({
             url: this.getUrl(),
@@ -75,12 +76,41 @@ var admin = {
     },
 
     manageElemants : function(elements) {
+
+        const self = this;
         jQuery(elements).each(function(index,element) {
-            console.log(element);
-            jQuery(element.element).html(element.content);
-            if(element.classAdd != undefined){
-                console.log(element.classAdd);
-                jQuery(element.element).addClass(element.classAdd);
+            if(element.url != undefined){
+                self.setUrl(element.url);
+                self.setData({});
+                self.setType('GET');
+                self.load();
+            }
+            else{
+                if(element.element == '#adminMessage'){
+
+                    let text = element.content;
+                    const myArray = text.split(":");
+                    const type = myArray[0];
+                    const msg = myArray[1];
+                    if(type == 'Success ')
+                    {
+                        toastr.success(msg);
+                    }
+                    else if(type == 'Warning ')
+                    {
+                        toastr.warning(msg);
+                    }
+                    else if(type == 'Error ')
+                    {
+                        toastr.error(msg);
+                    }
+                }
+                else{
+                    jQuery(element.element).html(element.content);
+                    if(element.classAdd != undefined){
+                        jQuery(element.element).addClass(element.classAdd);
+                    }
+                }
             }
         });
     }

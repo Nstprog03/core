@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2022 at 08:45 AM
+-- Generation Time: Apr 05, 2022 at 09:12 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -43,10 +43,13 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`adminId`, `firstName`, `lastName`, `email`, `password`, `status`, `createdAt`, `updatedAt`) VALUES
-(58, 'Dhruv', 'Prajapati', 'dp@gmail.com', 'ed2b1f468c5f915f3f1cf75d7068baae', 1, '2022-03-11 01:03:19', NULL),
-(59, 'Jayveer', 'Jadeja', 'rj@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 1, '2022-03-25 11:03:08', '2022-03-26 05:03:24'),
-(60, 'Nishith', 'Parmar', 'nishithparmar03@gmail.com', 'f4aee210c0ae3683d4d93d8fceb7eb8f', 1, '2022-03-26 23:02:44', '2022-03-26 18:32:16'),
-(61, 'Dhanshree', 'Patel', 'dp@gmail.com', '95687afb5d9a2a9fa39038f991640b0c', 1, '2022-03-26 11:03:29', NULL);
+(61, 'Dhanshree2', 'P', 'dp@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', 1, '2022-03-26 11:03:29', '2022-04-04 07:04:03'),
+(65, 'Nishith', 'Parmar', 'nishithparmar03@gmail.com', 'f4aee210c0ae3683d4d93d8fceb7eb8f', 1, '2022-04-01 11:01:26', '2022-04-01 07:31:03'),
+(67, 'Dhanshree1', 'P', 'dp@gmail.com', '', 1, '2022-04-01 01:04:21', NULL),
+(69, 'Tusahr', 'Solanki', 'ts@gmail.com', 'ed2b1f468c5f915f3f1cf75d7068baae', 1, '2022-04-02 03:04:30', NULL),
+(74, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 'f4aee210c0ae3683d4d93d8fceb7eb8f', 1, '2022-04-04 07:04:58', NULL),
+(75, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 'f4aee210c0ae3683d4d93d8fceb7eb8f', 1, '2022-04-04 07:04:04', NULL),
+(76, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 'f4aee210c0ae3683d4d93d8fceb7eb8f', 1, '2022-04-04 07:04:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -68,6 +71,17 @@ CREATE TABLE `cart` (
   `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cartId`, `customerId`, `subTotal`, `shippingMethod`, `shippingCharge`, `paymentMethod`, `taxAmount`, `discount`, `status`, `createdAt`, `updatedAt`) VALUES
+(132, 166, 0, 0, 0, 0, 0, 0, 1, '0000-00-00 00:00:00', NULL),
+(133, 201, 0, 0, 0, 0, 0, 0, 1, '0000-00-00 00:00:00', NULL),
+(134, 199, 2006000, 3, 50, 2, 64900, 550, 1, '0000-00-00 00:00:00', NULL),
+(136, 188, 0, 0, 0, 0, 0, 0, 1, '0000-00-00 00:00:00', NULL),
+(137, 191, 0, 0, 0, 0, 0, 0, 1, '0000-00-00 00:00:00', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -88,6 +102,22 @@ CREATE TABLE `cart_address` (
   `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `cart_address`
+--
+
+INSERT INTO `cart_address` (`addressId`, `cartId`, `firstName`, `lastName`, `city`, `state`, `country`, `postalCode`, `billing`, `shipping`, `address`) VALUES
+(219, 132, 'Nishith', 'parmar', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '1ST FLOOR,NR. RADHAKRISHNNIVS'),
+(220, 132, 'Nishith', 'parmar', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '1ST FLOOR,NR. RADHAKRISHNNIVS'),
+(221, 133, 'Nishith', 'parmar', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '1ST FLOOR,NR. RADHAKRISHNNIVS'),
+(222, 133, 'Nishith', 'parmar', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '1ST FLOOR,NR. RADHAKRISHNNIVS'),
+(223, 134, 'Nishith', 'parmar', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '1ST FLOOR,NR. RADHAKRISHNNIVS'),
+(224, 134, 'Nishith', 'parmar', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '1ST FLOOR,NR. RADHAKRISHNNIVS'),
+(227, 136, 'Nishith', 'parmar', '', '', '', 0, 1, 2, ''),
+(228, 136, 'Nishith', 'parmar', '', '', '', 0, 2, 1, ''),
+(229, 137, 'Nishith', 'parmar', '', '', '', 0, 1, 2, ''),
+(230, 137, 'Nishith', 'parmar', '', '', '', 0, 2, 1, '');
+
 -- --------------------------------------------------------
 
 --
@@ -104,6 +134,13 @@ CREATE TABLE `cart_item` (
   `tax` float NOT NULL,
   `taxAmount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart_item`
+--
+
+INSERT INTO `cart_item` (`itemId`, `cartId`, `productId`, `itemTotal`, `discount`, `quantity`, `tax`, `taxAmount`) VALUES
+(128, 134, 26, 649000, 550, 11, 10, 64900);
 
 -- --------------------------------------------------------
 
@@ -129,10 +166,9 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`categoryId`, `name`, `base`, `thumb`, `small`, `status`, `createdAt`, `updatedAt`, `parentId`, `path`) VALUES
-(100, 'double bed', NULL, NULL, NULL, 1, '2022-03-09 01:03:08', '2022-03-09 03:03:58', NULL, '100'),
-(107, 'Harsh', NULL, NULL, NULL, 1, '2022-03-09 05:03:48', NULL, NULL, '107'),
-(108, 'Phone', NULL, NULL, NULL, 1, '2022-03-10 01:03:28', NULL, NULL, '108'),
-(109, 'Phone', NULL, NULL, NULL, 1, '2022-03-10 01:03:18', NULL, NULL, '109');
+(100, 'double bed', 39, 39, 39, 1, '2022-03-09 01:03:08', '2022-03-09 03:03:58', NULL, '100'),
+(115, 'home theater', NULL, NULL, NULL, 1, '2022-04-03 11:04:56', NULL, NULL, '115'),
+(116, 'Phone', NULL, NULL, NULL, 1, '2022-04-03 11:04:02', '2022-04-04 10:04:19', NULL, '116');
 
 -- --------------------------------------------------------
 
@@ -147,6 +183,15 @@ CREATE TABLE `category_media` (
   `gallery` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `category_media`
+--
+
+INSERT INTO `category_media` (`mediaId`, `categoryId`, `name`, `gallery`) VALUES
+(39, 100, '_DSC045620220331104126.jpg', 1),
+(42, 115, 'SPARK8T-blue20220403115409.png', 0),
+(43, 116, 'SPARK8T-blue20220404105230.png', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -154,10 +199,18 @@ CREATE TABLE `category_media` (
 --
 
 CREATE TABLE `category_product` (
-  `entity_id` int(24) NOT NULL,
-  `product_id` int(24) NOT NULL,
-  `category_id` bigint(24) NOT NULL
+  `entityId` int(24) NOT NULL,
+  `productId` int(24) NOT NULL,
+  `categoryId` bigint(24) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category_product`
+--
+
+INSERT INTO `category_product` (`entityId`, `productId`, `categoryId`) VALUES
+(37, 26, 100),
+(46, 26, 115);
 
 -- --------------------------------------------------------
 
@@ -179,11 +232,11 @@ CREATE TABLE `config` (
 --
 
 INSERT INTO `config` (`configId`, `name`, `code`, `value`, `status`, `createdAt`) VALUES
-(1, 'Facebook', 'google.com', 'www.google.comfacebook', 2, '2022-02-26 08:02:25'),
-(2, 'Google', 'google.com', 'www.google.com', 1, '2022-02-28 08:02:30'),
+(2, 'Google1', 'google.com', 'www.google.com', 1, '2022-02-28 08:02:30'),
 (3, 'Google', 'google.com', 'www.google.comfacebook', 1, '2022-02-28 08:02:48'),
 (4, 'Google', 'google.com', 'www.google.com', 1, '2022-03-09 01:03:33'),
-(5, 'Google', 'google.com', 'www.google.com', 1, '2022-03-12 03:03:33');
+(5, 'Google', 'google.com', 'www.google.com', 1, '2022-03-12 03:03:33'),
+(6, 'Facebook', 'google.com', 'www.google.comfacebook', 1, '2022-04-01 07:04:25');
 
 -- --------------------------------------------------------
 
@@ -208,44 +261,60 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customerId`, `salesmanId`, `firstName`, `lastName`, `email`, `mobile`, `status`, `createdAt`, `updatedAt`) VALUES
-(122, 6, 'Nishith', 'kk', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-02-26 03:02:29', '2022-03-26 11:57:32'),
-(151, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-02-26 07:02:19', '2022-03-26 11:03:48'),
-(152, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-02 02:03:08', '2022-03-15 05:41:45'),
-(155, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-04 01:03:00', NULL),
-(156, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-04 01:03:03', '2022-03-04 01:19:30'),
-(157, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-08 11:03:15', '2022-03-15 05:42:28'),
-(158, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-09 01:03:24', NULL),
-(159, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-09 01:03:39', NULL),
-(160, 6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-09 01:03:53', '2022-03-14 09:43:12'),
-(161, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-14 09:03:56', '2022-03-14 09:43:00'),
-(162, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-14 09:03:26', NULL),
-(163, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-14 09:03:04', '2022-03-14 09:42:43'),
-(164, NULL, 'aaa', 'aaa', 'a@a.com', 1234, 1, '2022-03-15 11:03:07', '2022-03-15 11:51:00'),
-(165, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-15 01:03:15', '2022-03-15 01:16:29'),
-(166, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-15 06:03:02', '2022-03-15 06:20:10'),
-(167, NULL, 'Priyanshi', 'lunavat', 'p@gmail.com', 5455465898, 1, '2022-03-23 07:03:29', NULL),
-(168, NULL, 'Priyanshi', 'lunavat', 'p@gmail.com', 54545454545, 1, '2022-03-24 12:03:46', NULL),
-(169, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 12:03:48', NULL),
-(170, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 12:03:23', '2022-03-26 12:50:18'),
-(171, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 12:03:58', NULL),
-(172, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:58', NULL),
-(173, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:03', NULL),
-(174, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:48', NULL),
-(175, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:27', NULL),
-(176, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:15', NULL),
-(177, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 01:03:19', NULL),
-(178, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:04', NULL),
-(179, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:31', NULL),
-(180, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:31', NULL),
-(181, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:42', NULL),
-(182, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:41', NULL),
-(183, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:56', NULL),
-(184, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 10:03:55', NULL),
-(185, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:25', NULL),
-(186, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:55', NULL),
-(187, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:44', NULL),
-(188, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:16', NULL),
-(189, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:58', NULL);
+(166, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-15 06:03:02', '2022-04-04 06:55:29'),
+(167, 19, 'Priyanshi', 'lunavat', 'p@gmail.com', 5455465898, 1, '2022-03-23 07:03:29', NULL),
+(168, 19, 'Priyanshi', 'lunavat', 'p@gmail.com', 54545454545, 1, '2022-03-24 12:03:46', NULL),
+(188, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:16', NULL),
+(189, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-26 11:03:58', NULL),
+(190, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-29 11:03:33', NULL),
+(191, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-29 11:03:04', NULL),
+(192, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-29 11:03:43', NULL),
+(195, 19, 'ASasas', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-29 12:03:44', NULL),
+(196, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:23', NULL),
+(197, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:24', NULL),
+(198, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:24', NULL),
+(199, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:22', NULL),
+(200, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:22', NULL),
+(201, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:22', NULL),
+(202, 19, '', '', '', NULL, 1, '2022-03-31 01:03:58', NULL),
+(203, 19, '', '', '', NULL, 1, '2022-03-31 01:03:26', NULL),
+(204, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:23', NULL),
+(205, 26, '', '', '', NULL, 1, '2022-03-31 01:03:12', NULL),
+(206, 26, '', '', '', NULL, 1, '2022-03-31 01:03:36', NULL),
+(207, 19, '', '', '', NULL, 1, '2022-03-31 01:03:01', NULL),
+(208, 19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:19', NULL),
+(209, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:28', NULL),
+(210, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:12', NULL),
+(211, NULL, '', '', '', NULL, 1, '2022-03-31 01:03:52', NULL),
+(212, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:52', NULL),
+(213, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:11', NULL),
+(214, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:12', NULL),
+(215, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:12', NULL),
+(216, NULL, '', '', '', NULL, 1, '2022-03-31 01:03:02', NULL),
+(217, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:34', NULL),
+(218, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:42', NULL),
+(219, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:43', NULL),
+(220, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:43', NULL),
+(221, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:46', NULL),
+(222, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:25', NULL),
+(223, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:01', NULL),
+(224, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:19', NULL),
+(225, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:29', NULL),
+(226, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:30', NULL),
+(227, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:30', NULL),
+(228, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:44', NULL),
+(229, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:35', NULL),
+(230, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:04', NULL),
+(231, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:52', NULL),
+(239, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 09:03:10', NULL),
+(240, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 12:03:45', NULL),
+(241, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 12:03:16', NULL),
+(242, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-31 01:03:48', NULL),
+(243, NULL, 'Nikkki', 'kapadiya', 'nl@gmail.com', 2920192019, 1, '2022-04-01 10:04:14', NULL),
+(244, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-04-02 01:04:29', NULL),
+(245, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-04-02 02:04:25', NULL),
+(246, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-04-04 10:04:52', NULL),
+(247, NULL, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-04-04 10:04:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -270,43 +339,114 @@ CREATE TABLE `customer_address` (
 --
 
 INSERT INTO `customer_address` (`addressId`, `customerId`, `address`, `postalCode`, `city`, `state`, `country`, `billing`, `shipping`) VALUES
-(29, 122, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
-(32, 151, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
-(33, 152, 'qknsdlnclasISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(36, 155, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
-(37, 156, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(38, 157, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(39, 158, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
-(40, 159, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 1),
-(41, 160, '', 0, '', '', '', 2, 2),
-(42, 162, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(43, 162, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
-(44, 163, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(45, 163, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
-(46, 161, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(47, 161, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
-(48, 160, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(49, 160, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
-(50, 164, 'b', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(51, 164, 'b', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
-(52, 165, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
-(53, 165, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
-(54, 152, 'qknsdlnclasISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
-(55, 157, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
 (56, 166, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
 (57, 166, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
 (59, 167, 'mgroad', 456265, 'dahod', 'gujarat', 'india', 1, 2),
 (60, 167, 'mgroad', 456265, 'dahod', 'gujarat', 'india', 2, 1),
 (62, 168, '', 0, '', '', '', 1, 2),
 (63, 168, 'mgroad', 454545, 'dahod', 'gujarat', 'Los vagos', 2, 1),
-(73, 183, '', 0, '', '', '', 1, 2),
-(74, 184, '', 0, '', '', '', 1, 2),
-(75, 184, '', 0, '', '', '', 2, 1),
-(76, 122, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
 (77, 188, '', 0, '', '', '', 1, 2),
 (78, 188, '', 0, '', '', '', 2, 1),
-(79, 189, '', 0, '', '', '', 1, 2),
-(80, 189, '', 0, '', '', '', 2, 1);
+(79, 189, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
+(80, 189, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
+(81, 190, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
+(82, 190, '', 0, '', '', '', 2, 1),
+(83, 191, '', 0, '', '', '', 1, 2),
+(84, 191, '', 0, '', '', '', 2, 1),
+(85, 192, '', 0, '', '', '', 1, 2),
+(86, 192, '', 0, '', '', '', 2, 1),
+(88, 195, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
+(89, 195, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
+(90, 196, '', 0, '', '', '', 1, 2),
+(91, 196, '', 0, '', '', '', 2, 1),
+(92, 197, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
+(93, 197, '', 0, '', '', '', 2, 1),
+(94, 198, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
+(95, 198, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
+(96, 199, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
+(97, 199, '', 0, '', '', '', 2, 1),
+(98, 200, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
+(99, 200, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
+(100, 201, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
+(101, 201, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 2, 1),
+(102, 202, '', 0, '', '', '', 1, 2),
+(103, 202, '', 0, '', '', '', 2, 1),
+(104, 203, '', 0, '', '', '', 1, 2),
+(105, 203, '', 0, '', '', '', 2, 1),
+(106, 204, '', 0, '', '', '', 1, 2),
+(107, 204, '', 0, '', '', '', 2, 1),
+(108, 205, '', 0, '', '', '', 1, 2),
+(109, 205, '', 0, '', '', '', 2, 1),
+(110, 206, '', 0, '', '', '', 1, 2),
+(111, 206, '', 0, '', '', '', 2, 1),
+(112, 207, '', 0, '', '', '', 1, 2),
+(113, 207, '', 0, '', '', '', 2, 1),
+(114, 208, '', 0, '', '', '', 1, 2),
+(115, 208, '', 0, '', '', '', 2, 1),
+(116, 209, '', 0, '', '', '', 1, 2),
+(117, 209, '', 0, '', '', '', 2, 1),
+(118, 210, '', 0, '', '', '', 1, 2),
+(119, 210, '', 0, '', '', '', 2, 1),
+(120, 211, '', 0, '', '', '', 1, 2),
+(121, 211, '', 0, '', '', '', 2, 1),
+(122, 212, '', 0, '', '', '', 1, 2),
+(123, 212, '', 0, '', '', '', 2, 1),
+(124, 213, '', 0, '', '', '', 1, 2),
+(125, 213, '', 0, '', '', '', 2, 1),
+(126, 214, '', 0, '', '', '', 1, 2),
+(127, 214, '', 0, '', '', '', 2, 1),
+(128, 215, '', 0, '', '', '', 1, 2),
+(129, 215, '', 0, '', '', '', 2, 1),
+(130, 216, '', 0, '', '', '', 1, 2),
+(131, 216, '', 0, '', '', '', 2, 1),
+(132, 217, '', 0, '', '', '', 1, 2),
+(133, 217, '', 0, '', '', '', 2, 1),
+(134, 218, '', 0, '', '', '', 1, 2),
+(135, 218, '', 0, '', '', '', 2, 1),
+(136, 219, '', 0, '', '', '', 1, 2),
+(137, 219, '', 0, '', '', '', 2, 1),
+(138, 220, '', 0, '', '', '', 1, 2),
+(139, 220, '', 0, '', '', '', 2, 1),
+(140, 221, '', 0, '', '', '', 1, 2),
+(141, 221, '', 0, '', '', '', 2, 1),
+(142, 222, '', 0, '', '', '', 1, 2),
+(143, 222, '', 0, '', '', '', 2, 1),
+(144, 223, '', 0, '', '', '', 1, 2),
+(145, 223, '', 0, '', '', '', 2, 1),
+(146, 224, '', 0, '', '', '', 1, 2),
+(147, 224, '', 0, '', '', '', 2, 1),
+(148, 225, '', 0, '', '', '', 1, 2),
+(149, 225, '', 0, '', '', '', 2, 1),
+(150, 226, '', 0, '', '', '', 1, 2),
+(151, 226, '', 0, '', '', '', 2, 1),
+(152, 227, '', 0, '', '', '', 1, 2),
+(153, 227, '', 0, '', '', '', 2, 1),
+(154, 228, '', 0, '', '', '', 1, 2),
+(155, 228, '', 0, '', '', '', 2, 1),
+(156, 229, '', 0, '', '', '', 1, 2),
+(157, 229, '', 0, '', '', '', 2, 1),
+(158, 230, '', 0, '', '', '', 1, 2),
+(159, 230, '', 0, '', '', '', 2, 1),
+(160, 231, '', 0, '', '', '', 1, 2),
+(161, 231, '', 0, '', '', '', 2, 1),
+(177, 239, '', 0, '', '', '', 1, 2),
+(178, 239, '', 0, '', '', '', 2, 1),
+(179, 240, '', 0, '', '', '', 1, 2),
+(180, 240, '', 0, '', '', '', 2, 1),
+(181, 241, '', 0, '', '', '', 1, 2),
+(182, 241, '', 0, '', '', '', 2, 1),
+(183, 242, '', 0, '', '', '', 1, 2),
+(184, 242, '', 0, '', '', '', 2, 1),
+(185, 243, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India', 1, 2),
+(186, 243, '', 0, '', '', '', 2, 1),
+(187, 244, '', 0, '', '', '', 1, 2),
+(188, 244, '', 0, '', '', '', 2, 1),
+(189, 245, '', 0, '', '', '', 1, 2),
+(190, 245, '', 0, '', '', '', 2, 1),
+(191, 246, '', 0, '', '', '', 1, 2),
+(192, 246, '', 0, '', '', '', 2, 1),
+(193, 247, '', 0, '', '', '', 1, 2),
+(194, 247, '', 0, '', '', '', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -349,14 +489,39 @@ CREATE TABLE `order_address` (
 --
 
 INSERT INTO `order_address` (`addressId`, `orderId`, `firstName`, `lastName`, `email`, `mobile`, `address`, `city`, `state`, `country`, `postalCode`, `billing`, `shipping`, `createdAt`) VALUES
-(15, 25, 'aaa', 'aaa', 'a@a.com', 1234, 'b', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '2022-03-23 16:09:29'),
-(16, 25, 'aaa', 'aaa', 'a@a.com', 1234, 'b', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '2022-03-23 16:09:29'),
-(17, 26, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 1, '2022-03-23 17:16:43'),
-(18, 26, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 1, '2022-03-23 17:16:43'),
-(19, 27, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '2022-03-24 11:50:44'),
-(20, 27, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '2022-03-24 11:50:44'),
-(25, 36, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 'qknsdlnclasISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '2022-03-25 12:17:07'),
-(26, 36, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 'qknsdlnclasISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '2022-03-25 12:17:07');
+(29, 38, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '2022-04-04 00:59:43'),
+(30, 38, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '2022-04-04 00:59:43'),
+(31, 39, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '2022-04-04 01:01:31'),
+(32, 39, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '2022-04-04 01:01:31'),
+(33, 40, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '', '', '', '', 0, 1, 2, '2022-04-04 12:38:26'),
+(34, 40, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '', '', '', '', 0, 2, 1, '2022-04-04 12:38:26'),
+(39, 43, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 1, 2, '2022-04-04 23:07:19'),
+(40, 43, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, '1ST FLOOR,NR. RADHAKRISHNNIVS', 'RAJKOT', 'GUJARAT', 'India', 360002, 2, 1, '2022-04-04 23:07:19'),
+(41, 44, 'Priyanshi', 'lunavat', 'p@gmail.com', 5455465898, 'mgroad', 'dahod', 'gujarat', 'india', 456265, 1, 2, '2022-04-05 12:32:37'),
+(42, 44, 'Priyanshi', 'lunavat', 'p@gmail.com', 5455465898, 'mgroad', 'dahod', 'gujarat', 'india', 456265, 2, 1, '2022-04-05 12:32:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_comment`
+--
+
+CREATE TABLE `order_comment` (
+  `commentId` int(24) NOT NULL,
+  `orderId` int(24) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `note` varchar(255) NOT NULL,
+  `customerNotified` tinyint(1) NOT NULL DEFAULT 2,
+  `createdAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_comment`
+--
+
+INSERT INTO `order_comment` (`commentId`, `orderId`, `status`, `note`, `customerNotified`, `createdAt`) VALUES
+(2, 40, 1, 'w2w2w2w', 1, '0000-00-00 00:00:00'),
+(3, 43, 4, 'jalsa kar baka', 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -383,11 +548,16 @@ CREATE TABLE `order_item` (
 --
 
 INSERT INTO `order_item` (`itemId`, `orderId`, `productId`, `name`, `sku`, `price`, `discount`, `tax`, `taxAmount`, `quantity`, `createdAt`) VALUES
-(13, 25, 26, 'Laptop i7', NULL, 525000, NULL, 10, 52500, 21, '2022-03-23 16:09:29'),
-(14, 25, 27, 'Laptop i15', NULL, 10500000, NULL, 10, 1050000, 21, '2022-03-23 16:09:29'),
-(15, 26, 26, 'Laptop i7', NULL, 50000, 100, 10, 5000, 2, '2022-03-23 17:16:43'),
-(16, 26, 27, 'Laptop i15', NULL, 100000, 100, 10, 10000, 2, '2022-03-23 17:16:43'),
-(17, 27, 27, 'Laptop i15', NULL, 1150000, 1150, 10, 115000, 23, '2022-03-24 11:50:44');
+(22, 38, 26, 'Laptop', NULL, 649000, 50, 10, 64900, 11, '2022-04-04 00:59:43'),
+(23, 39, 26, 'Laptop', NULL, 6549000, 50, 10, 654900, 111, '2022-04-04 01:01:31'),
+(24, 39, 26, 'Laptop', NULL, 6549000, 50, 10, 654900, 111, '2022-04-04 01:01:31'),
+(25, 39, 26, 'Laptop', NULL, 6549000, 50, 10, 654900, 111, '2022-04-04 01:01:31'),
+(26, 39, 26, 'Laptop', NULL, 6549000, 50, 10, 654900, 111, '2022-04-04 01:01:31'),
+(27, 39, 26, 'Laptop', NULL, 6549000, 50, 10, 654900, 111, '2022-04-04 01:01:31'),
+(28, 40, 26, 'Laptop', NULL, 649000, 50, 10, 64900, 11, '2022-04-04 12:38:26'),
+(31, 43, 26, 'Laptop', NULL, 7198000, 50, 10, 719800, 122, '2022-04-04 23:07:19'),
+(32, 43, 27, 'mobile', NULL, 5082000, 50, 10, 508200, 121, '2022-04-04 23:07:19'),
+(33, 44, 26, 'Laptop', NULL, 649000, 50, 10, 64900, 11, '2022-04-05 12:32:36');
 
 -- --------------------------------------------------------
 
@@ -418,10 +588,11 @@ CREATE TABLE `order_record` (
 --
 
 INSERT INTO `order_record` (`orderId`, `customerId`, `firstName`, `lastName`, `email`, `mobile`, `grandTotal`, `shippingId`, `shippingCharge`, `taxAmount`, `discount`, `paymentId`, `state`, `status`, `createdAt`) VALUES
-(25, 164, 'aaa', 'aaa', 'a@a.com', 1234, 12127600, 1, 100, 1102500, 0, 1, 1, 1, '2022-03-23 16:09:29'),
-(26, 155, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 164850, 3, 50, 15000, 200, 4, 1, 1, '2022-03-23 17:16:43'),
-(27, 159, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1265850, 3, 50, 115000, -800, 2, 1, 1, '2022-03-24 11:50:44'),
-(36, 152, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1361900, 3, 50, 123900, 1050, 3, 1, 1, '2022-03-25 12:17:07');
+(38, 200, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 0, 1, 100, 0, 0, 1, 1, 1, '2022-04-04 00:59:43'),
+(39, 190, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 0, 2, 70, 0, 0, 1, 1, 1, '2022-04-04 01:01:31'),
+(40, 188, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 0, 3, 50, 0, 0, 2, 1, 1, '2022-04-04 12:38:26'),
+(43, 189, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 13495950, 1, 100, 1228000, 12150, 1, 1, 4, '2022-04-04 23:07:19'),
+(44, 167, 'Priyanshi', 'lunavat', 'p@gmail.com', 5455465898, 713420, 2, 70, 64900, 550, 2, 1, 1, '2022-04-05 12:32:36');
 
 -- --------------------------------------------------------
 
@@ -444,29 +615,7 @@ CREATE TABLE `page` (
 --
 
 INSERT INTO `page` (`pageId`, `name`, `code`, `content`, `status`, `createdAt`, `updatedAt`) VALUES
-(27, 'Page27', 'page27', 'page27', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(28, 'Page28', 'page28', 'page28', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(29, 'Page29', 'page29', 'page29', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(30, 'Page30', 'page30', 'page30', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(31, 'Page31', 'page31', 'page31', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(32, 'Page32', 'page32', 'page32', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(33, 'Page33', 'page33', 'page33', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(34, 'Page34', 'page34', 'page34', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(35, 'Page35', 'page35', 'page35', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(36, 'Page36', 'page36', 'page36', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(37, 'Page37', 'page37', 'page37', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(38, 'Page38', 'page38', 'page38', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(39, 'Page39', 'page39', 'page39', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(40, 'Page40', 'page40', 'page40', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(41, 'Page41', 'page41', 'page41', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(42, 'Page42', 'page42', 'page42', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(43, 'Page43', 'page43', 'page43', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(44, 'Page44', 'page44', 'page44', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(45, 'Page45', 'page45', 'page45', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(46, 'Page46', 'page46', 'page46', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (47, 'Page47', 'page47', 'page47', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(48, 'Page48', 'page48', 'page48', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(49, 'Page49', 'page49', 'page49', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (50, 'Page50', 'page50', 'page50', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (51, 'Page51', 'page51', 'page51', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (52, 'Page52', 'page52', 'page52', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -503,39 +652,11 @@ INSERT INTO `page` (`pageId`, `name`, `code`, `content`, `status`, `createdAt`, 
 (83, 'Page83', 'page83', 'page83', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (84, 'Page84', 'page84', 'page84', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (85, 'Page85', 'page85', 'page85', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(86, 'Page86', 'page86', 'page86', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(87, 'Page87', 'page87', 'page87', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(88, 'Page88', 'page88', 'page88', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(89, 'Page89', 'page89', 'page89', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(90, 'Page90', 'page90', 'page90', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(91, 'Page91', 'page91', 'page91', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(92, 'Page92', 'page92', 'page92', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(93, 'Page93', 'page93', 'page93', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(94, 'Page94', 'page94', 'page94', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(95, 'Page95', 'page95', 'page95', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(96, 'Page96', 'page96', 'page96', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(97, 'Page97', 'page97', 'page97', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(98, 'Page98', 'page98', 'page98', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(99, 'Page99', 'page99', 'page99', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(176, 'Page176', 'page176', 'page176', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(177, 'Page177', 'page177', 'page177', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(178, 'Page178', 'page178', 'page178', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(179, 'Page179', 'page179', 'page179', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(180, 'Page180', 'page180', 'page180', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(181, 'Page181', 'page181', 'page181', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(182, 'Page182', 'page182', 'page182', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(183, 'Page183', 'page183', 'page183', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(184, 'Page184', 'page184', 'page184', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(185, 'Page185', 'page185', 'page185', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(186, 'Page186', 'page186', 'page186', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(187, 'Page187', 'page187', 'page187', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(188, 'Page188', 'page188', 'page188', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(189, 'Page189', 'page189', 'page189', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(190, 'Page190', 'page190', 'page190', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(191, 'Page191', 'page191', 'page191', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(192, 'Page192', 'page192', 'page192', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(193, 'Page193', 'page193', 'page193', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(194, 'Page194', 'page194', 'page194', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(214, 'demo', 'demo.com', 'demo.com/demo', 1, '2022-03-30 12:51:12', '0000-00-00 00:00:00'),
+(215, 'demo', 'demo.com', 'demo.com/demo', 1, '2022-03-30 12:51:19', '0000-00-00 00:00:00'),
+(216, 'demo', 'demo.com', 'wwew', 1, '2022-04-02 03:46:42', '2022-04-02 03:47:02'),
+(217, 'demo', 'demo.com', 'qwubcub', 1, '2022-04-02 03:47:24', '0000-00-00 00:00:00'),
+(218, 'demo', 'demo.com', 'demo.com/demo', 1, '2022-04-04 10:56:46', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -587,8 +708,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productId`, `sku`, `name`, `base`, `thumb`, `small`, `price`, `tax`, `discount`, `msp`, `costPrice`, `quantity`, `status`, `createdAt`, `updatedAt`) VALUES
-(26, NULL, 'Laptop', 41, 41, 41, 59000, 10, 50, 45000, 18500, 533, 1, '2022-03-08 10:03:07', '2022-03-24 12:03:27'),
-(27, NULL, 'mobile', 42, 42, 42, 42000, 10, 50, 40000, 35000, 567, 1, '2022-03-09 09:03:56', '2022-03-24 12:03:47');
+(26, NULL, 'Laptop', 46, 46, 46, 59000, 10, 50, 45000, 18500, 533, 1, '2022-03-08 10:03:07', '2022-03-24 12:03:27'),
+(27, NULL, 'mobile', 42, 42, 42, 42000, 10, 50, 40000, 35000, 567, 1, '2022-03-09 09:03:56', '2022-03-24 12:03:47'),
+(29, 'sas', 'Oven', NULL, NULL, NULL, 25000, 10, 105, 22500, 21000, 545, 1, '2022-04-03 07:57:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -608,8 +730,9 @@ CREATE TABLE `product_media` (
 --
 
 INSERT INTO `product_media` (`mediaId`, `productId`, `name`, `gallery`) VALUES
-(41, 26, 'istockphoto-1294325987-170667a20220324124023.jpg', 1),
-(42, 27, 'SPARK8T-blue20220324124121.png', 1);
+(42, 27, 'SPARK8T-blue20220324124121.png', 1),
+(43, 27, 'convo20220403031448.png', 2),
+(46, 26, 'SPARK8T-blue20220403075257.png', 1);
 
 -- --------------------------------------------------------
 
@@ -634,19 +757,6 @@ CREATE TABLE `salesman` (
 --
 
 INSERT INTO `salesman` (`salesmanId`, `firstName`, `lastName`, `email`, `mobile`, `discount`, `status`, `createdAt`, `updatedAt`) VALUES
-(6, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 12.00, 1, '2022-03-09 01:48:44', NULL),
-(7, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 12.00, 1, '2022-03-12 09:37:53', NULL),
-(8, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(9, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(10, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(11, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(12, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(13, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(14, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(15, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(16, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(17, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(18, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (20, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (21, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
@@ -655,11 +765,9 @@ INSERT INTO `salesman` (`salesmanId`, `firstName`, `lastName`, `email`, `mobile`
 (24, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (25, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (26, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(27, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (28, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (29, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (30, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(31, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (32, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (33, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (34, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
@@ -1041,13 +1149,16 @@ INSERT INTO `salesman` (`salesmanId`, `firstName`, `lastName`, `email`, `mobile`
 (410, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (411, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (412, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(413, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
+(413, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', '2022-03-29 11:44:51'),
 (414, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (415, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (416, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (417, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
 (418, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
-(419, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL);
+(419, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919410000000, 12.00, 1, '0000-00-00 00:00:00', NULL),
+(420, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 12.00, 1, '2022-03-29 11:43:32', NULL),
+(421, 'Priyanshi', 'Lunawat', 'pr@gmail.com', 4545454545, -1.00, 1, '2022-04-02 11:19:45', '2022-04-02 11:20:00'),
+(422, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', NULL, 12.00, 1, '2022-04-04 10:57:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -1092,15 +1203,13 @@ CREATE TABLE `vendor` (
 --
 
 INSERT INTO `vendor` (`vendorId`, `firstName`, `lastName`, `email`, `mobile`, `status`, `createdAt`, `updatedAt`) VALUES
-(7, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 2, '2022-03-04 09:43:59', '2022-03-04 10:09:45'),
-(9, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-04 09:52:23', NULL),
-(11, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-04 10:04:27', NULL),
-(12, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-04 10:05:45', NULL),
 (13, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-04 10:06:01', NULL),
 (14, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-09 01:49:14', '2022-03-09 01:49:26'),
 (15, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-09 01:50:48', NULL),
 (16, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-09 01:51:08', NULL),
-(17, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-15 06:23:40', '2022-03-15 06:26:42');
+(17, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-03-15 06:23:40', '2022-03-15 06:26:42'),
+(18, 'Nishith1', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-04-02 04:04:07', '2022-04-02 04:50:23'),
+(19, 'Nishith', 'parmar', 'nishithparmar03@gmail.com', 919409718566, 1, '2022-04-04 11:04:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -1123,15 +1232,13 @@ CREATE TABLE `vendor_address` (
 --
 
 INSERT INTO `vendor_address` (`addressId`, `vendorId`, `address`, `postalCode`, `city`, `state`, `country`) VALUES
-(10, 7, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India'),
-(12, 9, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India'),
-(13, 11, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India'),
-(14, 12, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India'),
 (15, 13, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India'),
 (16, 14, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India'),
 (17, 15, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India'),
 (18, 16, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India'),
-(20, 17, ' ', 0, ' ', ' ', ' ');
+(20, 17, ' ', 0, ' ', ' ', ' '),
+(21, 18, '1ST FLOOR,NR. RADHAKRISHNNIVS', 360002, 'RAJKOT', 'GUJARAT', 'India'),
+(22, 19, '', 0, '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -1186,9 +1293,9 @@ ALTER TABLE `category_media`
 -- Indexes for table `category_product`
 --
 ALTER TABLE `category_product`
-  ADD PRIMARY KEY (`entity_id`),
-  ADD KEY `product_id` (`product_id`),
-  ADD KEY `category_id` (`category_id`);
+  ADD PRIMARY KEY (`entityId`),
+  ADD KEY `product_id` (`productId`),
+  ADD KEY `category_id` (`categoryId`);
 
 --
 -- Indexes for table `config`
@@ -1223,6 +1330,13 @@ ALTER TABLE `customer_price`
 --
 ALTER TABLE `order_address`
   ADD PRIMARY KEY (`addressId`),
+  ADD KEY `orderId` (`orderId`);
+
+--
+-- Indexes for table `order_comment`
+--
+ALTER TABLE `order_comment`
+  ADD PRIMARY KEY (`commentId`),
   ADD KEY `orderId` (`orderId`);
 
 --
@@ -1303,91 +1417,97 @@ ALTER TABLE `vendor_address`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `cart_address`
 --
 ALTER TABLE `cart_address`
-  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
+  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=233;
 
 --
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `categoryId` bigint(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `categoryId` bigint(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `category_media`
 --
 ALTER TABLE `category_media`
-  MODIFY `mediaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `mediaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `category_product`
 --
 ALTER TABLE `category_product`
-  MODIFY `entity_id` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `entityId` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `config`
 --
 ALTER TABLE `config`
-  MODIFY `configId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `configId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 
 --
 -- AUTO_INCREMENT for table `customer_address`
 --
 ALTER TABLE `customer_address`
-  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `customer_price`
 --
 ALTER TABLE `customer_price`
-  MODIFY `entityId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `entityId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `order_address`
 --
 ALTER TABLE `order_address`
-  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `order_comment`
+--
+ALTER TABLE `order_comment`
+  MODIFY `commentId` int(24) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `order_record`
 --
 ALTER TABLE `order_record`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `page`
 --
 ALTER TABLE `page`
-  MODIFY `pageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
+  MODIFY `pageId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
 
 --
 -- AUTO_INCREMENT for table `payment_method`
@@ -1399,19 +1519,19 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `product_media`
 --
 ALTER TABLE `product_media`
-  MODIFY `mediaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `mediaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `salesman`
 --
 ALTER TABLE `salesman`
-  MODIFY `salesmanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=420;
+  MODIFY `salesmanId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
 
 --
 -- AUTO_INCREMENT for table `shipping_method`
@@ -1423,13 +1543,13 @@ ALTER TABLE `shipping_method`
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
-  MODIFY `vendorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `vendorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `vendor_address`
 --
 ALTER TABLE `vendor_address`
-  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `addressId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
@@ -1473,8 +1593,8 @@ ALTER TABLE `category_media`
 -- Constraints for table `category_product`
 --
 ALTER TABLE `category_product`
-  ADD CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`categoryId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`productId`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `category_id` FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_id` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `customer`
@@ -1500,6 +1620,12 @@ ALTER TABLE `customer_price`
 --
 ALTER TABLE `order_address`
   ADD CONSTRAINT `order_address_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `order_record` (`orderId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `order_comment`
+--
+ALTER TABLE `order_comment`
+  ADD CONSTRAINT `order_comment_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `order_record` (`orderId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `order_item`

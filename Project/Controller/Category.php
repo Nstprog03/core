@@ -124,24 +124,7 @@ class Controller_Category extends Controller_Admin_Action
         }   
     }
     
-    public function gridAction()
-    {
-        $this->setTitle('Category');
-        $content = $this->getLayout()->getContent();
-        $categoryGrid = Ccc::getBlock('Category_Grid');
-        $content->addChild($categoryGrid,'Grid');
-        $this->renderLayout();
-    }
 
-    public function addAction()
-    {
-        $this->setTitle('Add Category');
-        $categoryModel = Ccc::getModel('Category');
-        $content = $this->getLayout()->getContent();
-        $categoryAdd = Ccc::getBlock('category_Edit')->setData(['category'=>$categoryModel]);
-        $content->addChild($categoryAdd,'Add');
-        $this->renderLayout();
-    }
 
     public function saveAction()
     {
@@ -262,44 +245,7 @@ class Controller_Category extends Controller_Admin_Action
     }
 
 
-    public function editAction()
-    {
-        try
-        {
-            $this->setTitle('Edit Category');
-            $categoryModel = Ccc::getModel('Category');
-            $request = $this->getRequest();
-
-            $id = $request->getRequest('id');
-            
-            if(!$id)
-            {
-                throw new Exception("Request Invalid.");
-            }
-
-            if(!(int)$id)
-            {
-                throw new Exception("Request Invalid.");
-            }
-
-            $category = $categoryModel->load($id);
-
-            if(!$category)
-            {
-                throw new Exception("System is unable to find record.");
-            }
-
-            $content = $this->getLayout()->getContent();
-            $categoryEdit = Ccc::getBlock('Category_Edit')->setData(['category'=>$category]);
-            $content->addChild($categoryEdit,'Edit');
-            $this->renderLayout();
-        }
-        catch (Exception $e)
-        {
-            $this->getMessage()->addMessage($e->getMessage(),3);
-            $this->redirect('grid','category',[],true);
-        }
-    }
+   
 
     public function deleteAction()
     {

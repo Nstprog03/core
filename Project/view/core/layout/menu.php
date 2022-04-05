@@ -88,7 +88,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?php echo $this->getUrl('grid','cart',[],true)?>" class="nav-link">
+                <a href="<?php echo $this->getUrl('index','cart',[],true)?>" class="nav-link">
                     <i class="right fa-solid fa-cart-shopping"></i>
                     <p>Cart</p>
                 </a>

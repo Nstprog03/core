@@ -45,7 +45,6 @@
 
 <script>
     $("#customerSubmitBtn").click(function(){
-        alert("hekko");
     	
         admin.setForm($("#indexForm"));
         admin.setUrl("<?php echo $this->getEdit()->getSaveUrl(); ?>");
@@ -53,7 +52,7 @@
     });
 
     $("#customerCancelBtn").click(function(){
-        admin.setUrl("<?php echo $this->getUrl('gridBlock','admin'); ?>");
+        admin.setUrl("<?php echo $this->getUrl('gridBlock','customer'); ?>");
         admin.load();
     });
 </script>

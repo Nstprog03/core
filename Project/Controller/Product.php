@@ -12,6 +12,7 @@ class Controller_Product extends Controller_Admin_Action{
 
 	public function indexAction()
 	{
+		$this->setTitle("Product");
 		$content = $this->getLayout()->getContent();
 		$productGrid = Ccc::getBlock('Product_Index');
 		$content->addChild($productGrid);
@@ -137,7 +138,7 @@ class Controller_Product extends Controller_Admin_Action{
 			{
 				foreach ($medias as $media)
 				{
-					unlink($this->getView()->getBaseUrl("Media/Product/"). $media->name);
+					unlink(Ccc::getModel('Core_View')->getBaseUrl("Media/Product/"). $media->name);
 				}
 			}
 			$result = $productModel->load($productId)->delete();

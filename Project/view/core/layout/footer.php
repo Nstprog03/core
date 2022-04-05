@@ -28,3 +28,5 @@
 <script src="skin/assets/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="skin/assets/dist/js/pages/dashboard2.js"></script>
+<!-- Toastr -->
+<script src="skin/assets/plugins/toastr/toastr.min.js"></script>

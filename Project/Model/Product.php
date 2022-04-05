@@ -121,13 +121,17 @@ class Model_Product extends Model_Core_Row
 				$categoryProductModel->load($category->entityId)->delete();
 			}
 		}
-		foreach($categoryIds['new'] as $categoryId)
+		if(array_key_exists('new',$categoryIds))
 		{
-			$categoryProductModel = Ccc::getModel('Product_CategoryProduct');
-			$categoryProductModel->productId = $this->productId;
-			$categoryProductModel->categoryId = $categoryId;
-			$categoryProductModel->save();
+			foreach($categoryIds['new'] as $categoryId)
+			{
+				$categoryProductModel = Ccc::getModel('Product_CategoryProduct');
+				$categoryProductModel->productId = $this->productId;
+				$categoryProductModel->categoryId = $categoryId;
+				$categoryProductModel->save();
+			}	
 		}
+		
 	}
 	public function getEditUrl()
 	{

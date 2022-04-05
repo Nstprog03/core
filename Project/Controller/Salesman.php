@@ -162,13 +162,16 @@ class Controller_Salesman extends Controller_Admin_Action
 				throw new Exception("Invalid Request.", 1);
 				
 			}
-			$customers = $customerModel->fetchAll("SELECT * FROM `customer` WHERE `salesmanId` = {$salesmanId}");
-			foreach($customers as $customer)
+			$customers = $customerModel->fetchAll("SELECT * FROM `customer` WHERE `salesmanId` = {$id}");
+			if($customers)
 			{
-				$customerPrices = $customerPriceModel->fetchAll("SELECT `entityId` FROM `customer_price` WHERE `customerId` = {$customer->customerId}");
-				foreach ($customerPrices as $customerPrice) 
+				foreach($customers as $customer)
 				{
-					$customerPriceModel->load($customerPrice->entityId)->delete();
+					$customerPrices = $customerPriceModel->fetchAll("SELECT `entityId` FROM `customer_price` WHERE `customerId` = {$customer->customerId}");
+					foreach($customerPrices as $customerPrice) 
+					{
+						$customerPriceModel->load($customerPrice->entityId)->delete();
+					}
 				}
 			}
 			$delete = $salesmenModel->load($id)->delete();

@@ -127,58 +127,7 @@ class Controller_Customer extends Controller_Admin_Action{
 		}	
 	}
 	
-	// public function gridAction()
-	// {
-	// 	$this->setTitle('Customer Grid');
-	// 	$content = $this->getLayout()->getContent();
-	// 	$customerGrid = Ccc::getBlock('Customer_Grid');
-	// 	$content->addChild($customerGrid,'grid');	
-	// 	$this->renderLayout();
-	// }
-
-	// public function addAction()
-	// {
-	// 	$this->setTitle('Customer Add');
-	// 	$customerModel = Ccc::getModel('customer');
-	// 	$billingAddress = $customerModel->getBillingAddress();
-	// 	$shippingAddress = $customerModel->getShippingAddress();
-	// 	$content = $this->getLayout()->getContent();
-	// 	$customerAdd = Ccc::getBlock('Customer_Edit');
-	// 	Ccc::register('customer',$customerModel);
-	// 	Ccc::register('billingAddress',$billingAddress);
-	// 	Ccc::register('shippingAddress',$shippingAddress);
-	// 	$content->addChild($customerAdd,'add'); 
-	// 	$this->renderLayout();
-	// }
-
-	// public function editAction()
-	// {
-	// 	$customerModel = Ccc::getModel('Customer');
-	// 	$request = $this->getRequest();
-	// 	$id = (int)$request->getRequest('id');
-		
-	// 	if(!$id)
-	// 	{
-	// 		throw new Exception("Invalid Request", 1);
-	// 	}
-		
-	// 	$customer=$customerModel->load($id);
-		
-	// 	if(!$customer)
-	// 	{	
-	// 		throw new Exception("System is unable to find record.", 1);	
-	// 	}
-
-	// 	$this->setTitle('Customer Edit');
-	// 	$content = $this->getLayout()->getContent();
-	// 	$customerEdit = Ccc::getBlock('Customer_Edit');
-	// 	Ccc::register('customer',$customer);
-	// 	Ccc::register('billingAddress',$customer->getBillingAddress());
-	// 	Ccc::register('shippingAddress',$customer->getShippingAddress());
-	// 	$content->addChild($customerEdit,'edit'); 
-	// 	$this->renderLayout();
-	// }
-
+	
 	public function deleteAction()
 	{
 		try 

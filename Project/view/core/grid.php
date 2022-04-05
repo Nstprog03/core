@@ -70,6 +70,7 @@ $pager = $this->getPager(); ?>
 
 <script type="text/javascript">
    $("#addNew").click(function(){
+        //toastr.success("111111");
         admin.setData({'id' : null});
         admin.setUrl("<?php echo $this->getUrl('addBlock'); ?>");
         admin.load();
