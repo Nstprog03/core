@@ -2,14 +2,7 @@
 $customers = $this->getCustomers(); 
 $cart = $this->getCart();
 $customer = $cart->getCustomer();
-$billingAddress = $cart->getBillingAddress();
-$shippingAddress = $cart->getShippingAddress();
-$shippingMethods = $this->getShippingMethods();
-$paymentMethods = $this->getPaymentMethods();
-$item = $cart->getItem();
-$items = $this->getItems();
-$products = $this->getProducts();
-$disabled = (!$items)?'disabled':"";
+
 ?>
 
 <div class="row">
