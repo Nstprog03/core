@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout>
+	<category_adminhtml_category_index>
+		<reference name="content">
+            <block type="category/adminhtml_category_index" name="category_index"></block>
+        </reference>
+	</category_adminhtml_category_index>
+	<!-- <category_adminhtml_category_edit>
+		<reference name="content">
+            <block type="category/adminhtml_category_edit" name="category_edit"></block>
+        </reference>
+	</category_adminhtml_category_edit> -->
+</layout>

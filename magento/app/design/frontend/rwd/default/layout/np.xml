@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <np_index_index>
+        <reference name="content">
+            <block type="np/np" name="template_file" template="np/np.phtml"></block>
+        </reference>
+    </np_index_index>
+    <np_index_editdata>
+        <reference name="content">
+            <block type="np/np" name="template_file" template="np/edit.phtml"></block>
+        </reference>
+    </np_index_editdata>
+</layout>

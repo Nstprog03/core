@@ -1,0 +1,12 @@
+<layout version="0.1.0">
+     <default>
+          <reference name="content">
+          </reference>
+      </default>
+
+      <Hello_index_index>
+           <reference name="content">
+                <block type="lucifer_Hellow/grid"  name="grid_grid" template="lucifer_Hellow/grid.phtml" />
+           </reference>
+      </Hello_index_index>
+</layout>

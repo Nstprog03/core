@@ -1,0 +1,32 @@
+<form method="POST" action="<?php echo $this->getUrl('np/index/save'); ?>" enctype="multipart/form-data">
+  <fieldset>
+    <legend>Student intion:</legend>
+    Name:<br>
+    <input type="text" name="name" minlength="3" placeholder="Enter Name" required>
+    <br>
+    Email:<br>
+    <input type="email" name="email" placeholder="Enter Email" required>
+    <br>
+    Roll No.:<br>
+    <input type="number" name="rollno" min="1" placeholder="Enter Roll No." required>
+    <br><br>
+    <br>
+    gender:<br>
+          <input type="radio" name="gender" value="male" checked> Male<br>
+            <input type="radio" name="gender" value="female"> Female<br>
+    <br>
+        <label for="filename"><?php echo $this->__('File1') ?></label><br />
+        <input type="file" id="filename" name="filename" /><br/>
+    <br/>
+ status:<br>
+ <select name="status">
+ <option value="0">Enable</option>
+ <option value="1">Disable</option>
+ </select>
+    <br>    
+    <input type="submit" value="Submit">
+  </fieldset>
+</form>
+<?php
+$collection = Mage::getModel('np/np')->getCollection()->setOrder('rollno', 'DESC');
+?>

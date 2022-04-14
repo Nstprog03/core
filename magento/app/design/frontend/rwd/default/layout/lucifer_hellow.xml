@@ -1,0 +1,7 @@
+<layout version='0.1.0'>
+	<Hellow_index_index>
+		<reference name="content">
+			<block type="lucifer_hellow/grid" name="grid_grid" template='lucifer_hellow/grid.phtml'>
+		</reference>
+	</Hellow_index_index>
+</layout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Np_Salesman>
+			<version>1.0.0</version>
+		</Np_Salesman>
+	</modules>
+	<admin>
+		<routers>
+			<salesman>
+				<use>admin</use>
+				<args>
+					<module>Np_Salesman</module>
+                    <frontName>salesman</frontName>
+				</args>
+			</salesman>
+		</routers>
+	</admin>
+	<adminhtml>
+		<menu>
+	        <salesman translate="title" module="salesman">
+	            <title>Salesman</title>
+	            <sort_order>40</sort_order>
+	            <!-- action>adminhtml/salesman/</action -->
+	            <children>
+	                <manage translate="title" module="salesman">
+	                    <title>Manage Salesman</title>
+	                    <action>salesman/adminhtml_salesman/</action>
+	                    <sort_order>0</sort_order>
+	                </manage>
+	            </children>
+	         </salesman>
+	     </menu>
+	     <layout>
+            <updates>
+                <salesman>
+                    <file>salesman.xml</file>
+                </salesman>
+            </updates>
+        </layout>
+	</adminhtml>
+	<global>
+		<helpers>
+            <salesman>
+                <class>Np_Salesman_Helper</class>
+            </salesman>
+        </helpers>
+        <blocks>
+            <salesman>
+                <class>Np_Salesman_Block</class>
+            </salesman>
+        </blocks>
+        <models>
+            <salesman>
+                <class>Np_Salesman_Model</class>
+                <resourceModel>salesman_resource</resourceModel>
+            </salesman>
+            <salesman_resource>
+                <class>Np_Salesman_Model_Resource</class>
+                <deprecatedNode>salesman_mysql4</deprecatedNode>
+                <entities>
+                    <salesman>
+                        <table>salesman</table>
+                    </salesman>
+                </entities>
+            </salesman_resource>
+        </models>
+	</global>
+</config>

@@ -1,0 +1,97 @@
+<form method="POST" action="<?php echo $this->getUrl('pro/index/save'); ?>" enctype="multipart/form-data">
+  <fieldset>
+    <legend>Student intion:</legend>
+    Name:<br>
+    <input type="text" name="name" minlength="3" placeholder="Enter Name" required>
+    <br>
+    Email:<br>
+    <input type="email" name="email" placeholder="Enter Email" required>
+    <br>
+    Roll No.:<br>
+    <input type="number" name="rollno" min="1" placeholder="Enter Roll No." required>
+    <br><br>
+
+    <br>
+    gender:<br>
+          <input type="radio" name="gender" value="male" checked> Male<br>
+            <input type="radio" name="gender" value="female"> Female<br>
+    <br>
+
+        <label for="filename"><?php echo $this->__('File1') ?></label><br />
+        <input type="file" id="filename" name="filename" /><br/>
+    <br/>
+ status:<br>
+ <select name="status">
+ <option value="0">Enable</option>
+ <option value="1">Disable</option>
+ </select>
+
+    <br>    
+
+    <input type="submit" value="Submit">
+  </fieldset>
+</form>
+
+
+
+
+<?php
+
+$collection = Mage::getModel('pro/pro')->getCollection()->setOrder('rollno', 'DESC');
+
+
+
+?>
+<div id="table_id">
+      <table width="80%" border="1px" style="text-align:center">
+<?php
+foreach($collection as $collect)
+{
+    //if($collect->getStatus() == 1)
+    {
+    ?>
+
+    <tr>
+        <td>
+                <?php echo $collect->getstd_id(); ?>
+        </td>   
+        <td>
+                <?php echo $collect->getStdname(); ?>
+        </td>
+        <td>
+                <?php echo $collect->getEmail(); ?>
+        </td>
+        <td>
+                <?php echo $collect->getRollno(); ?>
+        </td>
+                <td>
+                <?php echo $collect->getCountry(); ?>
+        </td>
+                <td>
+                <?php echo $collect->getGender(); ?>
+        </td>
+        <td>
+                <?php $v  = Mage::getBaseUrl("media")."test/".$collect->getFilename();?>
+<?php// echo $v; ?>             
+                <img src='<?php echo $v; ?>' height=50px width= 50px/>
+        </td>
+        <td>
+                <a href="<?php echo $this->getBaseUrl().'pro/index/deletedata?id='.$collect->getstd_id() ?>">
+                <?php echo $this->__('DELETE'); ?></a>
+        </td>
+        <td>
+                <a href="<?php echo $this->getBaseUrl().'pro/index/editData?id='.$collect->getstd_id() ?>">
+                <?php echo $this->__('EDIT'); ?></a>
+        </td>
+
+
+    </tr>
+
+
+<?php 
+    }
+}
+
+?>
+</table>
+</div>

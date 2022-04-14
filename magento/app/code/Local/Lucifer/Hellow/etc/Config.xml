@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+ 
+<config>
+    <modules>
+        <Lucifer_Hellow>
+            <version>0.1.0</version>
+        </Lucifer_Hellow>
+    </modules>    
+    <frontend>
+        <routers>
+            <Hellow>
+                <use>standard</use>
+                <args>
+                    <module>Lucifer_Hellow</module>
+                    <frontName>lucifer</frontName>
+                </args>
+            </Hellow>
+        </routers>
+        <layout>
+           <updates>
+                <lucifer_hellow>
+                     <file>lucifer_hellow.xml</file>
+                 </lucifer_hellow>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <blocks>
+            <lucifer_hellow>
+                <class>Lucifer_Hellow_Block</class>
+            </lucifer_hellow>
+        </blocks>
+    </global>
+</config>

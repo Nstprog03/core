@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Np_Category>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Np_Category>
+	</modules>
+</config>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+ 
+<config>
+    <modules>
+        <Lucifer_Hellow>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Lucifer_Hellow>
+    </modules>
+</config>

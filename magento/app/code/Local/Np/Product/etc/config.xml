@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Np_Product>
+			<version>1.0.0</version>
+		</Np_Product>
+	</modules>
+	<admin>
+		<routers>
+			<product>
+				<use>admin</use>
+				<args>
+					<module>Np_Product</module>
+                    <frontName>product</frontName>
+				</args>
+			</product>
+		</routers>
+	</admin>
+	<adminhtml>
+		<menu>
+	        <product translate="title" module="product">
+	            <title>Product</title>
+	            <sort_order>40</sort_order>
+	            <!-- action>adminhtml/product/</action -->
+	            <children>
+	                <manage translate="title" module="product">
+	                    <title>Manage Product</title>
+	                    <action>product/adminhtml_product/</action>
+	                    <sort_order>0</sort_order>
+	                </manage>
+	            </children>
+	         </product>
+	     </menu>
+	     <layout>
+            <updates>
+                <product>
+                    <file>product.xml</file>
+                </product>
+            </updates>
+        </layout>
+	</adminhtml>
+	<global>
+		<helpers>
+            <product>
+                <class>Np_Product_Helper</class>
+            </product>
+        </helpers>
+        <blocks>
+            <product>
+                <class>Np_Product_Block</class>
+            </product>
+        </blocks>
+        <models>
+            <product>
+                <class>Np_Product_Model</class>
+                <resourceModel>product_resource</resourceModel>
+            </product>
+            <product_resource>
+                <class>Np_Product_Model_Resource</class>
+                <deprecatedNode>product_mysql4</deprecatedNode>
+                <entities>
+                    <product>
+                        <table>product</table>
+                    </product>
+                </entities>
+            </product_resource>
+        </models>
+	</global>
+</config>

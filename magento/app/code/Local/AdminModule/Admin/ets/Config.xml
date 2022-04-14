@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+ 
+<config>
+    <modules>
+        <AdminModule_Admin>
+            <version>0.1.0</version>
+        </AdminModule_Admin>
+    </modules>    
+    <frontend>
+        <routers>
+            <hello>
+                <use>standard</use>
+                <args>
+                    <module>AdminModule_Admin</module>
+                    <frontName>luciferadmin</frontName>
+                </args>
+            </hello>
+        </routers>
+    </frontend>
+</config>
