@@ -1,0 +1,9 @@
+a:5:{i:0;s:51:"Can't retrieve entity config: product/product_media";i:1;s:1050:"#0 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Model\Resource.php(282): Mage::throwException('Can't retrieve ...')
+#1 C:\xampp7.42\htdocs\magento\app\code\Local\Np\Product\controllers\Adminhtml\productController.php(8): Mage_Core_Model_Resource->getTableName('product/product...')
+#2 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Controller\Varien\Action.php(418): Np_Product_Adminhtml_productController->indexAction()
+#3 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Controller\Varien\Router\Standard.php(254): Mage_Core_Controller_Varien_Action->dispatch('index')
+#4 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Controller\Varien\Front.php(172): Mage_Core_Controller_Varien_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#5 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Model\App.php(365): Mage_Core_Controller_Varien_Front->dispatch()
+#6 C:\xampp7.42\htdocs\magento\app\Mage.php(683): Mage_Core_Model_App->run(Array)
+#7 C:\xampp7.42\htdocs\magento\index.php(83): Mage::run('', 'store')
+#8 {main}";s:3:"url";s:88:"/magento/index.php/product/adminhtml_product/index/key/76f5dc0c0f2ae32ca92cfced1a72db3e/";s:11:"script_name";s:18:"/magento/index.php";s:4:"skin";s:5:"admin";}

@@ -91,3 +91,58 @@
 2022-04-12T09:59:53+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 1: parser error : parsing XML declaration: '?&gt;' expected  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
 2022-04-12T09:59:53+00:00 ERR (3): Warning: simplexml_load_string(): &lt;?xml version=&quot;1.0&quot;&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
 2022-04-12T09:59:53+00:00 ERR (3): Warning: simplexml_load_string():                    ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-14T05:18:41+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 1: parser error : XML declaration allowed only at the start of the document  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-14T05:18:41+00:00 ERR (3): Warning: simplexml_load_string(): 	&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-14T05:18:41+00:00 ERR (3): Warning: simplexml_load_string(): 	     ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 24: parser error : Double hyphen within comment: &lt;!-- &lt;menu&gt;
+	        &lt;product_media translate=&quot;title&quot;   in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): 	            &lt;!-- action&gt;adminhtml/product_media/&lt;/action --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): 	              ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 32: parser error : Opening and ending tag mismatch: adminhtml line 19 and product_media  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): 	         &lt;/product_media&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): 	                         ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 33: parser error : Opening and ending tag mismatch: config line 19 and menu  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): 	     &lt;/menu&gt; --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): 	            ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 33: parser error : Extra content at the end of the document  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): 	     &lt;/menu&gt; --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:48+00:00 ERR (3): Warning: simplexml_load_string(): 	             ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 24: parser error : Double hyphen within comment: &lt;!-- &lt;menu&gt;
+	        &lt;product_media translate=&quot;title&quot;   in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): 	            &lt;!-- action&gt;adminhtml/product_media/&lt;/action --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): 	              ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 32: parser error : Opening and ending tag mismatch: adminhtml line 19 and product_media  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): 	         &lt;/product_media&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): 	                         ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 33: parser error : Opening and ending tag mismatch: config line 19 and menu  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): 	     &lt;/menu&gt; --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): 	            ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 33: parser error : Extra content at the end of the document  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): 	     &lt;/menu&gt; --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:50+00:00 ERR (3): Warning: simplexml_load_string(): 	             ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 24: parser error : Double hyphen within comment: &lt;!-- &lt;menu&gt;
+	        &lt;product_media translate=&quot;title&quot;   in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): 	            &lt;!-- action&gt;adminhtml/product_media/&lt;/action --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): 	              ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 32: parser error : Opening and ending tag mismatch: adminhtml line 19 and product_media  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): 	         &lt;/product_media&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): 	                         ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 33: parser error : Opening and ending tag mismatch: config line 19 and menu  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): 	     &lt;/menu&gt; --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): 	            ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 33: parser error : Extra content at the end of the document  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): 	     &lt;/menu&gt; --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:53+00:00 ERR (3): Warning: simplexml_load_string(): 	             ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 24: parser error : Double hyphen within comment: &lt;!-- &lt;menu&gt;
+	        &lt;product_media translate=&quot;title&quot;   in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): 	            &lt;!-- action&gt;adminhtml/product_media/&lt;/action --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): 	              ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 32: parser error : Opening and ending tag mismatch: adminhtml line 19 and product_media  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): 	         &lt;/product_media&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): 	                         ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 33: parser error : Opening and ending tag mismatch: config line 19 and menu  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): 	     &lt;/menu&gt; --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): 	            ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): Entity: line 33: parser error : Extra content at the end of the document  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): 	     &lt;/menu&gt; --&gt;  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510
+2022-04-15T05:31:57+00:00 ERR (3): Warning: simplexml_load_string(): 	             ^  in C:\xampp7.42\htdocs\magento\lib\Varien\Simplexml\Config.php on line 510

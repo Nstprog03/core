@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 
 	class Np_Category_Block_Adminhtml_Category_Index_Edit extends Mage_Adminhtml_Block_Widget_Form_Container 

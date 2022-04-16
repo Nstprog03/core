@@ -9,7 +9,7 @@ class Np_Salesman_Adminhtml_salesmanController extends Mage_Adminhtml_Controller
 		$this->renderLayout();
 	}
 
-	 public function newAction()
+	public function newAction()
 	{
 		$this->_forward('edit');
 	}
@@ -19,7 +19,7 @@ class Np_Salesman_Adminhtml_salesmanController extends Mage_Adminhtml_Controller
  		$salesmanId = $this->getRequest()->getParam('id');
 
 		$salesmanModel = Mage::getModel('salesman/salesman')->load($salesmanId);
-
+		//print_r()
 		if ($salesmanModel->getId() || $salesmanId == 0) 
 		{
 

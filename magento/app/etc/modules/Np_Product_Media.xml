@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Np_Product_Media>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Np_Product_Media>
+	</modules>
+</config>

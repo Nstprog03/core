@@ -16,11 +16,11 @@ class Np_Category_Adminhtml_categoryController extends Mage_Adminhtml_Controller
 
 	public function editAction()
  	{
- 		$categoryId = $this->getRequest()->getParam('id');
+ 		$category_id = $this->getRequest()->getParam('id');
 
-		$categoryModel = Mage::getModel('category/category')->load($categoryId);
+		$categoryModel = Mage::getModel('category/category')->load($category_id);
 
-		if ($categoryModel->getId() || $categoryId == 0) 
+		if ($categoryModel->getId() || $category_id == 0) 
 		{
 
 			Mage::register('category_data', $categoryModel);
@@ -44,18 +44,112 @@ class Np_Category_Adminhtml_categoryController extends Mage_Adminhtml_Controller
 
  	public function saveAction()
  	{
- 		$postData = $this->getRequest()->getPost();
- 		$category = Mage::getModel('category/category');
- 		if($this->getRequest()->getParam('id'))
- 		{
- 			$postData = array_merge(['category_id'=>$this->getRequest()->getParam('id'),'updatedAt'=>date("Y-m-d H:i:s")],$postData);
- 		}
- 		else
- 		{
- 			$postData = array_merge(['createdAt'=>date("Y-m-d H:i:s")],$postData);
- 		}
- 		$category->setData($postData);
- 		$category->save();
+ 		echo "<pre>";
+ 		//$postData = $this->getRequest()->getPost();
+ 		//print_r($postData);
+ 		//exit;
+ 		$categoryModel = Mage::getModel('category/category');
+            $request = $this->getRequest();
+ 			$selected_id = $request->getPost('selected_id');
+ 			$name = $request->getPost('name');
+            $id = $request->getParam('id');
+            if($request->getPost())
+            {
+                $postData = $request->getPost();
+                unset($postData['selected_id']);
+                $categoryData = $categoryModel->setData($postData);
+                if(!empty($id))
+                {
+                    $categoryData->category_id = $id;
+                    $categoryData->updatedAt = date('y-m-d h:m:s');
+                    if(!$selected_id)
+                    {
+                        $categoryData->parent_id = NULL;
+                    }
+                    else
+                    {
+                    	$categoryData->parent_id = $selected_id;	
+                    }
+                    $result = $categoryModel->save();
+                    if(!$result)
+                    {
+                        throw new Exception("Sysetm is unable to save your data");   
+                    }
+                    $allPath = $categoryModel->getResource()->getReadConnection()->fetchAll("SELECT * FROM `category` WHERE `path` LIKE '%$id%' ");
+                    // $allPath = $categoryModel->fetchAll("SELECT * FROM `category` WHERE `path` LIKE '%$id%' ");
+                    //print_r($allPath);
+                    foreach ($allPath as $path) 
+                    {
+                        $finalPath = explode('/',$path['path']);
+                        foreach ($finalPath as $subPath) 
+                        {
+                            if($subPath == $id)
+                            {
+                                if(count($finalPath) != 1)
+                                {
+                                    array_shift($finalPath);
+                                }    
+                                break;
+                            }
+                            array_shift($finalPath);
+                        }
+                        if($path['parent_id'])
+                        {
+                            $parentPath = $categoryModel->load($path['parent_id']);
+                            $path['path'] = $parentPath->path ."/".implode('/',$finalPath);
+                        }
+                        else
+                        {
+                            $path['path'] = $path['category_id'];
+                        }
+                        $savePath = Mage::getModel('category/category');
+                        $savePath->setData($path);
+                        $result = $savePath->save();
+                    }
+                }
+                else
+                {
+                    $categoryData->createdAt = date('y-m-d h:m:s');
+                    if(!$selected_id)
+                    {
+                        $insert = $categoryModel->save();
+                        if(!$insert->category_id)
+                        {
+                            throw new Exception("system is unabel to insert your data");
+                        }
+                        $category_id = $insert->category_id;
+                        // print_r(get_class_methods($categoryData));
+                        $categoryData->unsetData();
+                        $categoryData->path = $category_id;
+                        $categoryData->path_name = $categoryData->getPath();
+                        $categoryData->category_id = $category_id;
+                        $result = $categoryModel->save();
+                    }
+                    else
+                    {
+                        $insert = $categoryModel->save();
+                        print_r($insert);
+
+                        if(!$insert->category_id)
+                        {
+                            throw new Exception("system is unabel to insert your data");
+                        }
+                        $new_id = $insert->category_id;
+                        $parentPath = $categoryModel->load($selected_id);
+                        $categoryData->category_id = $new_id;
+                        $categoryData->parent_id = $selected_id;
+                        $categoryData->name = $name;
+                        $categoryData->path = $parentPath->path."/". $new_id;
+                        $categoryData->path_name = $categoryData->getPath();
+                        
+                        $result = $categoryData->save();
+                    }
+                    if(!$result)
+                    {
+                        throw new Exception("Sysetm is unable to save your data");   
+                    }
+                }
+            }
  		$this->_redirect('*/*/');
  	}
  	public function deleteAction()

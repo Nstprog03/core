@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Np_Product_Media>
+			<version>1.0.0</version>
+		</Np_Product_Media>
+	</modules>
+	<admin>
+		<routers>
+			<product_media>
+				<use>admin</use>
+				<args>
+					<module>Np_Product_Media</module>
+                    <frontName>product_media</frontName>
+				</args>
+			</product_media>
+		</routers>
+	</admin>
+	<adminhtml>
+		
+	     <layout>
+            <updates>
+                <product_media>
+                    <file>product_media.xml</file>
+                </product_media>
+            </updates>
+        </layout>
+	</adminhtml>
+	<global>
+		<helpers>
+            <product_media>
+                <class>Np_Product_Media_Helper</class>
+            </product_media>
+        </helpers>
+        <blocks>
+            <product_media>
+                <class>Np_Product_Media_Block</class>
+            </product_media>
+        </blocks>
+        <models>
+            <product_media>
+                <class>Np_Product_Media_Model</class>
+                <resourceModel>product_media_resource</resourceModel>
+            </product_media>
+            <product_media_resource>
+                <class>Np_Product_Media_Model_Resource</class>
+                <deprecatedNode>product_media_mysql4</deprecatedNode>
+                <entities>
+                    <product_media>
+                        <table>product_media</table>
+                    </product_media>
+                </entities>
+            </product_media_resource>
+        </models>
+	</global>
+</config>

@@ -4,14 +4,12 @@ class Np_Category_Block_Adminhtml_Category_Index_Grid extends Mage_Adminhtml_Blo
 {
 
     public function __construct()
-    {
-        
+    {        
         parent::__construct();
         $this->setId('category_index');
         $this->setDefaultSort('type');
         $this->setDefaultDir('asc');
         $this->setSaveParametersInSession(true);
-
     }
 
     /**
@@ -21,8 +19,11 @@ class Np_Category_Block_Adminhtml_Category_Index_Grid extends Mage_Adminhtml_Blo
     protected function _prepareCollection()
     {
         $collection = Mage::getResourceModel('category/category_collection');
-
+        foreach ($collection->getItems() as $col) {
+            $col->name = $col->getPath();
+        }
         $this->setCollection($collection);
+
         return parent::_prepareCollection();
     }
 
@@ -37,11 +38,20 @@ class Np_Category_Block_Adminhtml_Category_Index_Grid extends Mage_Adminhtml_Blo
             'align' => 'right',
             'index' => 'category_id',
         ));
-
         $this->addColumn('name', array(
-            'header' => Mage::helper('category')->__('Name'),
+            'header' => Mage::helper('category')->__('Category Path'),
             'index' => 'name',
         ));
+
+        // $this->addColumn('name', array(
+        //     'header' => Mage::helper('category')->__('Name'),
+        //     'index' => 'name',
+        // ));
+        // //$this->addColumn('pathName',);
+        // $this->addColumn('path', array(
+        //     'header' => Mage::helper('category')->__('Path'),
+        //     'index' => 'path',
+        // ));
         $this->addColumn('createdAt', array(
             'header' => Mage::helper('category')->__('Created Date Time'),
             'index' => 'createdAt',
@@ -49,6 +59,18 @@ class Np_Category_Block_Adminhtml_Category_Index_Grid extends Mage_Adminhtml_Blo
         $this->addColumn('updatedAt', array(
             'header' => Mage::helper('category')->__('Updated Date Time'),
             'index' => 'updatedAt',
+        ));
+        $this->addColumn('status', array(
+
+            'header' => Mage::helper('category')->__('Status'),
+             'align' => 'left',
+             'width' => '80px',
+             'index' => 'status',
+             'type' => 'options',
+             'options' => array(
+                     1 => 'Active',
+                     0 => 'Inactive',
+                    ),
         ));
 
         return parent::_prepareColumns();

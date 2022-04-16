@@ -14,12 +14,13 @@
     protected function _beforeToHtml()
     {
         $this->addTab('form_section', array(
-        'name' => Mage::helper('product')->__('Name'),
-        'quantity' => Mage::helper('product')->__('Quantity'),
-        'price' => Mage::helper('product')->__('Price'),
-        'costPrice' => Mage::helper('product')->__('Cost Price'),
-        'sku' => Mage::helper('product')->__('SKU'),
+        'label' => Mage::helper('product')->__('Product Detail'),
         'content' => $this->getLayout()->createBlock('product/adminhtml_product_index_edit_tab_form')->toHtml(),));
+
+        $this->addTab('form_section2', array(
+        'label' => Mage::helper('product')->__('Media'),
+        'content' => $this->getLayout()->createBlock('product/adminhtml_product_index_edit_tab_media')->toHtml(),));
+
 
 
         return parent::_beforeToHtml();

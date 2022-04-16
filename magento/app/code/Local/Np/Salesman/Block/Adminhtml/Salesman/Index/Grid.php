@@ -21,7 +21,6 @@ class Np_Salesman_Block_Adminhtml_Salesman_Index_Grid extends Mage_Adminhtml_Blo
     protected function _prepareCollection()
     {
         $collection = Mage::getResourceModel('salesman/salesman_collection');
-
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
