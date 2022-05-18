@@ -1035,6 +1035,7 @@ class Mage_Adminhtml_Block_Widget_Grid extends Mage_Adminhtml_Block_Widget
 
         $io->streamUnlock();
         $io->streamClose();
+        
 
         return array(
             'type'  => 'filename',

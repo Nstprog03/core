@@ -1,0 +1,106 @@
+2022-05-16T13:56:03+00:00 DEBUG (7): Array
+(
+    [attribute_id] => 169
+    [values] => Array
+        (
+            [1] => option1
+        )
+
+)
+
+2022-05-16T13:56:03+00:00 DEBUG (7): Array
+(
+    [value] => 43
+    [label] => option1
+    [attribute_id] => 169
+    [values] => Array
+        (
+            [2] => option2
+        )
+
+)
+
+2022-05-16T13:56:03+00:00 DEBUG (7): Array
+(
+    [value] => 43
+    [label] => option1
+    [attribute_id] => 169
+    [values] => Array
+        (
+            [3] => option3
+        )
+
+)
+
+2022-05-16T13:56:03+00:00 DEBUG (7): Array
+(
+    [value] => 43
+    [label] => option1
+    [attribute_id] => 169
+    [values] => Array
+        (
+            [4] => option4
+        )
+
+)
+
+2022-05-16T13:56:03+00:00 DEBUG (7): Array
+(
+    [value] => 43
+    [label] => option1
+    [attribute_id] => 169
+    [values] => Array
+        (
+            [5] => option5
+        )
+
+)
+
+2022-05-16T13:56:03+00:00 DEBUG (7): Array
+(
+    [value] => 43
+    [label] => option1
+    [attribute_id] => 169
+    [values] => Array
+        (
+            [6] => option6
+        )
+
+)
+
+2022-05-16T13:56:03+00:00 DEBUG (7): Array
+(
+    [value] => 43
+    [label] => option1
+    [attribute_id] => 169
+    [values] => Array
+        (
+            [7] => option7
+        )
+
+)
+
+2022-05-16T13:56:03+00:00 DEBUG (7): Array
+(
+    [value] => 43
+    [label] => option1
+    [attribute_id] => 169
+    [values] => Array
+        (
+            [8] => option8
+        )
+
+)
+
+2022-05-16T13:56:03+00:00 DEBUG (7): Array
+(
+    [value] => 43
+    [label] => option1
+    [attribute_id] => 169
+    [values] => Array
+        (
+            [9] => option9
+        )
+
+)
+

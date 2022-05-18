@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<layout>
+	<process_adminhtml_process_group_index>
+		<reference name="content">
+            <block type="process/adminhtml_process_group" name="process_group"></block>
+        </reference>
+	</process_adminhtml_process_group_index>
+    <process_adminhtml_process_group_edit>
+        <reference name="content">
+            <block type="process/adminhtml_process_group_edit" name="process_group_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="process/adminhtml_process_group_edit_tabs" name="process_group_edit_tabs"></block>
+        </reference>
+    </process_adminhtml_process_group_edit>
+    <process_adminhtml_process_index>
+		<reference name="content">
+            <block type="process/adminhtml_process" name="process"></block>
+        </reference>
+	</process_adminhtml_process_index>
+    <process_adminhtml_process_edit>
+        <reference name="content">
+            <block type="process/adminhtml_process_edit" name="process_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="process/adminhtml_process_edit_tabs" name="process_edit_tabs"></block>
+        </reference>
+    </process_adminhtml_process_edit>
+	<process_adminhtml_process_column_index>
+		<reference name="content">
+            <block type="process/adminhtml_process_column" name="process_column"></block>
+        </reference>
+	</process_adminhtml_process_column_index>
+    <process_adminhtml_process_column_edit>
+        <reference name="content">
+            <block type="process/adminhtml_process_column_edit" name="process_column_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="process/adminhtml_process_column_edit_tabs" name="process_column_edit_tabs"></block>
+        </reference>
+    </process_adminhtml_process_column_edit>
+    <process_adminhtml_process_entry_index>
+        <reference name="content">
+            <block type="process/adminhtml_process_entry" name="process_entry"></block>
+        </reference>
+    </process_adminhtml_process_entry_index>
+    <process_adminhtml_process_entry_edit>
+        <reference name="content">
+            <block type="process/adminhtml_process_entry_edit" name="process_entry_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="process/adminhtml_process_entry_edit_tabs" name="process_entry_edit_tabs"></block>
+        </reference>
+    </process_adminhtml_process_entry_edit>
+    <process_adminhtml_process_upload_index>
+        <reference name="content">
+            <block type="process/adminhtml_process" name="process"></block>
+        </reference>
+    </process_adminhtml_process_upload_index>
+    <process_adminhtml_process_upload_uploadfile>
+        <reference name="content">
+            <block type="process/adminhtml_process_upload_edit" name="process_upload_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="process/adminhtml_process_upload_edit_tabs" name="process_upload_edit_tabs"></block>
+        </reference>
+    </process_adminhtml_process_upload_uploadfile>  
+    <process_adminhtml_process_upload_execute>
+        <reference name="content">
+            <block type="process/adminhtml_process_upload" name="process_exexute" template="process/upload.phtml" />
+        </reference>
+    </process_adminhtml_process_upload_execute>
+
+</layout>

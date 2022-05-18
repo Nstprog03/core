@@ -1,0 +1,9 @@
+a:5:{i:0;s:133:"Error in file: "C:\xampp7.42\htdocs\magento\app\code\local\Np\Vendor\sql\vendor_setup\install-0.0.1.php" - Can't create table: vendor";i:1;s:972:"#0 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Model\Resource\Setup.php(644): Mage::exception('Mage_Core', 'Error in file: ...')
+#1 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Model\Resource\Setup.php(421): Mage_Core_Model_Resource_Setup->_modifyResourceDb('install', '', '0.0.3')
+#2 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Model\Resource\Setup.php(327): Mage_Core_Model_Resource_Setup->_installResourceDb('0.0.3')
+#3 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Model\Resource\Setup.php(235): Mage_Core_Model_Resource_Setup->applyUpdates()
+#4 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Model\App.php(428): Mage_Core_Model_Resource_Setup::applyAllUpdates()
+#5 C:\xampp7.42\htdocs\magento\app\code\core\Mage\Core\Model\App.php(354): Mage_Core_Model_App->_initModules()
+#6 C:\xampp7.42\htdocs\magento\app\Mage.php(683): Mage_Core_Model_App->run(Array)
+#7 C:\xampp7.42\htdocs\magento\index.php(83): Mage::run('', 'store')
+#8 {main}";s:3:"url";s:86:"/magento/index.php/vendor/adminhtml_vendor/index/key/c210c9d0c61ac99f5998eca83d15e08c/";s:11:"script_name";s:18:"/magento/index.php";s:4:"skin";s:7:"default";}

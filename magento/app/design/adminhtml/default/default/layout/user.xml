@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<layout>
+	<adminhtml_user_index>
+		<reference name="content">
+			<block type="user/adminhtml_user" name="user_grid"/>
+		</reference>
+	</adminhtml_user_index>
+
+	<adminhtml_user_attribute_edit>
+		<reference name="left">
+			<block type="user/adminhtml_user_attribute_edit_tabs" name="attribute_tabs"/>
+		</reference>
+		<reference name="content">
+			<block type="user/adminhtml_user_attribute_edit" name="attribute_edit"/>
+		</reference>
+		<reference name="js">
+            <block type="adminhtml/template" name="attribute_edit_js" template="user/attribute/js.phtml"></block>
+        </reference>
+	</adminhtml_user_attribute_edit>
+
+	<adminhtml_user_edit>
+		<reference name="content">
+			<block type="user/adminhtml_user_edit" name="user_edit"/>
+		</reference>
+		<reference name="left">
+			<block type="user/adminhtml_user_edit_tabs" name="user_tabs"/>
+		</reference>
+		<reference name="js">
+			<block type="adminhtml/catalog_product_edit_js" template="catalog/product/js.phtml" name="catalog_product_js"></block>
+            <block type="core/template" template="catalog/wysiwyg/js.phtml"/>
+		</reference>
+	</adminhtml_user_edit>
+</layout>

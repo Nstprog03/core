@@ -3,6 +3,8 @@ class Np_Salesman_Adminhtml_salesmanController extends Mage_Adminhtml_Controller
 {
 	public function indexAction()
 	{
+
+
 		$this->_title($this->__('Salesman'))->_title($this->__('Salesman Group'));
 		$this->loadLayout();
 		$this->_setActiveMenu('salesman/group');

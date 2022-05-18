@@ -59,7 +59,8 @@ class Mage_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Action
     {
         $session = Mage::getSingleton('admin/session');
         $url = $session->getUser()->getStartupPageUrl();
-        if ($session->isFirstPageAfterLogin()) {
+        if ($session->isFirstPageAfterLogin()) 
+        {
             // retain the "first page after login" value in session (before redirect)
             $session->setIsFirstPageAfterLogin(true);
         }
@@ -76,6 +77,8 @@ class Mage_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Action
             return;
         }
         $loginData = $this->getRequest()->getParam('login');
+        // print_r($loginData);
+        // exit
         $username = (is_array($loginData) && array_key_exists('username', $loginData)) ? $loginData['username'] : null;
 
         $this->loadLayout();

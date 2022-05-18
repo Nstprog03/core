@@ -167,6 +167,7 @@ class Mage_Adminhtml_Block_Catalog_Product_Helper_Form_Gallery_Content extends M
      */
     public function getMediaAttributes()
     {
+        
         return $this->getElement()->getDataObject()->getMediaAttributes();
     }
 

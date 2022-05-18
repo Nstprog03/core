@@ -1,0 +1,6 @@
+ID,Group,"Type Id",Name,"Per Request Count","Request Interval","Request model","File Name","Created Date"
+1,wholesale,Import,"Nishith Parmar",140,20,abc,customers27042022094151.csv,
+2,wholesale,Import,laptop,140,20,abc,qq,
+3,wholesale,Export,laptop,140,20,abc,123.csv,
+4,retail,Import,laptop,140,20,abc,xyzxx.csv,
+5,retail,Import,process,120,1,njnj,page.csv,

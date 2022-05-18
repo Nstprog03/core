@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<process>
+			<title>Process</title>
+			<sort_order>72</sort_order>
+			<children>
+				<process>
+					<title>Manage Processes</title>
+					<sort_order>100</sort_order>
+					<action>process/adminhtml_process</action>
+				</process>
+				<process_group>
+					<title>Manage Process Group</title>
+					<sort_order>100</sort_order>
+					<action>process/adminhtml_process_group</action>
+				</process_group>
+				<process_column>
+					<title>Manage Process Column</title>
+					<sort_order>100</sort_order>
+					<action>process/adminhtml_process_column</action>
+				</process_column>
+				<process_entry>
+					<title>Manage Entries</title>
+					<sort_order>100</sort_order>
+					<action>process/adminhtml_process_entry</action>
+				</process_entry>
+			</children>
+		</process>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<process translate="title">
+						<title>Process</title>
+						<sort_order>1000</sort_order>
+						<children>
+							<alert translate="title">
+								<title>Manage Process</title>
+							</alert>
+
+							<alert translate="title">
+								<title>Manage Process Group</title>
+							</alert>
+
+							<alert translate="title">
+								<title>Manage Process Column</title>
+							</alert>
+
+							<alert translate="title">
+								<title>Manage Process Entry</title>
+							</alert>
+							
+						</children>
+					</process>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<user>
+			<title>User</title>
+			<sort_order>72</sort_order>
+			<children>
+				<user>
+					<title>Manage User</title>
+					<sort_order>100</sort_order>
+					<action>*/user</action>
+				</user>
+				<user_attribute>
+					<title>Attribute</title>
+					<sort_order>100</sort_order>
+					<children>
+						<user_attribute>
+							<title>Manage Attribute</title>
+							<sort_order>100</sort_order>
+							<action>*/user_attribute</action>
+						</user_attribute>
+						<user_set>
+							<title>Manage Attribute Set</title>
+							<sort_order>100</sort_order>
+							<action>*/user_set</action>
+						</user_set>
+					</children>
+				</user_attribute>
+			</children>
+		</user>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<user translate="title">
+						<title>User</title>
+						<sort_order>1000</sort_order>
+						<children>
+							<alert translate="title">
+								<title>Manage User</title>
+							</alert>
+
+							<alert translate="title">
+								<title>Manage Attribute</title>
+							</alert>
+
+							<alert translate="title">
+								<title>Manage Attribute set</title>
+							</alert>
+							
+						</children>
+					</user>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

@@ -19,7 +19,8 @@ class Np_Category_Block_Adminhtml_Category_Index_Grid extends Mage_Adminhtml_Blo
     protected function _prepareCollection()
     {
         $collection = Mage::getResourceModel('category/category_collection');
-        foreach ($collection->getItems() as $col) {
+        foreach ($collection->getItems() as $col)
+        {
             $col->name = $col->getPath();
         }
         $this->setCollection($collection);
@@ -42,23 +43,13 @@ class Np_Category_Block_Adminhtml_Category_Index_Grid extends Mage_Adminhtml_Blo
             'header' => Mage::helper('category')->__('Category Path'),
             'index' => 'name',
         ));
-
-        // $this->addColumn('name', array(
-        //     'header' => Mage::helper('category')->__('Name'),
-        //     'index' => 'name',
-        // ));
-        // //$this->addColumn('pathName',);
-        // $this->addColumn('path', array(
-        //     'header' => Mage::helper('category')->__('Path'),
-        //     'index' => 'path',
-        // ));
-        $this->addColumn('createdAt', array(
+        $this->addColumn('created_at', array(
             'header' => Mage::helper('category')->__('Created Date Time'),
-            'index' => 'createdAt',
+            'index' => 'created_at',
         ));
-        $this->addColumn('updatedAt', array(
+        $this->addColumn('updated_at', array(
             'header' => Mage::helper('category')->__('Updated Date Time'),
-            'index' => 'updatedAt',
+            'index' => 'updated_at',
         ));
         $this->addColumn('status', array(
 

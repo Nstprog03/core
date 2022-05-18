@@ -21,6 +21,12 @@ class Np_Product_Block_Adminhtml_Product_Index_Grid extends Mage_Adminhtml_Block
     protected function _prepareCollection()
     {
         $collection = Mage::getResourceModel('product/product_collection');
+        foreach ($collection->getItems() as $col)
+        {
+            $categoryModel = Mage::getModel('category/category')->load($col->category_id);
+            $col->category = $categoryModel->getPath();
+        }
+        $this->setCollection($collection);
 
         $this->setCollection($collection);
         return parent::_prepareCollection();
@@ -38,6 +44,10 @@ class Np_Product_Block_Adminhtml_Product_Index_Grid extends Mage_Adminhtml_Block
             'index' => 'product_id',
         ));
 
+        $this->addColumn('category', array(
+            'header' => Mage::helper('product')->__('category'),
+            'index' => 'category',
+        ));
         $this->addColumn('name', array(
             'header' => Mage::helper('product')->__('Name'),
             'index' => 'name',

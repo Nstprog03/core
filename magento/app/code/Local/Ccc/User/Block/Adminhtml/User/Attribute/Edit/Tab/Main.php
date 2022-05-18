@@ -1,0 +1,4 @@
+<?php
+class Ccc_User_Block_Adminhtml_User_Attribute_Edit_Tab_Main extends Mage_Eav_Block_Adminhtml_Attribute_Edit_Main_Abstract {
+
+}

@@ -188,7 +188,7 @@ class Mage_Adminhtml_Block_Customer_Grid extends Mage_Adminhtml_Block_Widget_Gri
              'label'    => Mage::helper('customer')->__('Unsubscribe from Newsletter'),
              'url'      => $this->getUrl('*/*/massUnsubscribe')
         ));
-
+        
         $groups = $this->helper('customer')->getGroups()->toOptionArray();
 
         array_unshift($groups, array('label'=> '', 'value'=> ''));

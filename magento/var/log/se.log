@@ -1,0 +1,716 @@
+2022-05-11T12:06:53+00:00 DEBUG (7): root
+2022-05-11T12:06:53+00:00 DEBUG (7): 
+2022-05-11T12:06:53+00:00 DEBUG (7): Bedroom
+2022-05-11T12:06:53+00:00 DEBUG (7): 217
+2022-05-11T12:06:53+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 217
+    [Bedroom/Bed] => 218
+)
+
+2022-05-11T12:06:53+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:06:53+00:00 DEBUG (7): 
+2022-05-11T12:06:53+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:06:53+00:00 DEBUG (7): 
+2022-05-11T12:06:53+00:00 DEBUG (7): Array
+(
+    [Bedroom/Bed/Headboard] => 219
+    [Bedroom/Bed/Footboard] => 220
+)
+
+2022-05-11T12:06:54+00:00 DEBUG (7): Bedroom
+2022-05-11T12:06:54+00:00 DEBUG (7): 
+2022-05-11T12:06:54+00:00 DEBUG (7): Bedroom
+2022-05-11T12:06:54+00:00 DEBUG (7): 
+2022-05-11T12:06:54+00:00 DEBUG (7): Array
+(
+    [Bedroom/Dresser] => 221
+    [Bedroom/Nightstand] => 222
+)
+
+2022-05-11T12:06:54+00:00 DEBUG (7): Bedroom
+2022-05-11T12:06:54+00:00 DEBUG (7): 
+2022-05-11T12:06:54+00:00 DEBUG (7): Array
+(
+    [Bedroom/Bench] => 223
+)
+
+2022-05-11T12:12:14+00:00 DEBUG (7): root
+2022-05-11T12:12:14+00:00 DEBUG (7): 
+2022-05-11T12:12:14+00:00 DEBUG (7): Bedroom
+2022-05-11T12:12:14+00:00 DEBUG (7): 224
+2022-05-11T12:12:14+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:12:14+00:00 DEBUG (7): 225
+2022-05-11T12:12:14+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:12:14+00:00 DEBUG (7): 225
+2022-05-11T12:12:14+00:00 DEBUG (7): Bedroom
+2022-05-11T12:12:14+00:00 DEBUG (7): 224
+2022-05-11T12:12:14+00:00 DEBUG (7): Bedroom
+2022-05-11T12:12:14+00:00 DEBUG (7): 224
+2022-05-11T12:12:14+00:00 DEBUG (7): Bedroom
+2022-05-11T12:12:14+00:00 DEBUG (7): 224
+2022-05-11T12:12:14+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 224
+    [Bedroom/Bed] => 225
+    [Bedroom/Bed/Headboard] => 226
+    [Bedroom/Bed/Footboard] => 227
+    [Bedroom/Dresser] => 228
+    [Bedroom/Nightstand] => 229
+    [Bedroom/Bench] => 230
+)
+
+2022-05-11T12:14:16+00:00 DEBUG (7): root
+2022-05-11T12:14:16+00:00 DEBUG (7): 
+2022-05-11T12:14:16+00:00 DEBUG (7): Bedroom
+2022-05-11T12:14:16+00:00 DEBUG (7): 231
+2022-05-11T12:14:16+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:14:16+00:00 DEBUG (7): 232
+2022-05-11T12:14:16+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:14:16+00:00 DEBUG (7): 232
+2022-05-11T12:14:16+00:00 DEBUG (7): Bedroom
+2022-05-11T12:14:16+00:00 DEBUG (7): 231
+2022-05-11T12:14:16+00:00 DEBUG (7): Bedroom
+2022-05-11T12:14:16+00:00 DEBUG (7): 231
+2022-05-11T12:14:16+00:00 DEBUG (7): Bedroom
+2022-05-11T12:14:16+00:00 DEBUG (7): 231
+2022-05-11T12:14:16+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 231
+    [Bedroom/Bed] => 232
+    [Bedroom/Bed/Headboard] => 233
+    [Bedroom/Bed/Footboard] => 234
+    [Bedroom/Dresser] => 235
+    [Bedroom/Nightstand] => 236
+    [Bedroom/Bench] => 237
+)
+
+2022-05-11T12:17:19+00:00 DEBUG (7): root
+2022-05-11T12:17:19+00:00 DEBUG (7): 
+2022-05-11T12:17:19+00:00 DEBUG (7): Bedroom
+2022-05-11T12:17:19+00:00 DEBUG (7): 238
+2022-05-11T12:17:19+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:17:19+00:00 DEBUG (7): 239
+2022-05-11T12:17:19+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:17:19+00:00 DEBUG (7): 239
+2022-05-11T12:17:19+00:00 DEBUG (7): Bedroom
+2022-05-11T12:17:19+00:00 DEBUG (7): 238
+2022-05-11T12:17:19+00:00 DEBUG (7): Bedroom
+2022-05-11T12:17:19+00:00 DEBUG (7): 238
+2022-05-11T12:17:19+00:00 DEBUG (7): Bedroom
+2022-05-11T12:17:19+00:00 DEBUG (7): 238
+2022-05-11T12:17:19+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 238
+    [Bedroom/Bed] => 239
+    [Bedroom/Bed/Headboard] => 240
+    [Bedroom/Bed/Footboard] => 241
+    [Bedroom/Dresser] => 242
+    [Bedroom/Nightstand] => 243
+    [Bedroom/Bench] => 244
+)
+
+2022-05-11T12:18:54+00:00 DEBUG (7): root
+2022-05-11T12:18:54+00:00 DEBUG (7): 0
+2022-05-11T12:20:01+00:00 DEBUG (7): root
+2022-05-11T12:20:01+00:00 DEBUG (7): 
+2022-05-11T12:20:01+00:00 DEBUG (7): Bedroom
+2022-05-11T12:20:01+00:00 DEBUG (7): 246
+2022-05-11T12:20:01+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:20:01+00:00 DEBUG (7): 247
+2022-05-11T12:20:01+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:20:01+00:00 DEBUG (7): 247
+2022-05-11T12:20:01+00:00 DEBUG (7): Bedroom
+2022-05-11T12:20:01+00:00 DEBUG (7): 246
+2022-05-11T12:20:01+00:00 DEBUG (7): Bedroom
+2022-05-11T12:20:01+00:00 DEBUG (7): 246
+2022-05-11T12:20:01+00:00 DEBUG (7): Bedroom
+2022-05-11T12:20:01+00:00 DEBUG (7): 246
+2022-05-11T12:20:01+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 246
+    [Bedroom/Bed] => 247
+    [Bedroom/Bed/Headboard] => 248
+    [Bedroom/Bed/Footboard] => 249
+    [Bedroom/Dresser] => 250
+    [Bedroom/Nightstand] => 251
+    [Bedroom/Bench] => 252
+)
+
+2022-05-11T12:21:07+00:00 DEBUG (7): root
+2022-05-11T12:21:07+00:00 DEBUG (7): 0
+2022-05-11T12:24:18+00:00 DEBUG (7): root
+2022-05-11T12:24:18+00:00 DEBUG (7): 
+2022-05-11T12:24:18+00:00 DEBUG (7): Bedroom
+2022-05-11T12:24:18+00:00 DEBUG (7): 254
+2022-05-11T12:24:18+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:24:18+00:00 DEBUG (7): 255
+2022-05-11T12:24:18+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:24:18+00:00 DEBUG (7): 255
+2022-05-11T12:24:18+00:00 DEBUG (7): Bedroom
+2022-05-11T12:24:18+00:00 DEBUG (7): 254
+2022-05-11T12:24:18+00:00 DEBUG (7): Bedroom
+2022-05-11T12:24:18+00:00 DEBUG (7): 254
+2022-05-11T12:24:18+00:00 DEBUG (7): Bedroom
+2022-05-11T12:24:18+00:00 DEBUG (7): 254
+2022-05-11T12:24:18+00:00 DEBUG (7): Array
+(
+    [root] => 
+    [Bedroom] => 254
+    [Bedroom/Bed] => 255
+    [Bedroom/Bed/Headboard] => 256
+    [Bedroom/Bed/Footboard] => 257
+    [Bedroom/Dresser] => 258
+    [Bedroom/Nightstand] => 259
+    [Bedroom/Bench] => 260
+)
+
+2022-05-11T12:25:51+00:00 DEBUG (7): root
+2022-05-11T12:25:51+00:00 DEBUG (7): 
+2022-05-11T12:25:51+00:00 DEBUG (7): Bedroom
+2022-05-11T12:25:51+00:00 DEBUG (7): 261
+2022-05-11T12:25:51+00:00 DEBUG (7): Array
+(
+    [root] => 
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+)
+
+2022-05-11T12:25:52+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:25:52+00:00 DEBUG (7): 262
+2022-05-11T12:25:52+00:00 DEBUG (7): Bedroom/Bed
+2022-05-11T12:25:52+00:00 DEBUG (7): 262
+2022-05-11T12:25:52+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [root] => 
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+)
+
+2022-05-11T12:25:52+00:00 DEBUG (7): Bedroom
+2022-05-11T12:25:52+00:00 DEBUG (7): 261
+2022-05-11T12:25:52+00:00 DEBUG (7): Bedroom
+2022-05-11T12:25:52+00:00 DEBUG (7): 261
+2022-05-11T12:25:52+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [root] => 
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+)
+
+2022-05-11T12:25:53+00:00 DEBUG (7): Bedroom
+2022-05-11T12:25:53+00:00 DEBUG (7): 261
+2022-05-11T12:25:53+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [root] => 
+    [Bedroom/Bench] => 267
+)
+
+2022-05-11T12:31:05+00:00 DEBUG (7): 
+2022-05-11T12:31:05+00:00 DEBUG (7): 
+2022-05-11T12:31:05+00:00 DEBUG (7): 
+2022-05-11T12:31:05+00:00 DEBUG (7): 268
+2022-05-11T12:31:05+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [root] => 
+    [] => 269
+)
+
+2022-05-11T12:31:06+00:00 DEBUG (7): 
+2022-05-11T12:31:06+00:00 DEBUG (7): 268
+2022-05-11T12:31:06+00:00 DEBUG (7): 
+2022-05-11T12:31:06+00:00 DEBUG (7): 270
+2022-05-11T12:31:06+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 271
+    [/] => 269
+    [root] => 
+)
+
+2022-05-11T12:31:06+00:00 DEBUG (7): 
+2022-05-11T12:31:06+00:00 DEBUG (7): 268
+2022-05-11T12:31:06+00:00 DEBUG (7): 
+2022-05-11T12:31:06+00:00 DEBUG (7): 272
+2022-05-11T12:31:06+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 273
+    [/] => 270
+    [//] => 271
+    [root] => 
+)
+
+2022-05-11T12:31:06+00:00 DEBUG (7): 
+2022-05-11T12:31:06+00:00 DEBUG (7): 268
+2022-05-11T12:31:06+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 274
+    [/] => 272
+    [//] => 273
+    [root] => 
+)
+
+2022-05-11T12:32:38+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:32:38+00:00 DEBUG (7): 267
+2022-05-11T12:32:38+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:32:38+00:00 DEBUG (7): 267
+2022-05-11T12:32:38+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 268
+    [/] => 274
+    [//] => 273
+    [root] => 
+    [Bedroom/Bench/Plastic] => 275
+    [Bedroom/Bench/wood] => 276
+)
+
+2022-05-11T12:32:38+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:32:38+00:00 DEBUG (7): 267
+2022-05-11T12:32:38+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:32:38+00:00 DEBUG (7): 267
+2022-05-11T12:32:38+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 268
+    [/] => 274
+    [//] => 273
+    [Bedroom/Bench/Plastic] => 275
+    [Bedroom/Bench/wood] => 276
+    [root] => 
+    [Bedroom/Bench/Metel] => 277
+    [Bedroom/Bench/rubber] => 278
+)
+
+2022-05-11T12:33:37+00:00 DEBUG (7): 
+2022-05-11T12:33:37+00:00 DEBUG (7): 
+2022-05-11T12:33:37+00:00 DEBUG (7): 
+2022-05-11T12:33:37+00:00 DEBUG (7): 279
+2022-05-11T12:33:37+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [root] => 
+    [] => 280
+)
+
+2022-05-11T12:33:37+00:00 DEBUG (7): 
+2022-05-11T12:33:37+00:00 DEBUG (7): 279
+2022-05-11T12:33:37+00:00 DEBUG (7): 
+2022-05-11T12:33:37+00:00 DEBUG (7): 281
+2022-05-11T12:33:37+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 282
+    [/] => 280
+    [root] => 
+)
+
+2022-05-11T12:33:37+00:00 DEBUG (7): 
+2022-05-11T12:33:37+00:00 DEBUG (7): 279
+2022-05-11T12:33:37+00:00 DEBUG (7): 
+2022-05-11T12:33:37+00:00 DEBUG (7): 283
+2022-05-11T12:33:37+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 284
+    [/] => 281
+    [//] => 282
+    [root] => 
+)
+
+2022-05-11T12:33:38+00:00 DEBUG (7): 
+2022-05-11T12:33:38+00:00 DEBUG (7): 279
+2022-05-11T12:33:38+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:33:38+00:00 DEBUG (7): 267
+2022-05-11T12:33:38+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 285
+    [/] => 283
+    [//] => 284
+    [root] => 
+    [Bedroom/Bench/Plastic] => 286
+)
+
+2022-05-11T12:33:38+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:33:38+00:00 DEBUG (7): 267
+2022-05-11T12:33:38+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:33:38+00:00 DEBUG (7): 267
+2022-05-11T12:33:38+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 279
+    [/] => 285
+    [//] => 284
+    [Bedroom/Bench/Plastic] => 286
+    [root] => 
+    [Bedroom/Bench/wood] => 287
+    [Bedroom/Bench/Metel] => 288
+)
+
+2022-05-11T12:33:39+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:33:39+00:00 DEBUG (7): 267
+2022-05-11T12:33:39+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 279
+    [/] => 285
+    [//] => 284
+    [Bedroom/Bench/Plastic] => 286
+    [Bedroom/Bench/wood] => 287
+    [Bedroom/Bench/Metel] => 288
+    [root] => 
+    [Bedroom/Bench/rubber] => 289
+)
+
+2022-05-11T12:34:26+00:00 DEBUG (7): 
+2022-05-11T12:34:26+00:00 DEBUG (7): 
+2022-05-11T12:34:26+00:00 DEBUG (7): 
+2022-05-11T12:34:26+00:00 DEBUG (7): 290
+2022-05-11T12:34:26+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [root] => 
+    [] => 291
+)
+
+2022-05-11T12:34:27+00:00 DEBUG (7): 
+2022-05-11T12:34:27+00:00 DEBUG (7): 290
+2022-05-11T12:34:27+00:00 DEBUG (7): 
+2022-05-11T12:34:27+00:00 DEBUG (7): 292
+2022-05-11T12:34:27+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 293
+    [/] => 291
+    [root] => 
+)
+
+2022-05-11T12:34:27+00:00 DEBUG (7): 
+2022-05-11T12:34:27+00:00 DEBUG (7): 290
+2022-05-11T12:34:27+00:00 DEBUG (7): 
+2022-05-11T12:34:27+00:00 DEBUG (7): 294
+2022-05-11T12:34:27+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 295
+    [/] => 292
+    [//] => 293
+    [root] => 
+)
+
+2022-05-11T12:34:28+00:00 DEBUG (7): 
+2022-05-11T12:34:28+00:00 DEBUG (7): 290
+2022-05-11T12:34:28+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:34:28+00:00 DEBUG (7): 267
+2022-05-11T12:34:28+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 296
+    [/] => 294
+    [//] => 295
+    [root] => 
+    [Bedroom/Bench/Plastic] => 297
+)
+
+2022-05-11T12:34:28+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:34:28+00:00 DEBUG (7): 267
+2022-05-11T12:34:28+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:34:28+00:00 DEBUG (7): 267
+2022-05-11T12:34:28+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 290
+    [/] => 296
+    [//] => 295
+    [Bedroom/Bench/Plastic] => 297
+    [root] => 
+    [Bedroom/Bench/wood] => 298
+    [Bedroom/Bench/Metel] => 299
+)
+
+2022-05-11T12:34:28+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:34:28+00:00 DEBUG (7): 267
+2022-05-11T12:34:29+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 290
+    [/] => 296
+    [//] => 295
+    [Bedroom/Bench/Plastic] => 297
+    [Bedroom/Bench/wood] => 298
+    [Bedroom/Bench/Metel] => 299
+    [root] => 
+    [Bedroom/Bench/rubber] => 300
+)
+
+2022-05-11T12:36:08+00:00 DEBUG (7): 
+2022-05-11T12:36:08+00:00 DEBUG (7): 
+2022-05-11T12:36:08+00:00 DEBUG (7): 
+2022-05-11T12:36:08+00:00 DEBUG (7): 301
+2022-05-11T12:36:08+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [root] => 
+    [] => 302
+)
+
+2022-05-11T12:36:08+00:00 DEBUG (7): 
+2022-05-11T12:36:08+00:00 DEBUG (7): 301
+2022-05-11T12:36:08+00:00 DEBUG (7): 
+2022-05-11T12:36:08+00:00 DEBUG (7): 303
+2022-05-11T12:36:08+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 304
+    [/] => 302
+    [root] => 
+)
+
+2022-05-11T12:36:08+00:00 DEBUG (7): 
+2022-05-11T12:36:08+00:00 DEBUG (7): 301
+2022-05-11T12:36:09+00:00 DEBUG (7): 
+2022-05-11T12:36:09+00:00 DEBUG (7): 305
+2022-05-11T12:36:09+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 306
+    [/] => 303
+    [//] => 304
+    [root] => 
+)
+
+2022-05-11T12:36:09+00:00 DEBUG (7): 
+2022-05-11T12:36:09+00:00 DEBUG (7): 301
+2022-05-11T12:36:09+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:36:09+00:00 DEBUG (7): 267
+2022-05-11T12:36:09+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 307
+    [/] => 305
+    [//] => 306
+    [root] => 
+    [Bedroom/Bench/Plastic] => 308
+)
+
+2022-05-11T12:36:09+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:36:09+00:00 DEBUG (7): 267
+2022-05-11T12:36:09+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:36:09+00:00 DEBUG (7): 267
+2022-05-11T12:36:09+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 301
+    [/] => 307
+    [//] => 306
+    [Bedroom/Bench/Plastic] => 308
+    [root] => 
+    [Bedroom/Bench/wood] => 309
+    [Bedroom/Bench/Metel] => 310
+)
+
+2022-05-11T12:36:10+00:00 DEBUG (7): Bedroom/Bench
+2022-05-11T12:36:10+00:00 DEBUG (7): 267
+2022-05-11T12:36:10+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [] => 301
+    [/] => 307
+    [//] => 306
+    [Bedroom/Bench/Plastic] => 308
+    [Bedroom/Bench/wood] => 309
+    [Bedroom/Bench/Metel] => 310
+    [root] => 
+    [Bedroom/Bench/rubber] => 311
+)
+
+2022-05-11T12:44:12+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [root] => 
+    [Bedroom/Bench/Plastic] => 312
+    [Bedroom/Bench/wood] => 313
+)
+
+2022-05-11T12:44:12+00:00 DEBUG (7): Array
+(
+    [Bedroom] => 261
+    [Bedroom/Bed] => 262
+    [Bedroom/Bed/Headboard] => 263
+    [Bedroom/Bed/Footboard] => 264
+    [Bedroom/Dresser] => 265
+    [Bedroom/Nightstand] => 266
+    [Bedroom/Bench] => 267
+    [Bedroom/Bench/Plastic] => 312
+    [Bedroom/Bench/wood] => 313
+    [root] => 
+    [Bedroom/Bench/Metel] => 314
+    [Bedroom/Bench/rubber] => 315
+)
+

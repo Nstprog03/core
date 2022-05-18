@@ -11,7 +11,7 @@ class Np_Category_Block_Adminhtml_Category_Index_Edit_Tab_Form extends Mage_Admi
 
         $fieldset->addField('parent_id', 'select', array(
          'label' => Mage::helper('category')->__('Path'),
-         'name' => 'selected_id',
+         'name' => 'parent_id',
          'values' => $this->selectPaths()
         ));
         $fieldset->addField('name', 'text', array(
@@ -54,7 +54,15 @@ class Np_Category_Block_Adminhtml_Category_Index_Edit_Tab_Form extends Mage_Admi
         $categories = Mage::getModel('category/category')->getCollection()->getItems();
         $finalarray = [];
         $finalarray['root'] = array('value'=>null ,'label'=>'Root Category');
-        $allPath = Mage::getModel('category/category')->getResource()->getReadConnection()->fetchAll("SELECT * FROM `category` WHERE `path` NOT LIKE '%$id%' ");
+        if($id)
+        {
+
+            $allPath = Mage::getModel('category/category')->getResource()->getReadConnection()->fetchAll("SELECT * FROM `category` WHERE `path` NOT LIKE '%$id%' ");
+        }
+        else
+        {
+            $allPath = Mage::getModel('category/category')->getResource()->getReadConnection()->fetchAll("SELECT * FROM `category` ORDER BY `path`");
+        }
         foreach ($categories as $category) 
         {
             foreach ($allPath as $data)

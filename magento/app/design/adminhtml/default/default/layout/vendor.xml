@@ -2,12 +2,32 @@
 <layout>
 	<vendor_adminhtml_vendor_index>
 		<reference name="content">
-            <block type="vendor/adminhtml_vendor_index" name="vendor_index"></block>
-        </reference>
+			<block type="vendor/adminhtml_vendor" name="vendor_grid"/>
+		</reference>
 	</vendor_adminhtml_vendor_index>
-	<!-- <vendor_adminhtml_vendor_edit>
+
+	<vendor_adminhtml_vendor_attribute_edit>
+		<reference name="left">
+			<block type="vendor/adminhtml_vendor_attribute_edit_tabs" name="attribute_tabs"/>
+		</reference>
 		<reference name="content">
-            <block type="vendor/adminhtml_vendor_edit" name="vendor_edit"></block>
+			<block type="vendor/adminhtml_vendor_attribute_edit" name="attribute_edit"/>
+		</reference>
+		<reference name="js">
+            <block type="adminhtml/template" name="attribute_edit_js" template="vendor/attribute/js.phtml"></block>
         </reference>
-	</vendor_adminhtml_vendor_edit> -->
+	</vendor_adminhtml_vendor_attribute_edit>
+
+	<vendor_adminhtml_vendor_edit>
+		<reference name="content">
+			<block type="vendor/adminhtml_vendor_edit" name="vendor_edit"/>
+		</reference>
+		<reference name="left">
+			<block type="vendor/adminhtml_vendor_edit_tabs" name="vendor_tabs"/>
+		</reference>
+		<reference name="js">
+			<block type="adminhtml/catalog_product_edit_js" template="catalog/product/js.phtml" name="catalog_product_js"></block>
+            <block type="core/template" template="catalog/wysiwyg/js.phtml"/>
+		</reference>
+	</vendor_adminhtml_vendor_edit>
 </layout>

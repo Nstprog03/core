@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Entries</title>
+    <style>
+        body {
+  background: #eaecfa;
+}
+
+.loader {
+  width: 250px;
+  height: 75px;
+  line-height: 50px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: helvetica, arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #ce4233;
+  letter-spacing: 0.2em;
+}
+.loader::before, .loader::after {
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: #ce4233;
+  position: absolute;
+  -webkit-animation: load 0.7s infinite alternate ease-in-out;
+          animation: load 0.7s infinite alternate ease-in-out;
+}
+.loader::before {
+  top: 0;
+}
+.loader::after {
+  bottom: 0;
+}
+
+@-webkit-keyframes load {
+  0% {
+    left: 0;
+    height: 30px;
+    width: 15px;
+  }
+  50% {
+    height: 8px;
+    width: 40px;
+  }
+  100% {
+    left: 235px;
+    height: 30px;
+    width: 15px;
+  }
+}
+
+@keyframes load {
+  0% {
+    left: 0;
+    height: 30px;
+    width: 15px;
+  }
+  50% {
+    height: 8px;
+    width: 40px;
+  }
+  100% {
+    left: 235px;
+    height: 30px;
+    width: 15px;
+  }
+}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    admin = {
+        execute : function(){
+            const self = this;
+            $.ajax({
+                url: "<?php echo Mage::getUrl('process/adminhtml_process_upload/processEntry/'); ?>",
+                type: 'POST',
+                data: $("#processForm").serialize(),
+                dataType: 'json',
+                success: function(data){
+                    console.log(data);
+                    if(data.message){
+                        $("#process").html(data.message);
+                    }
+                    if(data.status == "success" && data.reload == false){
+                        self.execute();
+                    }
+                    else if(data.status == "success" && data.reload == true){
+                        location.reload(true);
+                    }
+                    else if(data.status == 'failuer'){
+                        location.reload();
+                    }
+                }             
+            });
+        },
+    }
+    </script>
+</head>
+<body>
+    <form action="#" method="post" id="processForm">
+        <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+    </form>
+    <div class="loader"><h1 id="process">Processing</h1></div>
+    
+
+<script type="text/javascript">
+        admin.execute();
+    </script>
+</body>
+</html>

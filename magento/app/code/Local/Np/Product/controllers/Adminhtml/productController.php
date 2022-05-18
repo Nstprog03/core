@@ -8,6 +8,8 @@ class Np_Product_Adminhtml_productController extends Mage_Adminhtml_Controller_A
 		$this->_setActiveMenu('product/group');
 		$this->renderLayout();
 	}
+	
+
 
 	 public function newAction()
 	{
